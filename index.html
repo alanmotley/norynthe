@@ -56,6 +56,12 @@
       user-select: none;
     }
 
+    .logo-shell {
+      position: relative;
+      display: inline-block;
+      line-height: 0;
+    }
+
     .logo-wrap {
       display: inline-flex;
       align-items: flex-end;
@@ -84,10 +90,16 @@
       height: var(--dot-size);
       border-radius: 999px;
       background: var(--dot);
-      margin-left: var(--dot-gap);
-      margin-bottom: var(--dot-lift);
       flex: 0 0 auto;
       animation: blink 1.2s steps(1, end) infinite;
+    }
+
+    .dot-overlay {
+      position: absolute;
+      right: clamp(8px, 1.2vw, 16px);
+      bottom: clamp(18px, 2vw, 34px);
+      margin: 0;
+      pointer-events: none;
     }
 
     .tagline {
@@ -135,17 +147,18 @@
   <main>
     <section class="hero" aria-label="Norynthe landing page">
       <div class="brand-lockup" role="img" aria-label="Norynthe logo with blinking signal dot">
-        <div class="logo-wrap">
-          <!-- Replace norynthe-logo.png with your actual transparent logo file -->
-          <img
-            class="logo"
-            src="norynthe-logo.png"
-            alt="Norynthe"
-            onerror="this.style.display='none'; document.querySelector('.logo-fallback').style.display='block';"
-          />
-          <h1 class="logo-fallback">Norynthe</h1>
+        <div class="logo-shell">
+          <div class="logo-wrap">
+            <img
+              class="logo"
+              src="Norynthe_master.png"
+              alt="Norynthe"
+              onerror="this.style.display='none'; document.querySelector('.logo-fallback').style.display='block';"
+            />
+            <h1 class="logo-fallback">Norynthe</h1>
+          </div>
+          <span class="dot dot-overlay" aria-hidden="true"></span>
         </div>
-        <span class="dot" aria-hidden="true"></span>
       </div>
     </section>
   </main>
