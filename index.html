@@ -39,14 +39,18 @@
     main {
       width: 100%;
       min-height: 100dvh;
-      display: grid;
-      place-items: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
       padding: 2rem;
     }
 
     .hero {
-      display: grid;
-      place-items: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
       width: 100%;
     }
 
@@ -113,7 +117,7 @@
     }
 
     .subline {
-      margin: 1rem 0 0;
+      margin: 1.1rem 0 0;
       font-size: 0.82rem;
       letter-spacing: 0.14em;
       text-transform: uppercase;
@@ -123,7 +127,7 @@
 
     .tagline {
       position: fixed;
-      bottom: 2rem;
+      bottom: 2.4rem;
       left: 50%;
       transform: translateX(-50%);
       font-size: 0.78rem;
