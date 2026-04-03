@@ -103,9 +103,10 @@
       bottom: clamp(38px, 4vw, 60px);
       margin: 0;
       pointer-events: none;
-      z-index: 3;
-      background: #ffffff;
-      mix-blend-mode: difference;
+      z-index: 5;
+      background: var(--bg);
+      mix-blend-mode: normal;
+      box-shadow: 0 0 0 1px var(--bg);
       opacity: 1;
     }
 
@@ -124,6 +125,8 @@
 
     @keyframes blink {
       0%, 48% { opacity: 1; }
+      49%, 100% { opacity: 0; }
+    }
       49%, 100% { opacity: 0.14; }
     }
 
@@ -173,5 +176,6 @@
   <p class="tagline">Independent Standards · Clear Signal · Trusted Intelligence</p>
 </body>
 </html>
+
 
 
