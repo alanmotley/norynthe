@@ -112,17 +112,34 @@
       opacity: 1;
     }
 
+    .subline {
+      margin: 1rem 0 0;
+      font-size: 0.82rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-align: center;
+    }
+
     .tagline {
       position: fixed;
       bottom: 2rem;
       left: 50%;
       transform: translateX(-50%);
-      font-size: 0.82rem;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
       color: var(--muted);
       text-align: center;
       white-space: nowrap;
+    }
+
+    .tagline a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .tagline a:hover {
+      text-decoration: underline;
     }
 
     @keyframes blink {
@@ -145,6 +162,12 @@
         --dot-size: clamp(9px, 2vw, 12px);
         --dot-gap: 4px;
         --dot-lift: clamp(6px, 1.5vw, 10px);
+      }
+
+      .subline {
+        width: min(90vw, 28rem);
+        line-height: 1.5;
+        padding-inline: 1rem;
       }
 
       .tagline {
@@ -173,8 +196,9 @@
         </div>
       </div>
     </section>
+        <p class="subline">Independent standards for trusted intelligence.</p>
   </main>
 
-  <p class="tagline">Independent Standards · Clear Signal · Trusted Intelligence</p>
+  <p class="tagline"><a href="mailto:hello@norynthe.com">hello@norynthe.com</a> · © 2026 Norynthe</p>
 </body>
 </html>
