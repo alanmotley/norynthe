@@ -969,7 +969,23 @@
       text-decoration: none;
     }
 
+    .footer button {
+      appearance: none;
+      border: 0;
+      background: transparent;
+      color: inherit;
+      font: inherit;
+      letter-spacing: inherit;
+      text-transform: inherit;
+      padding: 0;
+      cursor: pointer;
+    }
+
     .footer a:hover {
+      text-decoration: underline;
+    }
+
+    .footer button:hover {
       text-decoration: underline;
     }
 
@@ -1236,7 +1252,7 @@
 
     <footer class="footer">
       <div>Models · contexts · languages</div>
-      <div class="contact"><a href="mailto:hello@norynthe.com">hello@norynthe.com</a> · © 2026 Norynthe.</div>
+      <div class="contact"><a href="mailto:hello@norynthe.com">hello@norynthe.com</a> · <button type="button" id="copy-email">Copy email</button> · © 2026 Norynthe.</div>
     </footer>
   </div>
 
@@ -1272,6 +1288,30 @@
       }
 
       window.requestAnimationFrame(tick);
+    }());
+  </script>
+  <script>
+    (function () {
+      const button = document.getElementById('copy-email');
+      if (!button || !navigator.clipboard) return;
+
+      const email = 'hello@norynthe.com';
+      const label = button.textContent;
+
+      button.addEventListener('click', async function () {
+        try {
+          await navigator.clipboard.writeText(email);
+          button.textContent = 'Copied';
+          window.setTimeout(function () {
+            button.textContent = label;
+          }, 1600);
+        } catch (error) {
+          button.textContent = 'Copy failed';
+          window.setTimeout(function () {
+            button.textContent = label;
+          }, 1600);
+        }
+      });
     }());
   </script>
 </body>
