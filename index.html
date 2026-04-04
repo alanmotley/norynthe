@@ -117,41 +117,6 @@
       animation: orbitB 26s ease-in-out infinite;
     }
 
-    .crosshair {
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      width: min(68vw, 740px);
-      height: min(22vw, 180px);
-      transform: translate(-50%, -50%);
-      pointer-events: none;
-      opacity: 0.52;
-    }
-
-    .crosshair::before,
-    .crosshair::after {
-      content: "";
-      position: absolute;
-      background: linear-gradient(90deg, transparent, rgba(51, 75, 110, 0.16), transparent);
-    }
-
-    .crosshair::before {
-      left: 0;
-      right: 0;
-      top: 50%;
-      height: 1px;
-      transform: translateY(-50%);
-    }
-
-    .crosshair::after {
-      top: 0;
-      bottom: 0;
-      left: 50%;
-      width: 1px;
-      transform: translateX(-50%);
-      background: linear-gradient(180deg, transparent, rgba(51, 75, 110, 0.14), transparent);
-    }
-
     .wash {
       position: absolute;
       inset: -10%;
@@ -252,48 +217,6 @@
       filter: blur(22px);
       opacity: 0.5;
       animation: horizonShift 16s ease-in-out infinite alternate;
-    }
-
-    .frame-lines {
-      position: absolute;
-      inset: 6%;
-      border: 1px solid rgba(51, 75, 110, 0.10);
-      clip-path: polygon(0 0, 100% 0, 100% 84%, 96% 100%, 0 100%);
-      opacity: 0.6;
-      animation: breathe 12s ease-in-out infinite;
-    }
-
-    .frame-lines::before,
-    .frame-lines::after {
-      content: "";
-      position: absolute;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(51, 75, 110, 0.18), transparent);
-    }
-
-    .frame-lines::before {
-      top: 18%;
-      left: 6%;
-      width: 34%;
-    }
-
-    .frame-lines::after {
-      bottom: 14%;
-      right: 8%;
-      width: 24%;
-      background: linear-gradient(90deg, transparent, rgba(122, 48, 48, 0.22), transparent);
-    }
-
-    .ghost-grid {
-      position: absolute;
-      inset: 14% 12% 18% 12%;
-      background-image:
-        linear-gradient(rgba(51, 75, 110, 0.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(51, 75, 110, 0.04) 1px, transparent 1px);
-      background-size: 120px 120px;
-      mask-image: radial-gradient(circle at center, rgba(0, 0, 0, 0.6), transparent 78%);
-      opacity: 0.28;
-      animation: breathe 24s ease-in-out infinite;
     }
 
     .marker {
@@ -707,70 +630,6 @@
       position: relative;
     }
 
-    .hero-axis {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: min(88vw, 1040px);
-      height: 1px;
-      transform: translate(-50%, -50%);
-      background: linear-gradient(90deg, transparent, rgba(51, 75, 110, 0.10), transparent);
-      pointer-events: none;
-      z-index: 0;
-      opacity: 0.78;
-    }
-
-    .hero-axis::before,
-    .hero-axis::after {
-      content: "";
-      position: absolute;
-      top: 50%;
-      width: 9px;
-      height: 9px;
-      border-radius: 999px;
-      border: 1px solid rgba(51, 75, 110, 0.14);
-      background: rgba(233, 237, 242, 0.72);
-      transform: translateY(-50%);
-      opacity: 0.84;
-    }
-
-    .hero-axis::before {
-      left: 14%;
-    }
-
-    .hero-axis::after {
-      right: 14%;
-      border-color: rgba(122, 48, 48, 0.16);
-    }
-
-    .hero-rules {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    .hero-rules::before,
-    .hero-rules::after {
-      content: "";
-      position: absolute;
-      width: min(12vw, 130px);
-      height: 1px;
-      background: linear-gradient(90deg, rgba(122, 48, 48, 0.2), transparent);
-      opacity: 0.7;
-    }
-
-    .hero-rules::before {
-      left: 10%;
-      top: 32%;
-    }
-
-    .hero-rules::after {
-      right: 10%;
-      bottom: 28%;
-      transform: rotate(180deg);
-    }
-
     .lockup {
       position: relative;
       display: grid;
@@ -1093,9 +952,6 @@
       .cloud-band-secondary,
       .cloud-floor,
       .horizon-haze,
-      .frame-lines,
-      .ghost-grid,
-      .crosshair,
       .scan,
       .scan-vertical,
       .marker,
@@ -1104,8 +960,6 @@
       .marker-bottom,
       .marker-right-lower,
       .marker-left-upper,
-      .hero-axis,
-      .hero-rules,
       .lockup::before,
       .lockup::after,
       .logo-shell::before,
@@ -1159,12 +1013,9 @@
     <div class="cloud-band-secondary"></div>
     <div class="cloud-floor"></div>
     <div class="horizon-haze"></div>
-    <div class="ghost-grid"></div>
     <div class="field-grain"></div>
     <div class="scan"></div>
     <div class="scan-vertical"></div>
-    <div class="frame-lines"></div>
-    <div class="crosshair"></div>
     <div class="field-mask"></div>
   </div>
 
@@ -1231,8 +1082,6 @@
     </div>
 
     <main class="hero" aria-label="Norynthe experimental landing page">
-      <div class="hero-axis" aria-hidden="true"></div>
-      <div class="hero-rules" aria-hidden="true"></div>
       <div class="lockup">
         <div class="logo-shell" role="img" aria-label="Norynthe logo with blinking signal dot">
           <div class="logo-wrap">
