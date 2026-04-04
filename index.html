@@ -727,7 +727,10 @@
       bottom: clamp(38px, 4vw, 60px);
       z-index: 4;
       background: rgba(233, 237, 242, 0.94);
-      box-shadow: 0 0 0 4px rgba(233, 237, 242, 0.94), 0 0 24px rgba(122, 48, 48, 0.10);
+      box-shadow:
+        0 0 0 4px rgba(233, 237, 242, 0.94),
+        0 0 0 10px rgba(122, 48, 48, 0.06),
+        0 0 36px rgba(122, 48, 48, 0.18);
       pointer-events: none;
     }
 
@@ -736,13 +739,27 @@
       position: absolute;
       top: 50%;
       left: 50%;
-      width: calc(var(--dot-size) * 2.6);
-      height: calc(var(--dot-size) * 2.6);
+      width: calc(var(--dot-size) * 3.4);
+      height: calc(var(--dot-size) * 3.4);
       transform: translate(-50%, -50%);
       border-radius: 999px;
-      border: 1px solid rgba(122, 48, 48, 0.16);
+      border: 1px solid rgba(122, 48, 48, 0.22);
       opacity: 0;
-      animation: pulse 2.9s ease-out infinite;
+      animation: pulse 2.4s ease-out infinite;
+    }
+
+    .dot-overlay::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: calc(var(--dot-size) * 6.2);
+      height: calc(var(--dot-size) * 6.2);
+      transform: translate(-50%, -50%);
+      border-radius: 999px;
+      background: radial-gradient(circle, rgba(122, 48, 48, 0.20), rgba(122, 48, 48, 0) 68%);
+      opacity: 0.55;
+      pointer-events: none;
     }
 
     .subline {
@@ -816,10 +833,10 @@
         opacity: 0;
         transform: translate(-50%, -50%) scale(0.75);
       }
-      18% { opacity: 0.55; }
+      18% { opacity: 0.72; }
       100% {
         opacity: 0;
-        transform: translate(-50%, -50%) scale(1.4);
+        transform: translate(-50%, -50%) scale(1.65);
       }
     }
 
