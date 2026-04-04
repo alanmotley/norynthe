@@ -30,10 +30,9 @@
       --bg: #E9EDF2;
       --text: #111111;
       --muted: #5f6368;
-      --dot: #111111;
+      --dot: #7A3030;
       --logo-width: min(76vw, 760px);
       --dot-size: clamp(14px, 1.5vw, 20px);
-      --line: rgba(51, 75, 110, 0.10);
     }
 
     * { box-sizing: border-box; }
@@ -109,17 +108,6 @@
       display: inline-block;
       line-height: 0;
       isolation: isolate;
-      padding: 2.4rem 2.8rem;
-    }
-    .logo-shell::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.36), rgba(255, 255, 255, 0.08));
-      border: 1px solid rgba(51, 75, 110, 0.08);
-      clip-path: polygon(0 0, 100% 0, 100% 86%, 94% 100%, 0 100%);
-      box-shadow: 0 28px 60px rgba(15, 17, 21, 0.06);
-      z-index: 0;
     }
 
     .logo-wrap {
@@ -164,7 +152,7 @@
       pointer-events: none;
       z-index: 5;
       background: var(--bg);
-      box-shadow: 0 0 0 6px rgba(233, 237, 242, 0.96);
+      box-shadow: 0 0 0 4px rgba(233, 237, 242, 0.96);
     }
 
     .subline {
@@ -210,15 +198,12 @@
 
     @keyframes blink {
       0%, 48% { opacity: 1; }
-      49%, 100% { opacity: 0.14; }
+      49%, 100% { opacity: 0.18; }
     }
 
     @media (max-width: 900px) {
       :root {
         --logo-width: min(84vw, 640px);
-      }
-      .logo-shell {
-        padding: 2rem 2.2rem;
       }
     }
 
@@ -226,10 +211,6 @@
       :root {
         --logo-width: min(88vw, 520px);
         --dot-size: clamp(9px, 2vw, 12px);
-      }
-
-      .logo-shell {
-        padding: 1.25rem 1.25rem 1.6rem;
       }
 
       .hero::before,
