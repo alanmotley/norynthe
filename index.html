@@ -717,23 +717,6 @@
       color: var(--ink);
     }
 
-    .dot {
-      width: var(--dot-size);
-      height: var(--dot-size);
-      border-radius: 999px;
-      background: var(--signal);
-    }
-
-    .dot-overlay {
-      position: absolute;
-      right: clamp(34px, 3.5vw, 54px);
-      bottom: clamp(38px, 4vw, 60px);
-      z-index: 4;
-      background: rgba(233, 237, 242, 0.94);
-      box-shadow: 0 0 0 4px rgba(233, 237, 242, 0.94);
-      pointer-events: none;
-    }
-
     .subline {
       max-width: 48rem;
       margin: 0;
@@ -868,7 +851,6 @@
     @media (max-width: 640px) {
       :root {
         --logo-width: min(88vw, 560px);
-        --dot-size: clamp(9px, 2vw, 12px);
       }
 
       body::before,
@@ -1008,7 +990,7 @@
 
     <main class="hero" aria-label="Norynthe experimental landing page">
       <div class="lockup">
-        <div class="logo-shell" role="img" aria-label="Norynthe logo with blinking signal dot">
+        <div class="logo-shell" role="img" aria-label="Norynthe logo">
           <div class="logo-wrap">
             <img
               class="logo"
@@ -1018,7 +1000,6 @@
             >
             <h1 class="logo-fallback">Norynthe.</h1>
           </div>
-          <span class="dot dot-overlay" aria-hidden="true"></span>
         </div>
         <p class="subline">Independent standards for trusted intelligence.<span>Scoring what systems signal.</span></p>
       </div>
