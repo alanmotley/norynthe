@@ -101,6 +101,18 @@
       justify-content: center;
       line-height: 1;
       user-select: none;
+      position: relative;
+    }
+    .brand-lockup::before {
+      content: "";
+      position: absolute;
+      inset: auto auto -26px 50%;
+      width: min(48vw, 420px);
+      height: 24px;
+      transform: translateX(-50%);
+      background: radial-gradient(ellipse at center, rgba(15, 17, 21, 0.09), rgba(15, 17, 21, 0) 72%);
+      filter: blur(12px);
+      pointer-events: none;
     }
 
     .logo-shell {
@@ -124,6 +136,7 @@
       max-width: 100%;
       height: auto;
       object-fit: contain;
+      filter: drop-shadow(0 14px 22px rgba(15, 17, 21, 0.06));
     }
 
     .logo-fallback {
@@ -164,6 +177,7 @@
       text-align: center;
       position: relative;
       z-index: 2;
+      padding-inline: 1.2rem;
     }
 
     .tagline {
@@ -184,7 +198,7 @@
       width: min(22vw, 180px);
       height: 1px;
       margin: 0 auto 1rem;
-      background: linear-gradient(90deg, transparent, rgba(51, 75, 110, 0.16), transparent);
+      background: linear-gradient(90deg, transparent, rgba(122, 48, 48, 0.18), transparent);
     }
 
     .tagline a {
@@ -216,6 +230,11 @@
       .hero::before,
       .hero::after {
         display: none;
+      }
+
+      .brand-lockup::before {
+        width: min(56vw, 260px);
+        bottom: -18px;
       }
 
       .subline {
