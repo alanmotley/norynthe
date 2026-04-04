@@ -75,15 +75,6 @@
       justify-content: center;
       position: relative;
     }
-    .hero::before {
-      content: "";
-      position: absolute;
-      top: calc(50% - 190px);
-      width: min(86vw, 980px);
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(51, 75, 110, 0.18), transparent);
-      pointer-events: none;
-    }
     .hero::after {
       content: "";
       position: absolute;
@@ -227,7 +218,6 @@
         --dot-size: clamp(9px, 2vw, 12px);
       }
 
-      .hero::before,
       .hero::after {
         display: none;
       }
