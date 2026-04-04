@@ -75,6 +75,7 @@
       align-items: center;
       justify-content: center;
       position: relative;
+      padding-bottom: 2.5rem;
     }
     .hero::after {
       content: "";
@@ -139,7 +140,7 @@
       max-width: 100%;
       height: auto;
       object-fit: contain;
-      filter: drop-shadow(0 14px 22px rgba(15, 17, 21, 0.06));
+      filter: drop-shadow(0 12px 20px rgba(15, 17, 21, 0.05));
     }
 
     .logo-fallback {
@@ -195,6 +196,7 @@
       position: relative;
       z-index: 2;
       padding-inline: 1.2rem;
+      text-wrap: balance;
     }
 
     .tagline {
@@ -208,6 +210,7 @@
       text-align: center;
       white-space: nowrap;
       padding-top: 1rem;
+      opacity: 0.92;
     }
     .tagline::before {
       content: "";
@@ -250,6 +253,16 @@
       }
     }
 
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
     @media (max-width: 900px) {
       :root {
         --logo-width: min(84vw, 640px);
@@ -284,6 +297,7 @@
         white-space: normal;
         width: min(90vw, 28rem);
         line-height: 1.5;
+        bottom: 1.6rem;
       }
     }
   </style>
