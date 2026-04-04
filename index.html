@@ -53,6 +53,7 @@
       overflow-x: hidden;
       background:
         radial-gradient(circle at 72% 18%, rgba(143, 177, 203, 0.16), transparent 30%),
+        radial-gradient(circle at 50% 46%, rgba(255, 255, 255, 0.34), transparent 28%),
         radial-gradient(circle at 24% 86%, rgba(184, 167, 106, 0.08), transparent 26%),
         linear-gradient(180deg, #EEF2F5 0%, #E9EDF2 48%, #EFF3F6 100%);
     }
@@ -104,6 +105,17 @@
       background: radial-gradient(ellipse at center, rgba(15, 17, 21, 0.09), rgba(15, 17, 21, 0) 72%);
       filter: blur(12px);
       pointer-events: none;
+    }
+    .brand-lockup::after {
+      content: "";
+      position: absolute;
+      inset: 50% auto auto 50%;
+      width: min(56vw, 540px);
+      height: min(22vw, 180px);
+      transform: translate(-50%, -54%);
+      background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.46), rgba(255, 255, 255, 0) 72%);
+      pointer-events: none;
+      filter: blur(10px);
     }
 
     .logo-shell {
@@ -257,6 +269,9 @@
       .brand-lockup::before {
         width: min(56vw, 260px);
         bottom: -18px;
+      }
+      .brand-lockup::after {
+        display: none;
       }
 
       .subline {
