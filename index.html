@@ -33,6 +33,7 @@
       --dot: #111111;
       --logo-width: min(76vw, 760px);
       --dot-size: clamp(14px, 1.5vw, 20px);
+      --line: rgba(51, 75, 110, 0.10);
     }
 
     * { box-sizing: border-box; }
@@ -51,6 +52,10 @@
       display: grid;
       place-items: center;
       overflow-x: hidden;
+      background:
+        radial-gradient(circle at 72% 18%, rgba(143, 177, 203, 0.16), transparent 30%),
+        radial-gradient(circle at 24% 86%, rgba(184, 167, 106, 0.08), transparent 26%),
+        linear-gradient(180deg, #EEF2F5 0%, #E9EDF2 48%, #EFF3F6 100%);
     }
 
     main {
@@ -69,6 +74,26 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
+      position: relative;
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: calc(50% - 190px);
+      width: min(86vw, 980px);
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(51, 75, 110, 0.18), transparent);
+      pointer-events: none;
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      bottom: calc(50% - 150px);
+      width: min(72vw, 760px);
+      height: 180px;
+      background: radial-gradient(ellipse at center, rgba(15, 17, 21, 0.08), rgba(15, 17, 21, 0) 68%);
+      filter: blur(26px);
+      pointer-events: none;
     }
 
     .brand-lockup {
@@ -84,6 +109,17 @@
       display: inline-block;
       line-height: 0;
       isolation: isolate;
+      padding: 2.4rem 2.8rem;
+    }
+    .logo-shell::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.36), rgba(255, 255, 255, 0.08));
+      border: 1px solid rgba(51, 75, 110, 0.08);
+      clip-path: polygon(0 0, 100% 0, 100% 86%, 94% 100%, 0 100%);
+      box-shadow: 0 28px 60px rgba(15, 17, 21, 0.06);
+      z-index: 0;
     }
 
     .logo-wrap {
@@ -94,7 +130,7 @@
 
     .logo {
       position: relative;
-      z-index: 1;
+      z-index: 2;
       display: block;
       width: var(--logo-width);
       max-width: 100%;
@@ -128,16 +164,18 @@
       pointer-events: none;
       z-index: 5;
       background: var(--bg);
-      box-shadow: 0 0 0 1px var(--bg);
+      box-shadow: 0 0 0 6px rgba(233, 237, 242, 0.96);
     }
 
     .subline {
-      margin: 1.1rem 0 0;
+      margin: 1.4rem 0 0;
       font-size: 0.82rem;
-      letter-spacing: 0.14em;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--muted);
       text-align: center;
+      position: relative;
+      z-index: 2;
     }
 
     .tagline {
@@ -150,6 +188,15 @@
       color: var(--muted);
       text-align: center;
       white-space: nowrap;
+      padding-top: 1rem;
+    }
+    .tagline::before {
+      content: "";
+      display: block;
+      width: min(22vw, 180px);
+      height: 1px;
+      margin: 0 auto 1rem;
+      background: linear-gradient(90deg, transparent, rgba(51, 75, 110, 0.16), transparent);
     }
 
     .tagline a {
@@ -170,12 +217,24 @@
       :root {
         --logo-width: min(84vw, 640px);
       }
+      .logo-shell {
+        padding: 2rem 2.2rem;
+      }
     }
 
     @media (max-width: 640px) {
       :root {
         --logo-width: min(88vw, 520px);
         --dot-size: clamp(9px, 2vw, 12px);
+      }
+
+      .logo-shell {
+        padding: 1.25rem 1.25rem 1.6rem;
+      }
+
+      .hero::before,
+      .hero::after {
+        display: none;
       }
 
       .subline {
