@@ -727,8 +727,9 @@
 
     .dot-overlay {
       position: absolute;
-      right: clamp(34px, 3.5vw, 54px);
-      bottom: clamp(38px, 4vw, 60px);
+      left: 95.2%;
+      top: 84.6%;
+      transform: translate(-50%, -50%);
       z-index: 4;
       background: rgba(233, 237, 242, 0.94);
       box-shadow:
@@ -904,6 +905,11 @@
         --logo-width: min(86vw, 700px);
       }
 
+      .dot-overlay {
+        left: 95%;
+        top: 84.4%;
+      }
+
       .page {
         padding: 1.6rem;
       }
@@ -913,6 +919,11 @@
       :root {
         --logo-width: min(88vw, 560px);
         --dot-size: clamp(9px, 2vw, 12px);
+      }
+
+      .dot-overlay {
+        left: 94.8%;
+        top: 84.2%;
       }
 
       body::before,
