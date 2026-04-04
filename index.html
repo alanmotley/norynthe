@@ -92,31 +92,6 @@
       animation: grainShift 20s linear infinite;
     }
 
-    .field::before,
-    .field::after {
-      content: "";
-      position: absolute;
-      width: 36vmax;
-      height: 36vmax;
-      border-radius: 999px;
-      border: 1px solid rgba(51, 75, 110, 0.08);
-      opacity: 0.55;
-      filter: blur(0.2px);
-    }
-
-    .field::before {
-      top: -12vmax;
-      right: -10vmax;
-      animation: orbitA 22s ease-in-out infinite;
-    }
-
-    .field::after {
-      bottom: -14vmax;
-      left: -14vmax;
-      border-color: rgba(122, 48, 48, 0.08);
-      animation: orbitB 26s ease-in-out infinite;
-    }
-
     .wash {
       position: absolute;
       inset: -10%;
@@ -886,16 +861,6 @@
     @keyframes breathe {
       0%, 100% { opacity: 0.45; }
       50% { opacity: 0.72; }
-    }
-
-    @keyframes orbitA {
-      0%, 100% { transform: translate3d(0, 0, 0); }
-      50% { transform: translate3d(-2.5vmax, 1.5vmax, 0); }
-    }
-
-    @keyframes orbitB {
-      0%, 100% { transform: translate3d(0, 0, 0); }
-      50% { transform: translate3d(2.5vmax, -1.2vmax, 0); }
     }
 
     @keyframes grainShift {
