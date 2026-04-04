@@ -135,9 +135,9 @@
       margin: 0;
       font-size: clamp(3.5rem, 10vw, 8rem);
       font-weight: 700;
-      letter-spacing: -0.06em;
+      letter-spacing: -0.07em;
       color: var(--text);
-      line-height: 0.94;
+      line-height: 0.9;
     }
 
     .dot {
@@ -175,8 +175,8 @@
 
     .subline {
       margin: 1.4rem 0 0;
-      font-size: 0.82rem;
-      letter-spacing: 0.18em;
+      font-size: 0.78rem;
+      letter-spacing: 0.22em;
       text-transform: uppercase;
       color: var(--muted);
       text-align: center;
@@ -190,8 +190,8 @@
       bottom: 2.4rem;
       left: 50%;
       transform: translateX(-50%);
-      font-size: 0.78rem;
-      letter-spacing: 0.08em;
+      font-size: 0.74rem;
+      letter-spacing: 0.1em;
       color: var(--muted);
       text-align: center;
       white-space: nowrap;
@@ -213,6 +213,10 @@
 
     .tagline a:hover {
       text-decoration: underline;
+    }
+
+    .brand-lockup + .subline {
+      max-width: 42rem;
     }
 
     @keyframes blink {
