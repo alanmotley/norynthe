@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Norynthe.</title>
-  <meta name="description" content="Norynthe motion study — calm observance, independent standards for trusted intelligence.">
+  <meta name="description" content="Norynthe — independent trust infrastructure for AI, helping enterprises decide how probabilistic systems are interpreted, trusted, compared, and operationalized.">
   <meta name="theme-color" content="#E9EDF2">
   <link rel="icon" type="image/png" href="favicon.png">
   <link rel="shortcut icon" href="favicon.png">
@@ -573,7 +573,8 @@
     .hero,
     .footer,
     .lockup,
-    .logo-shell {
+    .logo-shell,
+    .public-links {
       pointer-events: auto;
     }
 
@@ -735,6 +736,37 @@
       color: var(--signal);
       font-size: 0.58rem;
       letter-spacing: 0.28em;
+    }
+
+    .public-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .public-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      padding: 10px 15px;
+      border-radius: 999px;
+      border: 1px solid rgba(15, 17, 21, 0.08);
+      background: rgba(255, 255, 255, 0.68);
+      color: var(--ink);
+      font-size: 0.7rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      text-decoration: none;
+      box-shadow: 0 12px 24px rgba(15, 17, 21, 0.04);
+      transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
+    }
+
+    .public-link:hover {
+      transform: translateY(-1px);
+      background: rgba(255, 255, 255, 0.82);
+      box-shadow: 0 14px 26px rgba(15, 17, 21, 0.06);
     }
 
     .footer {
@@ -994,14 +1026,18 @@
           <div class="logo-wrap">
             <img
               class="logo"
-              src="norynthe-logo.png"
+              src="Norynthe_master.png"
               alt="Norynthe"
-              onerror="this.style.display='none'; document.querySelector('.logo-fallback').style.display='block';"
+              onerror="if (!this.dataset.fallbackTried) { this.dataset.fallbackTried='true'; this.src='assets/Norynthe_master.png'; } else { this.style.display='none'; document.querySelector('.logo-fallback').style.display='block'; }"
             >
             <h1 class="logo-fallback">Norynthe.</h1>
           </div>
         </div>
-        <p class="subline">Independent standards for trusted intelligence.<span>Scoring what systems signal.</span></p>
+        <p class="subline">Independent trust infrastructure for AI.<span>Helping enterprises decide how probabilistic systems are interpreted, trusted, compared, and operationalized.</span></p>
+        <div class="public-links" aria-label="Public site links">
+          <a class="public-link" href="norynthe-founder-memo.html">Founder Memo</a>
+          <a class="public-link" href="norynthe-investors.html">For Investors</a>
+        </div>
       </div>
     </main>
 
