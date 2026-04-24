@@ -28,44 +28,60 @@
   <link rel="shortcut icon" href="https://www.norynthe.com/favicon.png" type="image/png">
   <link rel="apple-touch-icon" href="https://www.norynthe.com/favicon.png">
 
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "Organization",
-        "@id": "https://www.norynthe.com/#organization",
-        "name": "Norynthe",
-        "url": "https://www.norynthe.com/",
-        "logo": "https://www.norynthe.com/norynthe-logo.png",
-        "email": "hello@norynthe.com"
+ <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://www.norynthe.com/#organization",
+      "name": "Norynthe",
+      "url": "https://www.norynthe.com/",
+      "logo": "https://www.norynthe.com/Norynthe_master.png",
+      "description": "Norynthe is an independent AI evaluation and trust scoring company building standards for model comparison, trust signals, benchmark-driven scoring, and AI system accountability.",
+      "founder": {
+        "@type": "Person",
+        "@id": "https://www.alanmotley.com/#person",
+        "name": "Alan Motley",
+        "url": "https://www.alanmotley.com/",
+        "jobTitle": "Creative Technologist, AI Systems Strategist, Engineer, and Founder",
+        "sameAs": [
+          "https://www.linkedin.com/in/alanmotley/",
+          "https://medium.com/@alanmotley",
+          "https://muckrack.com/alanmotley",
+          "https://www.instagram.com/alanmotley"
+        ]
       },
-      {
-        "@type": "WebSite",
-        "@id": "https://www.norynthe.com/#website",
-        "url": "https://www.norynthe.com/",
-        "name": "Norynthe",
-        "publisher": {
-          "@id": "https://www.norynthe.com/#organization"
-        },
-        "inLanguage": "en"
+      "sameAs": [
+        "https://www.alanmotley.com/"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.norynthe.com/#website",
+      "url": "https://www.norynthe.com/",
+      "name": "Norynthe",
+      "publisher": {
+        "@id": "https://www.norynthe.com/#organization"
       },
-      {
-        "@type": "SoftwareApplication",
-        "@id": "https://www.norynthe.com/#software",
-        "name": "Norynthe.Score",
-        "applicationCategory": "BusinessApplication",
-        "operatingSystem": "Web",
-        "url": "https://www.norynthe.com/",
-        "description": "Norynthe.Score is an independent AI evaluation and trust scoring system for public trust signals, ranked model standing, score detail, and benchmark-driven model comparison.",
-        "creator": {
-          "@id": "https://www.norynthe.com/#organization"
-        }
-      }
-    ]
-  }
-  </script>
-
+      "inLanguage": "en"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://www.norynthe.com/#webpage",
+      "url": "https://www.norynthe.com/",
+      "name": "Norynthe | Independent AI Evaluation and Trust Scoring",
+      "isPartOf": {
+        "@id": "https://www.norynthe.com/#website"
+      },
+      "about": {
+        "@id": "https://www.norynthe.com/#organization"
+      },
+      "inLanguage": "en"
+    }
+  ]
+}
+</script>
   <style>
     :root {
       --bg: #E9EDF2;
