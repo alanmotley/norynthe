@@ -3,25 +3,69 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Norynthe.</title>
-  <meta name="description" content="Independent trust company for AI. Norynthe.Score publishes public trust signals, ranked model standing, and score detail under the Norynthe standard.">
+  <title>Norynthe. | Independent AI Evaluation and Trust Scoring</title>
+  <meta name="description" content="Norynthe is an independent AI evaluation and trust scoring company. Norynthe.Score publishes public trust signals, ranked model standing, benchmark-driven score detail, and model comparison under the Norynthe standard.">
+  <meta name="robots" content="index, follow, max-image-preview:large">
   <meta name="theme-color" content="#E9EDF2">
+  <link rel="canonical" href="https://www.norynthe.com/">
+
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Norynthe">
-  <meta property="og:title" content="Norynthe.Score">
-  <meta property="og:description" content="Public trust signals, ranked model standing, and score detail under an independent benchmark standard.">
+  <meta property="og:title" content="Norynthe. | Independent AI Evaluation and Trust Scoring">
+  <meta property="og:description" content="Independent AI evaluation and trust scoring. Norynthe.Score publishes public trust signals, ranked model standing, score detail, and benchmark-driven comparison under the Norynthe standard.">
   <meta property="og:url" content="https://www.norynthe.com/">
   <meta property="og:image" content="https://www.norynthe.com/norynthe-social-card.png">
   <meta property="og:image:alt" content="Norynthe">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
+
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Norynthe.Score">
-  <meta name="twitter:description" content="Public trust signals, ranked model standing, and score detail under an independent benchmark standard.">
+  <meta name="twitter:title" content="Norynthe. | Independent AI Evaluation and Trust Scoring">
+  <meta name="twitter:description" content="Independent AI evaluation and trust scoring. Norynthe.Score publishes public trust signals, ranked model standing, score detail, and benchmark-driven comparison under the Norynthe standard.">
   <meta name="twitter:image" content="https://www.norynthe.com/norynthe-social-card.png">
+
   <link rel="icon" type="image/png" href="favicon.png">
   <link rel="shortcut icon" href="favicon.png">
   <link rel="apple-touch-icon" href="favicon.png">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://www.norynthe.com/#organization",
+        "name": "Norynthe",
+        "url": "https://www.norynthe.com/",
+        "logo": "https://www.norynthe.com/norynthe-logo.png",
+        "email": "hello@norynthe.com"
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://www.norynthe.com/#website",
+        "url": "https://www.norynthe.com/",
+        "name": "Norynthe",
+        "publisher": {
+          "@id": "https://www.norynthe.com/#organization"
+        },
+        "inLanguage": "en"
+      },
+      {
+        "@type": "SoftwareApplication",
+        "@id": "https://www.norynthe.com/#software",
+        "name": "Norynthe.Score",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Web",
+        "url": "https://www.norynthe.com/",
+        "description": "Norynthe.Score is an independent AI evaluation and trust scoring system for public trust signals, ranked model standing, score detail, and benchmark-driven model comparison.",
+        "creator": {
+          "@id": "https://www.norynthe.com/#organization"
+        }
+      }
+    ]
+  }
+  </script>
+
   <style>
     :root {
       --bg: #E9EDF2;
@@ -72,6 +116,18 @@
       opacity: 0.85;
       pointer-events: none;
       z-index: 0;
+    }
+
+    .sr-only {
+      position: absolute !important;
+      width: 1px !important;
+      height: 1px !important;
+      padding: 0 !important;
+      margin: -1px !important;
+      overflow: hidden !important;
+      clip: rect(0, 0, 0, 0) !important;
+      white-space: nowrap !important;
+      border: 0 !important;
     }
 
     .field {
@@ -732,7 +788,7 @@
     }
 
     .subline {
-      max-width: 48rem;
+      max-width: 56rem;
       margin: 0;
       font-size: 0.78rem;
       line-height: 1.7;
@@ -748,7 +804,7 @@
       margin-top: 0.95rem;
       color: var(--signal);
       font-size: 0.58rem;
-      letter-spacing: 0.28em;
+      letter-spacing: 0.24em;
     }
 
     .public-links {
@@ -815,10 +871,7 @@
       cursor: pointer;
     }
 
-    .footer a:hover {
-      text-decoration: underline;
-    }
-
+    .footer a:hover,
     .footer button:hover {
       text-decoration: underline;
     }
@@ -899,7 +952,6 @@
       }
 
       body::before,
-      body::after,
       .cloud-band,
       .cloud-band-secondary,
       .cloud-floor,
@@ -1029,12 +1081,14 @@
 
   <div class="page">
     <div class="topline" aria-hidden="true">
-      <span>Independent Trust Standard</span>
+      <span>Independent AI Evaluation Standard</span>
       <span class="status"><span class="status-dot"></span>Norynthe.Score</span>
     </div>
 
-    <main class="hero" aria-label="Norynthe experimental landing page">
+    <main class="hero" aria-label="Norynthe homepage">
       <div class="lockup">
+        <h1 class="sr-only">Norynthe is an independent AI evaluation and trust scoring company.</h1>
+
         <div class="logo-shell" role="img" aria-label="Norynthe logo">
           <div class="logo-wrap">
             <img
@@ -1043,19 +1097,26 @@
               alt="Norynthe"
               onerror="if (!this.dataset.fallbackTried) { this.dataset.fallbackTried='true'; this.src='assets/norynthe-logo.png'; } else { this.style.display='none'; document.querySelector('.logo-fallback').style.display='block'; }"
             >
-            <h1 class="logo-fallback">Norynthe.</h1>
+            <h2 class="logo-fallback">Norynthe.</h2>
           </div>
         </div>
-        <p class="subline">Independent trust company for AI.<span>Norynthe.Score publishes public trust signals, ranked model standing, and score detail under the Norynthe standard.</span></p>
-        <div class="public-links" aria-label="Public site links">
+
+        <p class="subline">
+          Independent AI evaluation and trust scoring.
+          <span>Norynthe.Score publishes public trust signals, ranked model standing, score detail, and benchmark-driven comparison under the Norynthe standard.</span>
+        </p>
+
+        <nav class="public-links" aria-label="Public site links">
           <a class="public-link" href="norynthe-founder-memo.html">Founder Memo</a>
           <a class="public-link" href="norynthe-investors.html">Investor Overview</a>
-        </div>
+          <a class="public-link" href="https://reports.norynthe.com/">Reports</a>
+          <a class="public-link" href="https://reports.norynthe.com/mvp-walkthrough.html">MVP Walkthroughs</a>
+        </nav>
       </div>
     </main>
 
     <footer class="footer">
-      <div>Norynthe.Score · Model Index · Score Detail</div>
+      <div>Norynthe.Score · Model Index · Score Detail · Benchmark Comparison</div>
       <div class="contact"><a href="mailto:hello@norynthe.com">hello@norynthe.com</a> · <button type="button" id="copy-email">Copy email</button> · © 2026 Norynthe.</div>
     </footer>
   </div>
