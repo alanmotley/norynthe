@@ -28,7 +28,7 @@
   <link rel="shortcut icon" href="https://www.norynthe.com/favicon.png" type="image/png">
   <link rel="apple-touch-icon" href="https://www.norynthe.com/favicon.png">
 
- <script type="application/ld+json">
+  <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@graph": [
@@ -39,6 +39,19 @@
       "url": "https://www.norynthe.com/",
       "logo": "https://www.norynthe.com/Norynthe_master.png",
       "description": "Norynthe is an independent AI evaluation and trust scoring company building standards for model comparison, trust signals, benchmark-driven scoring, and AI system accountability.",
+      "foundingDate": "2026",
+      "sameAs": [
+        "https://www.linkedin.com/company/norynthe",
+        "https://www.alanmotley.com/"
+      ],
+      "contactPoint": [
+        {
+          "@type": "ContactPoint",
+          "contactType": "general inquiries",
+          "email": "hello@norynthe.com",
+          "url": "https://www.norynthe.com/"
+        }
+      ],
       "founder": {
         "@type": "Person",
         "@id": "https://www.alanmotley.com/#person",
@@ -51,10 +64,7 @@
           "https://muckrack.com/alanmotley",
           "https://www.instagram.com/alanmotley"
         ]
-      },
-      "sameAs": [
-        "https://www.alanmotley.com/"
-      ]
+      }
     },
     {
       "@type": "WebSite",
@@ -81,7 +91,8 @@
     }
   ]
 }
-</script>
+  </script>
+
   <style>
     :root {
       --bg: #E9EDF2;
@@ -659,7 +670,8 @@
     .footer,
     .lockup,
     .logo-shell,
-    .public-links {
+    .public-links,
+    .company-surface {
       pointer-events: auto;
     }
 
@@ -854,6 +866,166 @@
       box-shadow: 0 14px 26px rgba(15, 17, 21, 0.06);
     }
 
+    .company-surface {
+      width: min(calc(100% - 48px), 1200px);
+      margin: 0 auto 32px;
+      padding: 30px;
+      border-radius: 28px;
+      border: 1px solid var(--line);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.84), rgba(255,255,255,0.72)),
+        radial-gradient(circle at top right, rgba(51, 75, 110, 0.08), transparent 30%),
+        radial-gradient(circle at bottom left, rgba(122, 48, 48, 0.06), transparent 24%);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 18px 40px rgba(15, 17, 21, 0.06);
+      position: relative;
+      z-index: 1;
+    }
+
+    .company-surface::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      border-radius: 28px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.16), rgba(255,255,255,0)),
+        radial-gradient(circle at 18% 18%, rgba(255,255,255,0.24), transparent 22%);
+    }
+
+    .company-surface-head {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      gap: 12px;
+      margin-bottom: 22px;
+      max-width: 760px;
+    }
+
+    .company-surface-head h2 {
+      margin: 0;
+      font-size: clamp(2rem, 3.6vw, 3.2rem);
+      line-height: 0.94;
+      letter-spacing: -0.06em;
+      font-weight: 700;
+    }
+
+    .company-surface-head p {
+      margin: 0;
+      color: #36414e;
+      line-height: 1.78;
+      font-size: 15px;
+      max-width: 54rem;
+    }
+
+    .eyebrow {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    .company-surface-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .company-card {
+      display: grid;
+      gap: 12px;
+      padding: 22px 20px 18px;
+      min-height: 220px;
+      border-radius: 22px;
+      border: 1px solid rgba(15, 17, 21, 0.08);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.92), rgba(255,255,255,0.74)),
+        linear-gradient(135deg, rgba(51, 75, 110, 0.03), rgba(54, 85, 74, 0.025));
+      box-shadow: 0 12px 26px rgba(15, 17, 21, 0.04);
+      transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease, background 180ms ease;
+      position: relative;
+      overflow: hidden;
+      text-decoration: none;
+    }
+
+    .company-card::after {
+      content: "";
+      position: absolute;
+      inset: auto -12% -22% auto;
+      width: 58%;
+      height: 48%;
+      background: radial-gradient(circle, rgba(51, 75, 110, 0.08), transparent 68%);
+      pointer-events: none;
+    }
+
+    .company-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(51, 75, 110, 0.18);
+      box-shadow: 0 16px 34px rgba(15, 17, 21, 0.07);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.96), rgba(255,255,255,0.8)),
+        linear-gradient(135deg, rgba(51, 75, 110, 0.04), rgba(54, 85, 74, 0.03));
+    }
+
+    .company-card h3 {
+      margin: 0;
+      font-size: 1.18rem;
+      line-height: 1.02;
+      letter-spacing: -0.04em;
+      font-weight: 700;
+      color: var(--ink);
+      position: relative;
+      z-index: 1;
+    }
+
+    .company-card p {
+      margin: 0;
+      color: #44505d;
+      font-size: 14px;
+      line-height: 1.7;
+      position: relative;
+      z-index: 1;
+    }
+
+    .company-card-meta {
+      margin-top: auto;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--slate);
+      font-weight: 700;
+      position: relative;
+      z-index: 1;
+    }
+
+    .card-eyebrow {
+      display: inline-flex;
+      width: fit-content;
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: rgba(51, 75, 110, 0.08);
+      border: 1px solid rgba(51, 75, 110, 0.14);
+      color: var(--slate);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font-weight: 700;
+      position: relative;
+      z-index: 1;
+    }
+
+    .card-eyebrow.capital {
+      background: rgba(122, 48, 48, 0.08);
+      border-color: rgba(122, 48, 48, 0.14);
+      color: var(--signal);
+    }
+
     .footer {
       align-items: end;
       font-size: 0.72rem;
@@ -952,6 +1124,12 @@
       }
     }
 
+    @media (max-width: 980px) {
+      .company-surface-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
     @media (max-width: 900px) {
       :root {
         --logo-width: min(86vw, 700px);
@@ -989,6 +1167,16 @@
 
       .page {
         padding: 1.25rem;
+      }
+
+      .company-surface {
+        width: min(calc(100% - 24px), 1200px);
+        padding: 20px;
+        margin-bottom: 22px;
+      }
+
+      .company-card {
+        min-height: 0;
       }
 
       .topline,
@@ -1122,12 +1310,45 @@
           <span>Norynthe.Score publishes public trust signals, ranked model standing, score detail, and benchmark-driven comparison under the Norynthe standard.</span>
         </p>
 
-       <nav class="public-links" aria-label="Public site links">
-  <a class="public-link" href="norynthe-founder-memo.html">Founder Memo</a>
-  <a class="public-link" href="norynthe-investors.html">Investor Overview</a>
-</nav>
+        <nav class="public-links" aria-label="Public site links">
+          <a class="public-link" href="norynthe-founder-memo.html">Founder Memo</a>
+          <a class="public-link" href="norynthe-investors.html">Investor Overview</a>
+        </nav>
       </div>
     </main>
+
+    <section class="company-surface" aria-labelledby="company-surface-title">
+      <div class="company-surface-head">
+        <div class="eyebrow">Norynthe. / Company Surface</div>
+        <h2 id="company-surface-title">A clearer route into the company.</h2>
+        <p>
+          Norynthe is an independent AI evaluation and trust scoring company building trust infrastructure for AI.
+          These pages define the company, its reasoning, and the public surfaces that explain the opportunity.
+        </p>
+      </div>
+
+      <div class="company-surface-grid">
+        <a class="company-card" href="norynthe-founder-memo.html">
+          <span class="card-eyebrow">Foundational</span>
+          <h3>Founder Memo</h3>
+          <p>
+            Why Norynthe exists, why independent AI trust infrastructure matters, and why outside evaluation
+            becomes more important as model influence expands.
+          </p>
+          <span class="company-card-meta">Public memo</span>
+        </a>
+
+        <a class="company-card" href="norynthe-investors.html">
+          <span class="card-eyebrow capital">Capital</span>
+          <h3>Investor Overview</h3>
+          <p>
+            The company opportunity, public signal, scoring architecture, and the strategic case for building
+            a trust layer outside the model.
+          </p>
+          <span class="company-card-meta">Company direction</span>
+        </a>
+      </div>
+    </section>
 
     <footer class="footer">
       <div>Norynthe.Score · Model Index · Score Detail · Benchmark Comparison</div>
