@@ -297,13 +297,11 @@
       animation: horizonShift 16s ease-in-out infinite alternate;
     }
 
-    .marker,
-    .marker-left,
-    .marker-top,
-    .marker-bottom,
-    .marker-right-lower,
-    .marker-left-upper {
+    .marker-top {
       position: absolute;
+      left: 50%;
+      top: 15%;
+      transform: translateX(-50%);
       display: grid;
       gap: 0.35rem;
       color: var(--muted-2);
@@ -315,24 +313,6 @@
       cursor: default;
       z-index: 2;
       animation: breathe 14s ease-in-out infinite;
-    }
-
-    .marker { right: 10%; top: 22%; }
-    .marker-left { left: 8%; bottom: 18%; font-size: 0.62rem; color: var(--muted); }
-    .marker-top { left: 50%; top: 15%; transform: translateX(-50%); }
-    .marker-bottom { right: 15%; bottom: 16%; }
-    .marker-right-lower { right: 9%; top: 54%; }
-    .marker-left-upper { left: 10%; top: 26%; }
-
-    .marker::before,
-    .marker-left::before,
-    .marker-bottom::before,
-    .marker-right-lower::before,
-    .marker-left-upper::before {
-      content: "";
-      width: 76px;
-      height: 1px;
-      background: linear-gradient(90deg, rgba(51, 75, 110, 0.18), transparent);
     }
 
     .marker-card {
@@ -899,12 +879,7 @@
         font-size: 11px;
       }
 
-      .marker,
-      .marker-left,
-      .marker-top,
-      .marker-bottom,
-      .marker-right-lower,
-      .marker-left-upper {
+      .marker-top {
         font-size: 0.48rem;
         letter-spacing: 0.14em;
         opacity: 0.52;
@@ -937,12 +912,6 @@
       .horizon-haze,
       .scan,
       .scan-vertical,
-      .marker,
-      .marker-left,
-      .marker-top,
-      .marker-bottom,
-      .marker-right-lower,
-      .marker-left-upper,
       .lockup::before,
       .lockup::after,
       .logo-shell::before,
@@ -962,10 +931,6 @@
 
       .hero {
         padding: 0.5rem 0 0;
-      }
-
-      .signal-layer {
-        display: none;
       }
 
       .hero-kicker {
@@ -1027,22 +992,9 @@
 
   <div class="signal-layer" aria-hidden="true">
     <div class="marker-top">
-      <div class="marker-card"><div class="label"><span>Outside the model</span></div></div>
-    </div>
-    <div class="marker-left-upper">
-      <div class="marker-card"><div class="label"><strong>Authorship</strong><span>Context under pressure</span></div></div>
-    </div>
-    <div class="marker">
-      <div class="marker-card"><div class="label"><strong>Evidence</strong><span>Framing stability</span></div></div>
-    </div>
-    <div class="marker-left">
-      <div class="marker-card"><div class="label"><span>Comparison</span><span>Grounding</span></div></div>
-    </div>
-    <div class="marker-right-lower">
-      <div class="marker-card"><div class="label"><strong>Signal</strong><span>Interpretation drift</span></div></div>
-    </div>
-    <div class="marker-bottom">
-      <div class="marker-card"><div class="label"><strong>Observation</strong><span>Inference under review</span></div></div>
+      <div class="marker-card">
+        <div class="label"><span>Outside the model</span></div>
+      </div>
     </div>
   </div>
 
