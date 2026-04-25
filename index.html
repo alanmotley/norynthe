@@ -649,7 +649,7 @@
       min-height: 100dvh;
       padding: 2rem;
       display: grid;
-      grid-template-rows: auto 1fr auto;
+      grid-template-rows: auto auto auto;
       pointer-events: none;
     }
 
@@ -696,33 +696,17 @@
       place-items: center;
       min-height: auto;
       position: relative;
-      padding: 2rem 0 0;
-    }
-
-    .company-surface {
-      width: min(calc(100% - 48px), 1200px);
-      margin: -7.5rem auto 32px;
-      padding: 30px;
-      border-radius: 28px;
-      border: 1px solid var(--line);
-      background:
-        linear-gradient(180deg, rgba(255,255,255,0.84), rgba(255,255,255,0.72)),
-        radial-gradient(circle at top right, rgba(51, 75, 110, 0.08), transparent 30%),
-        radial-gradient(circle at bottom left, rgba(122, 48, 48, 0.06), transparent 24%);
-      backdrop-filter: blur(12px);
-      box-shadow: 0 18px 40px rgba(15, 17, 21, 0.06);
-      position: relative;
-      z-index: 3;
+      padding: 1.5rem 0 0;
     }
 
     .lockup {
       position: relative;
       display: grid;
       place-items: center;
-      gap: 1.5rem;
+      gap: 1.1rem;
       text-align: center;
-      padding: 1.8rem 3.2rem 2.2rem;
-      transform: translateY(-0.4rem);
+      padding: 1.2rem 3.2rem 1rem;
+      transform: translateY(-0.2rem);
     }
 
     .lockup::before,
@@ -845,7 +829,7 @@
 
     .subline span {
       display: block;
-      margin-top: 0.95rem;
+      margin-top: 0.7rem;
       color: var(--signal);
       font-size: 0.58rem;
       letter-spacing: 0.24em;
@@ -853,7 +837,7 @@
 
     .company-surface {
       width: min(calc(100% - 48px), 1200px);
-      margin: 0 auto 32px;
+      margin: -5.75rem auto 32px;
       padding: 30px;
       border-radius: 28px;
       border: 1px solid var(--line);
@@ -864,7 +848,7 @@
       backdrop-filter: blur(12px);
       box-shadow: 0 18px 40px rgba(15, 17, 21, 0.06);
       position: relative;
-      z-index: 1;
+      z-index: 3;
     }
 
     .company-surface::before {
@@ -1157,7 +1141,7 @@
       .company-surface {
         width: min(calc(100% - 24px), 1200px);
         padding: 20px;
-        margin-bottom: 22px;
+        margin: -2.5rem auto 22px;
       }
 
       .company-card {
@@ -1172,13 +1156,7 @@
 
       .hero {
         min-height: auto;
-        padding: 1.75rem 0 0;
-      }
-
-      .company-surface {
-        width: min(calc(100% - 24px), 1200px);
-        padding: 20px;
-        margin: -3.25rem auto 22px;
+        padding: 1.25rem 0 0;
       }
 
       .signal-layer {
