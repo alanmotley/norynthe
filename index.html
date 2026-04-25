@@ -171,10 +171,6 @@
       pointer-events: none;
     }
 
-    .signal-layer .label {
-      transform: none !important;
-    }
-
     .field-mask {
       position: absolute;
       inset: 0;
@@ -330,9 +326,9 @@
       z-index: 1;
       width: 100%;
       min-height: 100dvh;
-      padding: 1rem 1.4rem 1.6rem;
-      display: flex;
-      flex-direction: column;
+      padding: 1rem 1.4rem 1rem;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
       pointer-events: none;
     }
 
@@ -380,11 +376,11 @@
 
     .hero {
       display: grid;
-      place-items: start center;
-      min-height: auto;
+      place-items: center;
+      align-content: center;
+      min-height: 100%;
       position: relative;
-      padding: 1.6rem 0 0;
-      flex: 0 0 auto;
+      padding: 0;
     }
 
     .lockup {
@@ -393,7 +389,7 @@
       place-items: center;
       gap: 0.9rem;
       text-align: center;
-      padding: 1.1rem 1.8rem 0.8rem;
+      padding: 0.4rem 1.8rem 0.5rem;
       transform: none;
       width: var(--hero-measure);
     }
@@ -500,30 +496,6 @@
       color: var(--ink);
     }
 
-    .hero-kicker {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.65rem;
-      font-size: 0.48rem;
-      letter-spacing: 0.28em;
-      text-transform: uppercase;
-      color: var(--muted-2);
-      opacity: 0.88;
-    }
-
-    .hero-kicker::before,
-    .hero-kicker::after {
-      content: "";
-      width: 26px;
-      height: 1px;
-      background: linear-gradient(90deg, rgba(51, 75, 110, 0.16), transparent);
-    }
-
-    .hero-kicker::after {
-      transform: rotate(180deg);
-      background: linear-gradient(90deg, rgba(122, 48, 48, 0.16), transparent);
-    }
-
     .subline {
       max-width: 50rem;
       margin: 0;
@@ -559,8 +531,8 @@
     }
 
     .company-surface {
-      width: min(calc(100% - 24px), 1120px);
-      margin: 1.1rem auto 0;
+      width: min(calc(100% - 24px), 1040px);
+      margin: 0.9rem auto 0;
       padding: 18px 20px 12px;
       border-radius: 28px;
       border: 1px solid var(--line);
@@ -575,7 +547,6 @@
         inset 0 1px 0 rgba(255,255,255,0.65);
       position: relative;
       z-index: 3;
-      flex: 0 0 auto;
     }
 
     .company-surface::before {
@@ -594,8 +565,10 @@
       z-index: 1;
       display: grid;
       gap: 7px;
-      margin-bottom: 12px;
+      margin: 0 auto 12px;
       max-width: 760px;
+      text-align: center;
+      justify-items: center;
     }
 
     .company-surface-head h2 {
@@ -612,6 +585,7 @@
       line-height: 1.62;
       font-size: 13px;
       max-width: 54rem;
+      text-align: center;
     }
 
     .eyebrow {
@@ -629,6 +603,8 @@
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 12px;
       align-items: start;
+      max-width: 920px;
+      margin: 0 auto;
     }
 
     .company-card {
@@ -730,8 +706,8 @@
       font-size: 0.62rem;
       letter-spacing: 0.12em;
       color: var(--muted-2);
-      margin-top: auto;
-      padding-top: 1.25rem;
+      margin-top: 0;
+      padding-top: 1rem;
     }
 
     .footer .contact::before {
@@ -821,20 +797,15 @@
       }
 
       .page {
-        padding: 0.9rem 1rem 1.2rem;
+        padding: 0.9rem 1rem 1rem;
       }
 
       .hero {
-        padding: 1.2rem 0 0;
+        padding: 0;
       }
 
       .lockup {
-        padding: 0.8rem 1rem 0.65rem;
-      }
-
-      .hero-kicker {
-        font-size: 0.44rem;
-        letter-spacing: 0.22em;
+        padding: 0.3rem 1rem 0.45rem;
       }
 
       .subline {
@@ -930,12 +901,7 @@
       }
 
       .hero {
-        padding: 0.5rem 0 0;
-      }
-
-      .hero-kicker {
-        font-size: 0.42rem;
-        letter-spacing: 0.16em;
+        padding: 0.2rem 0 0;
       }
 
       .subline {
@@ -993,7 +959,7 @@
   <div class="signal-layer" aria-hidden="true">
     <div class="marker-top">
       <div class="marker-card">
-      
+        <div class="label"><span>Outside the model</span></div>
       </div>
     </div>
   </div>
@@ -1026,41 +992,41 @@
           Independent AI evaluation and trust scoring.
           <span>Norynthe.Score publishes public trust signals, ranked model standing, score detail, and benchmark-driven comparison under the Norynthe standard.</span>
         </p>
+
+        <section class="company-surface" aria-labelledby="company-surface-title">
+          <div class="company-surface-head">
+            <div class="eyebrow">Norynthe. / Company Surface</div>
+            <h2 id="company-surface-title">A clearer route into the company.</h2>
+            <p>
+              Norynthe is an independent AI evaluation and trust scoring company building trust infrastructure for AI.
+              These pages define the company, its reasoning, and the public surfaces that explain the opportunity.
+            </p>
+          </div>
+
+          <div class="company-surface-grid">
+            <a class="company-card" href="norynthe-founder-memo.html">
+              <span class="card-eyebrow">Foundational</span>
+              <h3>Founder Memo</h3>
+              <p>
+                Why Norynthe exists, why independent AI trust infrastructure matters, and why outside evaluation
+                becomes more important as model influence expands.
+              </p>
+              <span class="company-card-meta">Public memo</span>
+            </a>
+
+            <a class="company-card" href="norynthe-investors.html">
+              <span class="card-eyebrow capital">Capital</span>
+              <h3>Investor Overview</h3>
+              <p>
+                The company opportunity, public signal, scoring architecture, and the strategic case for building
+                a trust layer outside the model.
+              </p>
+              <span class="company-card-meta">Company direction</span>
+            </a>
+          </div>
+        </section>
       </div>
     </main>
-
-    <section class="company-surface" aria-labelledby="company-surface-title">
-      <div class="company-surface-head">
-        <div class="eyebrow">Norynthe. / Company Surface</div>
-        <h2 id="company-surface-title">A clearer route into the company.</h2>
-        <p>
-          Norynthe is an independent AI evaluation and trust scoring company building trust infrastructure for AI.
-          These pages define the company, its reasoning, and the public surfaces that explain the opportunity.
-        </p>
-      </div>
-
-      <div class="company-surface-grid">
-        <a class="company-card" href="norynthe-founder-memo.html">
-          <span class="card-eyebrow">Foundational</span>
-          <h3>Founder Memo</h3>
-          <p>
-            Why Norynthe exists, why independent AI trust infrastructure matters, and why outside evaluation
-            becomes more important as model influence expands.
-          </p>
-          <span class="company-card-meta">Public memo</span>
-        </a>
-
-        <a class="company-card" href="norynthe-investors.html">
-          <span class="card-eyebrow capital">Capital</span>
-          <h3>Investor Overview</h3>
-          <p>
-            The company opportunity, public signal, scoring architecture, and the strategic case for building
-            a trust layer outside the model.
-          </p>
-          <span class="company-card-meta">Company direction</span>
-        </a>
-      </div>
-    </section>
 
     <footer class="footer">
       <div>Norynthe.Score · Model Index · Score Detail · Benchmark Comparison</div>
