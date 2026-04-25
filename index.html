@@ -351,9 +351,8 @@
       width: 100%;
       min-height: 100dvh;
       padding: 1rem 1.4rem 1.6rem;
-      display: grid;
-      grid-template-rows: auto 1fr auto;
-      align-content: stretch;
+      display: flex;
+      flex-direction: column;
       pointer-events: none;
     }
 
@@ -405,6 +404,7 @@
       min-height: auto;
       position: relative;
       padding: 1.6rem 0 0;
+      flex: 0 0 auto;
     }
 
     .lockup {
@@ -580,7 +580,7 @@
 
     .company-surface {
       width: min(calc(100% - 24px), 1120px);
-      margin: 1.2rem auto 0;
+      margin: 1.1rem auto 0;
       padding: 18px 20px 12px;
       border-radius: 28px;
       border: 1px solid var(--line);
@@ -595,7 +595,7 @@
         inset 0 1px 0 rgba(255,255,255,0.65);
       position: relative;
       z-index: 3;
-      align-self: start;
+      flex: 0 0 auto;
     }
 
     .company-surface::before {
@@ -750,8 +750,8 @@
       font-size: 0.62rem;
       letter-spacing: 0.12em;
       color: var(--muted-2);
-      margin-top: 0;
-      padding-top: 1.4rem;
+      margin-top: auto;
+      padding-top: 1.25rem;
     }
 
     .footer .contact::before {
@@ -874,7 +874,7 @@
 
       .company-surface {
         width: min(calc(100% - 20px), 980px);
-        margin: 1rem auto 0;
+        margin: 0.95rem auto 0;
         padding: 16px 16px 11px;
       }
 
