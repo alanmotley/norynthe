@@ -172,6 +172,10 @@
       pointer-events: none;
     }
 
+    .signal-layer .label {
+      transform: none !important;
+    }
+
     .field-mask {
       position: absolute;
       inset: 0;
@@ -842,10 +846,11 @@
       border-radius: 28px;
       border: 1px solid var(--line);
       background:
-        linear-gradient(180deg, rgba(255,255,255,0.84), rgba(255,255,255,0.72)),
-        radial-gradient(circle at top right, rgba(51, 75, 110, 0.08), transparent 30%),
-        radial-gradient(circle at bottom left, rgba(122, 48, 48, 0.06), transparent 24%);
-      backdrop-filter: blur(12px);
+        linear-gradient(180deg, rgba(255,255,255,0.94), rgba(255,255,255,0.88)),
+        radial-gradient(circle at top right, rgba(51, 75, 110, 0.06), transparent 30%),
+        radial-gradient(circle at bottom left, rgba(122, 48, 48, 0.04), transparent 24%);
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
       box-shadow: 0 18px 40px rgba(15, 17, 21, 0.06);
       position: relative;
       z-index: 3;
@@ -1199,7 +1204,7 @@
   </div>
 
   <div class="signal-layer" aria-hidden="true">
-    <div class="marker-top" data-float="static">
+    <div class="marker-top">
       <div class="marker-card">
         <div class="label">
           <span>Outside the model</span>
@@ -1207,7 +1212,7 @@
         <span class="detail">An external vantage point matters because systems rarely describe their own limits, incentives, omissions, or framing with enough honesty to evaluate themselves.</span>
       </div>
     </div>
-    <div class="marker-left-upper" data-float="authorship">
+    <div class="marker-left-upper">
       <div class="marker-card">
         <div class="label">
           <strong>Authorship</strong>
@@ -1216,7 +1221,7 @@
         <span class="detail">When worldview hardens into system design, authorship becomes infrastructure. The real question is who is setting the frame people later inherit as neutral.</span>
       </div>
     </div>
-    <div class="marker" data-float="evidence">
+    <div class="marker">
       <div class="marker-card">
         <div class="label">
           <strong>Evidence</strong>
@@ -1225,7 +1230,7 @@
         <span class="detail">A system can be factual in fragments and still shape a misleading whole. Evidence strength matters, but so does whether the framing holds when stakes, conflict, or context increase.</span>
       </div>
     </div>
-    <div class="marker-left" data-float="comparison">
+    <div class="marker-left">
       <div class="marker-card">
         <div class="label">
           <span>Comparison</span>
@@ -1234,7 +1239,7 @@
         <span class="detail">Trust requires contrast. Signals become legible when outputs can be compared across models, assumptions, contexts, and languages rather than taken in isolation.</span>
       </div>
     </div>
-    <div class="marker-right-lower" data-float="signal">
+    <div class="marker-right-lower">
       <div class="marker-card">
         <div class="label">
           <strong>Signal</strong>
@@ -1243,7 +1248,7 @@
         <span class="detail">Outputs rarely stay fixed as they move through interface, retrieval, safety layers, and user perception. What changes on the way to trust is part of the evaluation.</span>
       </div>
     </div>
-    <div class="marker-bottom" data-float="observation">
+    <div class="marker-bottom">
       <div class="marker-card">
         <div class="label">
           <strong>Observation</strong>
@@ -1322,40 +1327,6 @@
     </footer>
   </div>
 
-  <script>
-    (function () {
-      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
-      const profiles = {
-        evidence: { ax: 8, ay: 6, sx: 0.0008, sy: 0.0010, px: 0.2, py: 1.1 },
-        comparison: { ax: 7, ay: 8, sx: 0.0007, sy: 0.0009, px: 1.6, py: 0.4 },
-        signal: { ax: 9, ay: 6, sx: 0.0009, sy: 0.0011, px: 2.1, py: 1.8 },
-        observation: { ax: 8, ay: 7, sx: 0.00075, sy: 0.0010, px: 0.9, py: 2.2 },
-        authorship: { ax: 7, ay: 6, sx: 0.00085, sy: 0.00095, px: 2.8, py: 0.7 }
-      };
-
-      const items = Array.from(document.querySelectorAll('.signal-layer [data-float]'))
-        .map((node) => {
-          const label = node.querySelector('.label');
-          const name = node.getAttribute('data-float');
-          return label && profiles[name] ? { label, profile: profiles[name] } : null;
-        })
-        .filter(Boolean);
-
-      if (!items.length) return;
-
-      function tick(time) {
-        for (const { label, profile } of items) {
-          const x = Math.sin(time * profile.sx + profile.px) * profile.ax;
-          const y = Math.cos(time * profile.sy + profile.py) * profile.ay;
-          label.style.transform = `translate3d(${x.toFixed(2)}px, ${y.toFixed(2)}px, 0)`;
-        }
-        window.requestAnimationFrame(tick);
-      }
-
-      window.requestAnimationFrame(tick);
-    }());
-  </script>
   <script>
     (function () {
       const button = document.getElementById('copy-email');
