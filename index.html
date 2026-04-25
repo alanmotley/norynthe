@@ -96,7 +96,6 @@
   <style>
     :root {
       --bg: #E9EDF2;
-      --bg-2: #F3F6F8;
       --ink: #0F1115;
       --muted: #58616A;
       --muted-2: #6B747E;
@@ -104,8 +103,7 @@
       --pine: #36554A;
       --signal: #7A3030;
       --line: rgba(15, 17, 21, 0.08);
-      --logo-width: min(78vw, 760px);
-      --dot-size: clamp(14px, 1.5vw, 20px);
+      --logo-width: min(74vw, 680px);
     }
 
     * { box-sizing: border-box; }
@@ -298,34 +296,42 @@
       animation: horizonShift 16s ease-in-out infinite alternate;
     }
 
-    .marker {
+    .marker,
+    .marker-left,
+    .marker-top,
+    .marker-bottom,
+    .marker-right-lower,
+    .marker-left-upper {
       position: absolute;
-      right: 10%;
-      top: 22%;
       display: grid;
-      gap: 0.45rem;
-      color: var(--muted);
-      font-size: 0.64rem;
+      gap: 0.35rem;
+      color: var(--muted-2);
+      font-size: 0.56rem;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      opacity: 0.8;
+      opacity: 0.66;
       pointer-events: auto;
       cursor: default;
-      transition: opacity 180ms ease, transform 180ms ease, color 180ms ease;
       z-index: 2;
-      animation: breathe 12s ease-in-out infinite;
+      animation: breathe 14s ease-in-out infinite;
     }
 
-    .marker::before {
+    .marker { right: 10%; top: 22%; }
+    .marker-left { left: 8%; bottom: 18%; font-size: 0.62rem; color: var(--muted); }
+    .marker-top { left: 50%; top: 15%; transform: translateX(-50%); }
+    .marker-bottom { right: 15%; bottom: 16%; }
+    .marker-right-lower { right: 9%; top: 54%; }
+    .marker-left-upper { left: 10%; top: 26%; }
+
+    .marker::before,
+    .marker-left::before,
+    .marker-bottom::before,
+    .marker-right-lower::before,
+    .marker-left-upper::before {
       content: "";
-      width: 88px;
+      width: 76px;
       height: 1px;
-      background: linear-gradient(90deg, rgba(122, 48, 48, 0.26), transparent);
-    }
-
-    .marker strong {
-      font-weight: 600;
-      color: var(--signal);
+      background: linear-gradient(90deg, rgba(51, 75, 110, 0.18), transparent);
     }
 
     .marker-card {
@@ -338,312 +344,10 @@
       display: inline-grid;
       gap: 0.35rem;
       position: relative;
-      will-change: transform;
     }
 
     .marker-card .detail {
-      position: absolute;
-      top: calc(100% + 0.8rem);
-      left: 0;
-      width: min(16.5rem, 18vw);
-      min-width: 14.5rem;
-      max-width: min(16.5rem, calc(100vw - 3rem));
-      min-height: 7.25rem;
-      padding: 0.9rem 1rem 0.95rem;
-      border: 1px solid rgba(51, 75, 110, 0.10);
-      background: rgba(243, 246, 248, 0.84);
-      backdrop-filter: blur(10px);
-      box-shadow: 0 16px 40px rgba(15, 17, 21, 0.08);
-      display: flex;
-      align-items: flex-start;
-      color: var(--muted);
-      font-size: 0.63rem;
-      line-height: 1.65;
-      letter-spacing: 0.08em;
-      text-transform: none;
-      opacity: 0;
-      transform: translate3d(0, 6px, 0);
-      transition: opacity 180ms ease, transform 180ms ease;
-      pointer-events: none;
-    }
-
-    .marker-card .detail::before {
-      content: "";
-      position: absolute;
-      left: 0.9rem;
-      bottom: 100%;
-      width: 42px;
-      height: 1px;
-      background: linear-gradient(90deg, rgba(122, 48, 48, 0.28), transparent);
-    }
-
-    .marker:hover,
-    .marker:focus-within,
-    .marker-left:hover,
-    .marker-left:focus-within,
-    .marker-top:hover,
-    .marker-top:focus-within,
-    .marker-bottom:hover,
-    .marker-bottom:focus-within,
-    .marker-right-lower:hover,
-    .marker-right-lower:focus-within,
-    .marker-left-upper:hover,
-    .marker-left-upper:focus-within {
-      opacity: 0.98;
-      transform: translateY(-2px);
-    }
-
-    .marker:hover .detail,
-    .marker:focus-within .detail,
-    .marker-left-upper:hover .detail,
-    .marker-left-upper:focus-within .detail {
-      opacity: 1;
-      transform: translate3d(0, 0, 0);
-    }
-
-    .marker-left {
-      position: absolute;
-      left: 8%;
-      bottom: 18%;
-      display: grid;
-      gap: 0.35rem;
-      color: var(--muted);
-      font-size: 0.62rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      opacity: 0.8;
-      pointer-events: auto;
-      cursor: default;
-      transition: opacity 180ms ease, transform 180ms ease, color 180ms ease;
-      z-index: 2;
-      animation: breathe 14s ease-in-out infinite;
-    }
-
-    .marker-left::before {
-      content: "";
-      width: 72px;
-      height: 1px;
-      background: linear-gradient(90deg, rgba(51, 75, 110, 0.22), transparent);
-    }
-
-    .marker-top {
-      position: absolute;
-      left: 50%;
-      top: 15%;
-      transform: translateX(-50%);
-      display: inline-flex;
-      align-items: center;
-      gap: 0.9rem;
-      color: var(--muted-2);
-      font-size: 0.56rem;
-      letter-spacing: 0.28em;
-      text-transform: uppercase;
-      opacity: 0.66;
-      pointer-events: auto;
-      cursor: default;
-      transition: opacity 180ms ease, transform 180ms ease, color 180ms ease;
-      z-index: 2;
-      animation: breathe 16s ease-in-out infinite;
-    }
-
-    .marker-bottom {
-      position: absolute;
-      right: 15%;
-      bottom: 16%;
-      display: grid;
-      gap: 0.35rem;
-      color: var(--muted-2);
-      font-size: 0.58rem;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      opacity: 0.72;
-      pointer-events: auto;
-      cursor: default;
-      transition: opacity 180ms ease, transform 180ms ease, color 180ms ease;
-      z-index: 2;
-      animation: breathe 18s ease-in-out infinite;
-    }
-
-    .marker-bottom strong {
-      color: var(--pine);
-      font-weight: 600;
-    }
-
-    .marker-bottom::before {
-      content: "";
-      width: 84px;
-      height: 1px;
-      background: linear-gradient(90deg, rgba(54, 85, 74, 0.24), transparent);
-    }
-
-    .marker-right-lower {
-      position: absolute;
-      right: 9%;
-      top: 54%;
-      display: grid;
-      gap: 0.35rem;
-      color: var(--muted-2);
-      font-size: 0.56rem;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      opacity: 0.66;
-      pointer-events: auto;
-      cursor: default;
-      transition: opacity 180ms ease, transform 180ms ease, color 180ms ease;
-      z-index: 2;
-      animation: breathe 20s ease-in-out infinite;
-    }
-
-    .marker-right-lower strong {
-      color: var(--signal);
-      font-weight: 600;
-    }
-
-    .marker-right-lower::before {
-      content: "";
-      width: 68px;
-      height: 1px;
-      background: linear-gradient(90deg, rgba(122, 48, 48, 0.2), transparent);
-    }
-
-    .marker-left-upper {
-      position: absolute;
-      left: 10%;
-      top: 26%;
-      display: grid;
-      gap: 0.35rem;
-      color: var(--muted-2);
-      font-size: 0.56rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      opacity: 0.66;
-      pointer-events: auto;
-      cursor: default;
-      transition: opacity 180ms ease, transform 180ms ease, color 180ms ease;
-      z-index: 2;
-      animation: breathe 17s ease-in-out infinite;
-    }
-
-    .marker-left-upper strong {
-      color: var(--slate);
-      font-weight: 600;
-    }
-
-    .marker-left-upper::before {
-      content: "";
-      width: 76px;
-      height: 1px;
-      background: linear-gradient(90deg, rgba(51, 75, 110, 0.18), transparent);
-    }
-
-    .marker-top .detail {
-      left: 50%;
-      top: calc(100% + 0.75rem);
-      width: min(16rem, 18vw);
-      transform: translate3d(-50%, 6px, 0);
-      text-align: center;
-      align-items: center;
-    }
-
-    .marker-top .detail::before {
-      left: 50%;
-      transform: translateX(-50%);
-    }
-
-    .marker-top:hover .detail,
-    .marker-top:focus-within .detail {
-      opacity: 1;
-      transform: translate3d(-50%, 0, 0);
-    }
-
-    .marker-top:hover,
-    .marker-top:focus-within {
-      transform: translateX(-50%);
-    }
-
-    .marker-left .detail,
-    .marker-left-upper .detail {
-      left: 0;
-    }
-
-    .marker-bottom .detail,
-    .marker-right-lower .detail {
-      right: 0;
-      left: auto;
-    }
-
-    .marker-bottom .detail::before,
-    .marker-right-lower .detail::before {
-      right: 0.9rem;
-      left: auto;
-      background: linear-gradient(90deg, rgba(54, 85, 74, 0.28), transparent);
-    }
-
-    .marker-left-upper .detail {
-      top: calc(100% + 0.75rem);
-      width: min(16rem, 18vw);
-    }
-
-    .marker-left .detail {
-      top: calc(100% + 0.75rem);
-      bottom: auto;
-      width: min(16rem, 18vw);
-      transform: translate3d(0, 6px, 0);
-    }
-
-    .marker-left .detail::before {
-      top: auto;
-      bottom: 100%;
-      left: 0.9rem;
-      background: linear-gradient(90deg, rgba(51, 75, 110, 0.24), transparent);
-    }
-
-    .marker-right-lower .detail {
-      top: calc(100% + 0.8rem);
-      bottom: auto;
-      right: 0;
-      left: auto;
-      width: min(15.5rem, 17vw);
-      transform: translate3d(0, 6px, 0);
-    }
-
-    .marker-right-lower .detail::before {
-      top: auto;
-      bottom: 100%;
-      right: 0.9rem;
-      left: auto;
-      width: 42px;
-      transform: none;
-      background: linear-gradient(90deg, rgba(122, 48, 48, 0.24), transparent);
-    }
-
-    .marker-right-lower:hover .detail,
-    .marker-right-lower:focus-within .detail {
-      opacity: 1;
-      transform: translate3d(0, 0, 0);
-    }
-
-    .marker-left:hover .detail,
-    .marker-left:focus-within .detail,
-    .marker-bottom:hover .detail,
-    .marker-bottom:focus-within .detail {
-      opacity: 1;
-      transform: translate3d(0, 0, 0);
-    }
-
-    .marker-bottom .detail {
-      top: calc(100% + 0.8rem);
-      bottom: auto;
-      width: min(15.5rem, 17vw);
-      transform: translate3d(0, 6px, 0);
-    }
-
-    .marker-bottom .detail::before {
-      top: auto;
-      bottom: 100%;
-      right: 0.9rem;
-      left: auto;
-      background: linear-gradient(90deg, rgba(54, 85, 74, 0.28), transparent);
+      display: none;
     }
 
     .page {
@@ -651,9 +355,10 @@
       z-index: 1;
       width: 100%;
       min-height: 100dvh;
-      padding: 2rem;
+      padding: 1rem 1.5rem 1.5rem;
       display: grid;
       grid-template-rows: auto auto auto;
+      align-content: start;
       pointer-events: none;
     }
 
@@ -678,6 +383,10 @@
       pointer-events: auto;
     }
 
+    .topline {
+      margin-bottom: 0.25rem;
+    }
+
     .topline .status {
       color: var(--signal);
       display: inline-flex;
@@ -700,17 +409,18 @@
       place-items: center;
       min-height: auto;
       position: relative;
-      padding: 1.5rem 0 0;
+      padding: 0.5rem 0 0;
     }
 
     .lockup {
       position: relative;
       display: grid;
       place-items: center;
-      gap: 1.1rem;
+      gap: 0.8rem;
       text-align: center;
-      padding: 1.2rem 3.2rem 1rem;
-      transform: translateY(-0.2rem);
+      padding: 0.6rem 2rem 0.6rem;
+      transform: none;
+      width: min(100%, 980px);
     }
 
     .lockup::before,
@@ -726,10 +436,7 @@
       pointer-events: none;
     }
 
-    .lockup::before {
-      left: -1.2rem;
-    }
-
+    .lockup::before { left: -1.2rem; }
     .lockup::after {
       right: -1.2rem;
       transform: translateY(-50%) rotate(180deg);
@@ -747,12 +454,12 @@
       content: "";
       position: absolute;
       left: 50%;
-      bottom: -26px;
-      width: min(48vw, 420px);
-      height: 24px;
+      bottom: -18px;
+      width: min(44vw, 360px);
+      height: 18px;
       transform: translateX(-50%);
-      background: radial-gradient(ellipse at center, rgba(15, 17, 21, 0.14), rgba(15, 17, 21, 0) 72%);
-      filter: blur(16px);
+      background: radial-gradient(ellipse at center, rgba(15, 17, 21, 0.12), rgba(15, 17, 21, 0) 72%);
+      filter: blur(14px);
       z-index: 0;
       pointer-events: none;
     }
@@ -760,7 +467,7 @@
     .logo-shell::after {
       content: "";
       position: absolute;
-      inset: -1.9rem -2.6rem;
+      inset: -1.1rem -2rem;
       border: 1px solid rgba(51, 75, 110, 0.05);
       border-radius: 999px;
       z-index: 0;
@@ -783,20 +490,17 @@
       content: "";
       position: absolute;
       top: 50%;
-      width: 14px;
-      height: 14px;
+      width: 12px;
+      height: 12px;
       transform: translateY(-50%);
       border-radius: 999px;
       border: 1px solid rgba(51, 75, 110, 0.14);
       opacity: 0.45;
     }
 
-    .logo-wrap::before {
-      left: -42px;
-    }
-
+    .logo-wrap::before { left: -34px; }
     .logo-wrap::after {
-      right: -42px;
+      right: -34px;
       border-color: rgba(122, 48, 48, 0.16);
     }
 
@@ -820,11 +524,11 @@
     }
 
     .subline {
-      max-width: 56rem;
+      max-width: 52rem;
       margin: 0;
-      font-size: 0.78rem;
-      line-height: 1.7;
-      letter-spacing: 0.28em;
+      font-size: 0.74rem;
+      line-height: 1.55;
+      letter-spacing: 0.24em;
       text-transform: uppercase;
       color: var(--muted);
       text-wrap: balance;
@@ -833,16 +537,16 @@
 
     .subline span {
       display: block;
-      margin-top: 0.7rem;
+      margin-top: 0.5rem;
       color: var(--signal);
-      font-size: 0.58rem;
-      letter-spacing: 0.24em;
+      font-size: 0.52rem;
+      letter-spacing: 0.18em;
     }
 
     .company-surface {
-      width: min(calc(100% - 48px), 1200px);
-      margin: -5.75rem auto 32px;
-      padding: 26px 26px 18px;
+      width: min(calc(100% - 48px), 1040px);
+      margin: -1rem auto 20px;
+      padding: 22px 22px 16px;
       border-radius: 28px;
       border: 1px solid var(--line);
       background:
@@ -872,14 +576,14 @@
       position: relative;
       z-index: 1;
       display: grid;
-      gap: 10px;
-      margin-bottom: 18px;
-      max-width: 760px;
+      gap: 8px;
+      margin-bottom: 14px;
+      max-width: 700px;
     }
 
     .company-surface-head h2 {
       margin: 0;
-      font-size: clamp(2rem, 3.6vw, 3.2rem);
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
       line-height: 0.94;
       letter-spacing: -0.06em;
       font-weight: 700;
@@ -888,9 +592,9 @@
     .company-surface-head p {
       margin: 0;
       color: #36414e;
-      line-height: 1.78;
-      font-size: 15px;
-      max-width: 54rem;
+      line-height: 1.7;
+      font-size: 14px;
+      max-width: 50rem;
     }
 
     .eyebrow {
@@ -906,15 +610,15 @@
       z-index: 1;
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 16px;
+      gap: 14px;
       align-items: start;
     }
 
     .company-card {
       display: grid;
-      gap: 12px;
-      padding: 20px 18px 16px;
-      border-radius: 22px;
+      gap: 10px;
+      padding: 18px 16px 14px;
+      border-radius: 20px;
       border: 1px solid rgba(15, 17, 21, 0.08);
       background:
         linear-gradient(180deg, rgba(255,255,255,0.92), rgba(255,255,255,0.74)),
@@ -948,8 +652,8 @@
 
     .company-card h3 {
       margin: 0;
-      font-size: 1.18rem;
-      line-height: 1.02;
+      font-size: 1.06rem;
+      line-height: 1.05;
       letter-spacing: -0.04em;
       font-weight: 700;
       color: var(--ink);
@@ -960,8 +664,8 @@
     .company-card p {
       margin: 0;
       color: #44505d;
-      font-size: 14px;
-      line-height: 1.7;
+      font-size: 13px;
+      line-height: 1.65;
       position: relative;
       z-index: 1;
     }
@@ -971,7 +675,7 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      font-size: 11px;
+      font-size: 10px;
       text-transform: uppercase;
       letter-spacing: 0.12em;
       color: var(--slate);
@@ -983,12 +687,12 @@
     .card-eyebrow {
       display: inline-flex;
       width: fit-content;
-      padding: 7px 10px;
+      padding: 6px 9px;
       border-radius: 999px;
       background: rgba(51, 75, 110, 0.08);
       border: 1px solid rgba(51, 75, 110, 0.14);
       color: var(--slate);
-      font-size: 10px;
+      font-size: 9px;
       text-transform: uppercase;
       letter-spacing: 0.16em;
       font-weight: 700;
@@ -1004,9 +708,10 @@
 
     .footer {
       align-items: end;
-      font-size: 0.72rem;
+      font-size: 0.62rem;
       letter-spacing: 0.12em;
       color: var(--muted-2);
+      margin-top: 2px;
     }
 
     .footer .contact::before {
@@ -1014,7 +719,7 @@
       display: block;
       width: min(18vw, 160px);
       height: 1px;
-      margin: 0 0 0.9rem auto;
+      margin: 0 0 0.7rem auto;
       background: linear-gradient(90deg, transparent, rgba(122, 48, 48, 0.18));
     }
 
@@ -1090,13 +795,65 @@
       to { transform: translate3d(1.4%, -1%, 0); }
     }
 
-    @media (prefers-reduced-motion: reduce) {
-      *,
-      *::before,
-      *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
+    @media (max-width: 1180px) {
+      :root {
+        --logo-width: min(68vw, 560px);
+      }
+
+      .page {
+        padding: 0.85rem 1.1rem 1.2rem;
+      }
+
+      .lockup {
+        padding: 0.4rem 1.2rem 0.45rem;
+      }
+
+      .subline {
+        max-width: 44rem;
+        font-size: 0.68rem;
+        letter-spacing: 0.18em;
+      }
+
+      .subline span {
+        font-size: 0.48rem;
+        letter-spacing: 0.14em;
+      }
+
+      .company-surface {
+        width: min(calc(100% - 28px), 900px);
+        margin: -0.5rem auto 16px;
+        padding: 18px 18px 14px;
+      }
+
+      .company-surface-head h2 {
+        font-size: clamp(1.6rem, 2.5vw, 2.3rem);
+      }
+
+      .company-surface-head p {
+        font-size: 13px;
+      }
+
+      .company-card {
+        padding: 16px 14px 13px;
+      }
+
+      .company-card h3 {
+        font-size: 0.98rem;
+      }
+
+      .company-card p {
+        font-size: 12px;
+      }
+
+      .marker,
+      .marker-left,
+      .marker-top,
+      .marker-bottom,
+      .marker-right-lower,
+      .marker-left-upper {
+        font-size: 0.48rem;
+        letter-spacing: 0.14em;
+        opacity: 0.52;
       }
     }
 
@@ -1104,21 +861,15 @@
       .company-surface-grid {
         grid-template-columns: 1fr;
       }
-    }
 
-    @media (max-width: 900px) {
-      :root {
-        --logo-width: min(86vw, 700px);
-      }
-
-      .page {
-        padding: 1.6rem;
+      .company-surface {
+        width: min(calc(100% - 24px), 760px);
       }
     }
 
-    @media (max-width: 640px) {
+    @media (max-width: 760px) {
       :root {
-        --logo-width: min(88vw, 560px);
+        --logo-width: min(88vw, 480px);
       }
 
       body::before,
@@ -1142,28 +893,17 @@
       }
 
       .page {
-        padding: 1.25rem;
-      }
-
-      .company-surface {
-        width: min(calc(100% - 24px), 1200px);
-        padding: 18px 18px 14px;
-        margin: -2.5rem auto 22px;
-      }
-
-      .company-card {
-        min-height: 0;
+        padding: 1rem 0.85rem 1rem;
       }
 
       .topline,
       .footer {
-        font-size: 0.64rem;
-        letter-spacing: 0.16em;
+        font-size: 0.56rem;
+        letter-spacing: 0.12em;
       }
 
       .hero {
-        min-height: auto;
-        padding: 1.25rem 0 0;
+        padding: 0.25rem 0 0;
       }
 
       .signal-layer {
@@ -1171,20 +911,35 @@
       }
 
       .subline {
-        width: min(92vw, 28rem);
-        font-size: 0.74rem;
-        letter-spacing: 0.18em;
+        width: min(94vw, 28rem);
+        font-size: 0.66rem;
+        letter-spacing: 0.14em;
+      }
+
+      .subline span {
+        font-size: 0.46rem;
+        letter-spacing: 0.12em;
+      }
+
+      .company-surface {
+        width: min(calc(100% - 12px), 1200px);
+        padding: 16px 16px 12px;
+        margin: 0 auto 16px;
+      }
+
+      .company-surface-head h2 {
+        font-size: 1.8rem;
       }
 
       .footer {
         flex-direction: column;
         align-items: center;
         text-align: center;
-        gap: 0.8rem;
+        gap: 0.7rem;
       }
 
       .footer .contact::before {
-        margin: 0 auto 0.85rem;
+        margin: 0 auto 0.7rem;
         background: linear-gradient(90deg, transparent, rgba(122, 48, 48, 0.18), transparent);
       }
     }
@@ -1209,7 +964,6 @@
         <div class="label">
           <span>Outside the model</span>
         </div>
-        <span class="detail">An external vantage point matters because systems rarely describe their own limits, incentives, omissions, or framing with enough honesty to evaluate themselves.</span>
       </div>
     </div>
     <div class="marker-left-upper">
@@ -1218,7 +972,6 @@
           <strong>Authorship</strong>
           <span>Context under pressure</span>
         </div>
-        <span class="detail">When worldview hardens into system design, authorship becomes infrastructure. The real question is who is setting the frame people later inherit as neutral.</span>
       </div>
     </div>
     <div class="marker">
@@ -1227,7 +980,6 @@
           <strong>Evidence</strong>
           <span>Framing stability</span>
         </div>
-        <span class="detail">A system can be factual in fragments and still shape a misleading whole. Evidence strength matters, but so does whether the framing holds when stakes, conflict, or context increase.</span>
       </div>
     </div>
     <div class="marker-left">
@@ -1236,7 +988,6 @@
           <span>Comparison</span>
           <span>Grounding</span>
         </div>
-        <span class="detail">Trust requires contrast. Signals become legible when outputs can be compared across models, assumptions, contexts, and languages rather than taken in isolation.</span>
       </div>
     </div>
     <div class="marker-right-lower">
@@ -1245,7 +996,6 @@
           <strong>Signal</strong>
           <span>Interpretation drift</span>
         </div>
-        <span class="detail">Outputs rarely stay fixed as they move through interface, retrieval, safety layers, and user perception. What changes on the way to trust is part of the evaluation.</span>
       </div>
     </div>
     <div class="marker-bottom">
@@ -1254,7 +1004,6 @@
           <strong>Observation</strong>
           <span>Inference under review</span>
         </div>
-        <span class="detail">Calm observance is not passivity. It is a disciplined posture that watches what systems present as credible before those signals harden into accepted reality.</span>
       </div>
     </div>
   </div>
