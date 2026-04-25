@@ -103,7 +103,8 @@
       --pine: #36554A;
       --signal: #7A3030;
       --line: rgba(15, 17, 21, 0.08);
-      --logo-width: min(74vw, 680px);
+      --logo-width: min(72vw, 640px);
+      --hero-measure: min(100%, 980px);
     }
 
     * { box-sizing: border-box; }
@@ -340,12 +341,6 @@
       gap: 0.35rem;
     }
 
-    .marker-card .label {
-      display: inline-grid;
-      gap: 0.35rem;
-      position: relative;
-    }
-
     .marker-card .detail {
       display: none;
     }
@@ -355,7 +350,7 @@
       z-index: 1;
       width: 100%;
       min-height: 100dvh;
-      padding: 1rem 1.5rem 1.5rem;
+      padding: 0.9rem 1.4rem 1.3rem;
       display: grid;
       grid-template-rows: auto auto auto;
       align-content: start;
@@ -384,7 +379,7 @@
     }
 
     .topline {
-      margin-bottom: 0.25rem;
+      margin-bottom: 0.15rem;
     }
 
     .topline .status {
@@ -409,18 +404,18 @@
       place-items: center;
       min-height: auto;
       position: relative;
-      padding: 0.5rem 0 0;
+      padding: 0.25rem 0 0;
     }
 
     .lockup {
       position: relative;
       display: grid;
       place-items: center;
-      gap: 0.8rem;
+      gap: 0.72rem;
       text-align: center;
-      padding: 0.6rem 2rem 0.6rem;
+      padding: 0.5rem 1.8rem 0.45rem;
       transform: none;
-      width: min(100%, 980px);
+      width: var(--hero-measure);
     }
 
     .lockup::before,
@@ -437,6 +432,7 @@
     }
 
     .lockup::before { left: -1.2rem; }
+
     .lockup::after {
       right: -1.2rem;
       transform: translateY(-50%) rotate(180deg);
@@ -454,9 +450,9 @@
       content: "";
       position: absolute;
       left: 50%;
-      bottom: -18px;
-      width: min(44vw, 360px);
-      height: 18px;
+      bottom: -16px;
+      width: min(44vw, 340px);
+      height: 16px;
       transform: translateX(-50%);
       background: radial-gradient(ellipse at center, rgba(15, 17, 21, 0.12), rgba(15, 17, 21, 0) 72%);
       filter: blur(14px);
@@ -467,7 +463,7 @@
     .logo-shell::after {
       content: "";
       position: absolute;
-      inset: -1.1rem -2rem;
+      inset: -1rem -1.8rem;
       border: 1px solid rgba(51, 75, 110, 0.05);
       border-radius: 999px;
       z-index: 0;
@@ -499,6 +495,7 @@
     }
 
     .logo-wrap::before { left: -34px; }
+
     .logo-wrap::after {
       right: -34px;
       border-color: rgba(122, 48, 48, 0.16);
@@ -523,12 +520,36 @@
       color: var(--ink);
     }
 
+    .hero-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.65rem;
+      font-size: 0.48rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--muted-2);
+      opacity: 0.88;
+    }
+
+    .hero-kicker::before,
+    .hero-kicker::after {
+      content: "";
+      width: 26px;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(51, 75, 110, 0.16), transparent);
+    }
+
+    .hero-kicker::after {
+      transform: rotate(180deg);
+      background: linear-gradient(90deg, rgba(122, 48, 48, 0.16), transparent);
+    }
+
     .subline {
-      max-width: 52rem;
+      max-width: 50rem;
       margin: 0;
-      font-size: 0.74rem;
-      line-height: 1.55;
-      letter-spacing: 0.24em;
+      font-size: 0.7rem;
+      line-height: 1.48;
+      letter-spacing: 0.22em;
       text-transform: uppercase;
       color: var(--muted);
       text-wrap: balance;
@@ -537,25 +558,41 @@
 
     .subline span {
       display: block;
-      margin-top: 0.5rem;
+      margin-top: 0.42rem;
       color: var(--signal);
-      font-size: 0.52rem;
-      letter-spacing: 0.18em;
+      font-size: 0.5rem;
+      letter-spacing: 0.16em;
+    }
+
+    .hero-divider {
+      width: min(100%, 540px);
+      height: 1px;
+      background: linear-gradient(
+        90deg,
+        rgba(51, 75, 110, 0),
+        rgba(51, 75, 110, 0.16) 18%,
+        rgba(122, 48, 48, 0.14) 50%,
+        rgba(51, 75, 110, 0.16) 82%,
+        rgba(51, 75, 110, 0)
+      );
+      opacity: 0.78;
     }
 
     .company-surface {
-      width: min(calc(100% - 48px), 1040px);
-      margin: -1rem auto 20px;
-      padding: 22px 22px 16px;
+      width: min(calc(100% - 40px), 1040px);
+      margin: -0.2rem auto 18px;
+      padding: 20px 20px 14px;
       border-radius: 28px;
       border: 1px solid var(--line);
       background:
-        linear-gradient(180deg, rgba(255,255,255,0.94), rgba(255,255,255,0.88)),
-        radial-gradient(circle at top right, rgba(51, 75, 110, 0.06), transparent 30%),
-        radial-gradient(circle at bottom left, rgba(122, 48, 48, 0.04), transparent 24%);
+        linear-gradient(180deg, rgba(255,255,255,0.95), rgba(255,255,255,0.885)),
+        radial-gradient(circle at top right, rgba(51, 75, 110, 0.05), transparent 30%),
+        radial-gradient(circle at bottom left, rgba(122, 48, 48, 0.035), transparent 24%);
       backdrop-filter: none;
       -webkit-backdrop-filter: none;
-      box-shadow: 0 18px 40px rgba(15, 17, 21, 0.06);
+      box-shadow:
+        0 20px 48px rgba(15, 17, 21, 0.05),
+        inset 0 1px 0 rgba(255,255,255,0.65);
       position: relative;
       z-index: 3;
       align-self: start;
@@ -568,8 +605,8 @@
       pointer-events: none;
       border-radius: 28px;
       background:
-        linear-gradient(180deg, rgba(255,255,255,0.16), rgba(255,255,255,0)),
-        radial-gradient(circle at 18% 18%, rgba(255,255,255,0.24), transparent 22%);
+        linear-gradient(180deg, rgba(255,255,255,0.18), rgba(255,255,255,0)),
+        radial-gradient(circle at 18% 18%, rgba(255,255,255,0.22), transparent 22%);
     }
 
     .company-surface-head {
@@ -623,7 +660,7 @@
       background:
         linear-gradient(180deg, rgba(255,255,255,0.92), rgba(255,255,255,0.74)),
         linear-gradient(135deg, rgba(51, 75, 110, 0.03), rgba(54, 85, 74, 0.025));
-      box-shadow: 0 12px 26px rgba(15, 17, 21, 0.04);
+      box-shadow: 0 12px 26px rgba(15, 17, 21, 0.035);
       transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease, background 180ms ease;
       position: relative;
       overflow: hidden;
@@ -644,9 +681,9 @@
     .company-card:hover {
       transform: translateY(-2px);
       border-color: rgba(51, 75, 110, 0.18);
-      box-shadow: 0 16px 34px rgba(15, 17, 21, 0.07);
+      box-shadow: 0 16px 34px rgba(15, 17, 21, 0.06);
       background:
-        linear-gradient(180deg, rgba(255,255,255,0.96), rgba(255,255,255,0.8)),
+        linear-gradient(180deg, rgba(255,255,255,0.97), rgba(255,255,255,0.82)),
         linear-gradient(135deg, rgba(51, 75, 110, 0.04), rgba(54, 85, 74, 0.03));
     }
 
@@ -797,31 +834,40 @@
 
     @media (max-width: 1180px) {
       :root {
-        --logo-width: min(68vw, 560px);
+        --logo-width: min(66vw, 540px);
       }
 
       .page {
-        padding: 0.85rem 1.1rem 1.2rem;
+        padding: 0.8rem 1rem 1.1rem;
       }
 
       .lockup {
-        padding: 0.4rem 1.2rem 0.45rem;
+        padding: 0.35rem 1rem 0.35rem;
+      }
+
+      .hero-kicker {
+        font-size: 0.44rem;
+        letter-spacing: 0.22em;
       }
 
       .subline {
         max-width: 44rem;
-        font-size: 0.68rem;
-        letter-spacing: 0.18em;
+        font-size: 0.64rem;
+        letter-spacing: 0.17em;
       }
 
       .subline span {
-        font-size: 0.48rem;
-        letter-spacing: 0.14em;
+        font-size: 0.46rem;
+        letter-spacing: 0.13em;
+      }
+
+      .hero-divider {
+        width: min(100%, 460px);
       }
 
       .company-surface {
-        width: min(calc(100% - 28px), 900px);
-        margin: -0.5rem auto 16px;
+        width: min(calc(100% - 24px), 900px);
+        margin: 0 auto 14px;
         padding: 18px 18px 14px;
       }
 
@@ -863,7 +909,7 @@
       }
 
       .company-surface {
-        width: min(calc(100% - 24px), 760px);
+        width: min(calc(100% - 20px), 760px);
       }
     }
 
@@ -893,7 +939,7 @@
       }
 
       .page {
-        padding: 1rem 0.85rem 1rem;
+        padding: 0.9rem 0.75rem 0.9rem;
       }
 
       .topline,
@@ -903,28 +949,37 @@
       }
 
       .hero {
-        padding: 0.25rem 0 0;
+        padding: 0.15rem 0 0;
       }
 
       .signal-layer {
         display: none;
       }
 
+      .hero-kicker {
+        font-size: 0.42rem;
+        letter-spacing: 0.16em;
+      }
+
       .subline {
         width: min(94vw, 28rem);
-        font-size: 0.66rem;
-        letter-spacing: 0.14em;
+        font-size: 0.64rem;
+        letter-spacing: 0.13em;
       }
 
       .subline span {
-        font-size: 0.46rem;
-        letter-spacing: 0.12em;
+        font-size: 0.44rem;
+        letter-spacing: 0.11em;
+      }
+
+      .hero-divider {
+        width: min(100%, 320px);
       }
 
       .company-surface {
-        width: min(calc(100% - 12px), 1200px);
+        width: min(calc(100% - 8px), 1200px);
         padding: 16px 16px 12px;
-        margin: 0 auto 16px;
+        margin: 0 auto 14px;
       }
 
       .company-surface-head h2 {
@@ -960,51 +1015,22 @@
 
   <div class="signal-layer" aria-hidden="true">
     <div class="marker-top">
-      <div class="marker-card">
-        <div class="label">
-          <span>Outside the model</span>
-        </div>
-      </div>
+      <div class="marker-card"><div class="label"><span>Outside the model</span></div></div>
     </div>
     <div class="marker-left-upper">
-      <div class="marker-card">
-        <div class="label">
-          <strong>Authorship</strong>
-          <span>Context under pressure</span>
-        </div>
-      </div>
+      <div class="marker-card"><div class="label"><strong>Authorship</strong><span>Context under pressure</span></div></div>
     </div>
     <div class="marker">
-      <div class="marker-card">
-        <div class="label">
-          <strong>Evidence</strong>
-          <span>Framing stability</span>
-        </div>
-      </div>
+      <div class="marker-card"><div class="label"><strong>Evidence</strong><span>Framing stability</span></div></div>
     </div>
     <div class="marker-left">
-      <div class="marker-card">
-        <div class="label">
-          <span>Comparison</span>
-          <span>Grounding</span>
-        </div>
-      </div>
+      <div class="marker-card"><div class="label"><span>Comparison</span><span>Grounding</span></div></div>
     </div>
     <div class="marker-right-lower">
-      <div class="marker-card">
-        <div class="label">
-          <strong>Signal</strong>
-          <span>Interpretation drift</span>
-        </div>
-      </div>
+      <div class="marker-card"><div class="label"><strong>Signal</strong><span>Interpretation drift</span></div></div>
     </div>
     <div class="marker-bottom">
-      <div class="marker-card">
-        <div class="label">
-          <strong>Observation</strong>
-          <span>Inference under review</span>
-        </div>
-      </div>
+      <div class="marker-card"><div class="label"><strong>Observation</strong><span>Inference under review</span></div></div>
     </div>
   </div>
 
@@ -1018,6 +1044,8 @@
       <div class="lockup">
         <h1 class="sr-only">Norynthe is an independent AI evaluation and trust scoring company.</h1>
 
+        <div class="hero-kicker">Outside the model</div>
+
         <div class="logo-shell" role="img" aria-label="Norynthe logo">
           <div class="logo-wrap">
             <img
@@ -1029,6 +1057,8 @@
             <h2 class="logo-fallback">Norynthe.</h2>
           </div>
         </div>
+
+        <div class="hero-divider" aria-hidden="true"></div>
 
         <p class="subline">
           Independent AI evaluation and trust scoring.
