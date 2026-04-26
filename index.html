@@ -423,8 +423,7 @@
     .footer,
     .lockup,
     .logo-shell,
-    .company-surface,
-    .company-profile {
+    .company-surface {
       pointer-events: auto;
     }
 
@@ -608,7 +607,7 @@
     .company-surface {
       width: min(calc(100% - 24px), 1040px);
       margin: 0.9rem auto 0;
-      padding: 18px 20px 12px;
+      padding: 18px 20px 14px;
       border-radius: 28px;
       border: 1px solid var(--line);
       background:
@@ -641,7 +640,7 @@
       display: grid;
       gap: 7px;
       margin: 0 auto 12px;
-      max-width: 760px;
+      max-width: 800px;
       text-align: center;
       justify-items: center;
     }
@@ -659,8 +658,15 @@
       color: #36414e;
       line-height: 1.62;
       font-size: 13px;
-      max-width: 54rem;
+      max-width: 58rem;
       text-align: center;
+    }
+
+    .company-surface-secondary {
+      margin-top: 2px !important;
+      color: #44505d !important;
+      font-size: 12px !important;
+      max-width: 62rem !important;
     }
 
     .eyebrow {
@@ -776,87 +782,59 @@
       color: var(--signal);
     }
 
-    .company-profile {
-      width: min(calc(100% - 24px), 1040px);
-      margin: 1rem auto 0;
+    .entity-strip {
       position: relative;
-      z-index: 3;
-    }
-
-    .company-profile-inner {
-      padding: 22px 22px 18px;
-      border-radius: 28px;
-      border: 1px solid var(--line);
-      background:
-        linear-gradient(180deg, rgba(255,255,255,0.94), rgba(255,255,255,0.84)),
-        radial-gradient(circle at top right, rgba(51, 75, 110, 0.055), transparent 30%),
-        radial-gradient(circle at bottom left, rgba(122, 48, 48, 0.035), transparent 24%);
-      box-shadow:
-        0 20px 48px rgba(15, 17, 21, 0.05),
-        inset 0 1px 0 rgba(255,255,255,0.65);
-    }
-
-    .company-profile h2 {
-      margin: 6px 0 10px;
-      font-size: clamp(2rem, 3vw, 3rem);
-      line-height: 0.94;
-      letter-spacing: -0.06em;
-    }
-
-    .company-profile p {
-      margin: 0;
-      color: #44505d;
-      line-height: 1.62;
-      font-size: 13px;
-      max-width: 68rem;
-    }
-
-    .company-profile-lead {
-      color: var(--ink) !important;
-      margin-bottom: 8px !important;
-      font-size: 14px !important;
-    }
-
-    .company-profile-tags {
+      z-index: 1;
       display: flex;
       flex-wrap: wrap;
+      justify-content: center;
       gap: 8px;
-      margin-top: 16px;
+      max-width: 920px;
+      margin: 14px auto 0;
+      padding-top: 12px;
+      border-top: 1px solid rgba(15, 17, 21, 0.07);
     }
 
-    .company-profile-tags span {
+    .entity-strip span {
       display: inline-flex;
       width: fit-content;
-      padding: 6px 9px;
+      padding: 5px 8px;
       border-radius: 999px;
-      background: rgba(51, 75, 110, 0.08);
-      border: 1px solid rgba(51, 75, 110, 0.14);
+      background: rgba(51, 75, 110, 0.07);
+      border: 1px solid rgba(51, 75, 110, 0.12);
       color: var(--slate);
-      font-size: 9px;
+      font-size: 8px;
       text-transform: uppercase;
       letter-spacing: 0.13em;
       font-weight: 700;
     }
 
-    .company-profile-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
-      margin-top: 18px;
-      padding-top: 14px;
-      border-top: 1px solid rgba(15, 17, 21, 0.08);
+    .entity-strip span:last-child {
+      background: rgba(122, 48, 48, 0.07);
+      border-color: rgba(122, 48, 48, 0.12);
+      color: var(--signal);
     }
 
-    .company-profile-links a {
+    .company-surface-links {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 14px;
+      margin-top: 13px;
+    }
+
+    .company-surface-links a {
       color: var(--signal);
-      font-size: 10px;
+      font-size: 9px;
       text-transform: uppercase;
       letter-spacing: 0.14em;
       font-weight: 700;
       text-decoration: none;
     }
 
-    .company-profile-links a:hover {
+    .company-surface-links a:hover {
       text-decoration: underline;
     }
 
@@ -982,14 +960,10 @@
         width: min(100%, 460px);
       }
 
-      .company-surface,
-      .company-profile {
+      .company-surface {
         width: min(calc(100% - 20px), 980px);
         margin: 0.95rem auto 0;
-      }
-
-      .company-surface {
-        padding: 16px 16px 11px;
+        padding: 16px 16px 13px;
       }
 
       .company-surface-head h2 {
@@ -1025,8 +999,7 @@
         grid-template-columns: 1fr;
       }
 
-      .company-surface,
-      .company-profile {
+      .company-surface {
         width: min(calc(100% - 16px), 760px);
       }
 
@@ -1083,30 +1056,21 @@
         width: min(100%, 320px);
       }
 
-      .company-surface,
-      .company-profile {
+      .company-surface {
         width: min(calc(100% - 8px), 1200px);
+        padding: 14px 14px 12px;
         margin: 0.85rem auto 0;
       }
 
-      .company-surface {
-        padding: 14px 14px 10px;
-      }
-
-      .company-profile-inner {
-        padding: 16px 14px 14px;
-      }
-
-      .company-surface-head h2,
-      .company-profile h2 {
+      .company-surface-head h2 {
         font-size: 1.75rem;
       }
 
-      .company-profile-tags {
+      .entity-strip {
         gap: 6px;
       }
 
-      .company-profile-links {
+      .company-surface-links {
         gap: 10px;
       }
 
@@ -1182,10 +1146,12 @@
         <section class="company-surface" aria-labelledby="company-surface-title">
           <div class="company-surface-head">
             <div class="eyebrow">Norynthe. / Company Surface</div>
-            <h2 id="company-surface-title">A clearer route into the company.</h2>
+            <h2 id="company-surface-title">Independent trust infrastructure for AI.</h2>
             <p>
-              Norynthe is an independent AI evaluation and trust-scoring company building trust infrastructure for AI.
-              These pages define the company, its reasoning, and the public surfaces that explain the opportunity.
+              Norynthe is an independent AI evaluation and trust-scoring company building standards for model comparison, public trust signals, benchmark-driven scoring, and AI system accountability.
+            </p>
+            <p class="company-surface-secondary">
+              Its core system, Norynthe.Score, is designed to evaluate AI models from outside the model itself — comparing outputs, score detail, benchmark behavior, model standing, and governance-ready signals.
             </p>
           </div>
 
@@ -1210,34 +1176,21 @@
               <span class="company-card-meta">Company direction</span>
             </a>
           </div>
-        </section>
 
-        <section class="company-profile" aria-labelledby="company-profile-title">
-          <div class="company-profile-inner">
-            <div class="eyebrow">Company profile</div>
-            <h2 id="company-profile-title">Norynthe.</h2>
-            <p class="company-profile-lead">
-              Norynthe is an independent AI evaluation and trust-scoring company building standards for model comparison, public trust signals, benchmark-driven scoring, and AI system accountability.
-            </p>
-            <p>
-              The company is developing Norynthe.Score, a trust infrastructure layer designed to evaluate AI models from outside the model itself — comparing outputs, score detail, benchmark behavior, model standing, and governance-ready signals.
-            </p>
+          <div class="entity-strip" aria-label="Norynthe company signals">
+            <span>Independent AI evaluation</span>
+            <span>Trust scoring</span>
+            <span>Model comparison</span>
+            <span>Benchmark-driven scoring</span>
+            <span>Governance-ready reporting</span>
+            <span>Founder: Alan Motley</span>
+          </div>
 
-            <div class="company-profile-tags">
-              <span>Independent AI evaluation</span>
-              <span>Trust scoring</span>
-              <span>Model comparison</span>
-              <span>Benchmark-driven scoring</span>
-              <span>Governance-ready reporting</span>
-              <span>Founder: Alan Motley</span>
-            </div>
-
-            <div class="company-profile-links">
-              <a href="norynthe-founder-memo.html">Founder Memo</a>
-              <a href="norynthe-investors.html">Investor Overview</a>
-              <a href="https://www.alanmotley.com/">Founder Profile</a>
-              <a href="mailto:hello@norynthe.com">Contact</a>
-            </div>
+          <div class="company-surface-links">
+            <a href="norynthe-founder-memo.html">Founder Memo</a>
+            <a href="norynthe-investors.html">Investor Overview</a>
+            <a href="https://www.alanmotley.com/">Founder Profile</a>
+            <a href="mailto:hello@norynthe.com">Contact</a>
           </div>
         </section>
       </div>
