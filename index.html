@@ -245,13 +245,6 @@
       pointer-events: none;
     }
 
-    .signal-layer {
-      position: fixed;
-      inset: 0;
-      z-index: 2;
-      pointer-events: none;
-    }
-
     .field-mask {
       position: absolute;
       inset: 0;
@@ -372,34 +365,6 @@
       filter: blur(22px);
       opacity: 0.5;
       animation: horizonShift 16s ease-in-out infinite alternate;
-    }
-
-    .marker-top {
-      position: absolute;
-      left: 50%;
-      top: 15%;
-      transform: translateX(-50%);
-      display: grid;
-      gap: 0.35rem;
-      color: var(--muted-2);
-      font-size: 0.56rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      opacity: 0.66;
-      pointer-events: auto;
-      cursor: default;
-      z-index: 2;
-      animation: breathe 14s ease-in-out infinite;
-    }
-
-    .marker-card {
-      position: relative;
-      display: grid;
-      gap: 0.35rem;
-    }
-
-    .marker-card .detail {
-      display: none;
     }
 
     .page {
@@ -1089,14 +1054,6 @@
     <div class="scan"></div>
     <div class="scan-vertical"></div>
     <div class="field-mask"></div>
-  </div>
-
-  <div class="signal-layer" aria-hidden="true">
-    <div class="marker-top">
-      <div class="marker-card">
-        <div class="label"><span>Outside the model</span></div>
-      </div>
-    </div>
   </div>
 
   <div class="page">
