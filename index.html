@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Norynthe. | Independent AI Evaluation and Trust Standard</title>
   <meta name="description" content="Norynthe is an independent AI evaluation and trust-scoring company building outside-the-model trust signals, governed benchmark systems, and traceable assessment records for AI systems.">
   <meta name="robots" content="index, follow, max-image-preview:large">
@@ -97,6 +98,7 @@
       },
       "sameAs": [
         "https://www.linkedin.com/company/norynthe",
+        "https://www.facebook.com/norynthe",
         "https://www.alanmotley.com/"
       ],
       "contactPoint": [
@@ -152,21 +154,26 @@
   ]
 }
   </script>
+
   <style>
     :root {
       --bg: #E9EDF2;
+      --bg-soft: #F4F6F8;
       --ink: #0F1115;
       --muted: #58616A;
       --muted-2: #6B747E;
       --slate: #334B6E;
-      --pine: #36554A;
       --signal: #7A3030;
-      --line: rgba(15, 17, 21, 0.08);
-      --logo-width: min(72vw, 640px);
-      --hero-measure: min(100%, 980px);
+      --line: rgba(15, 17, 21, 0.09);
+      --line-strong: rgba(15, 17, 21, 0.14);
+      --surface: rgba(255, 255, 255, 0.82);
+      --logo-width: min(70vw, 620px);
+      --measure: min(100%, 1060px);
     }
 
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
 
     html,
     body {
@@ -182,11 +189,9 @@
       position: relative;
       overflow-x: hidden;
       background:
-        radial-gradient(circle at 72% 18%, rgba(143, 177, 203, 0.20), transparent 30%),
-        radial-gradient(circle at 24% 86%, rgba(184, 167, 106, 0.12), transparent 26%),
-        radial-gradient(circle at 50% 52%, rgba(255, 255, 255, 0.18), transparent 24%),
-        radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.34), transparent 42%),
-        linear-gradient(180deg, #EFF3F6 0%, #E9EDF2 48%, #EEF2F6 100%);
+        radial-gradient(circle at 72% 18%, rgba(143, 177, 203, 0.18), transparent 32%),
+        radial-gradient(circle at 22% 88%, rgba(122, 48, 48, 0.07), transparent 28%),
+        linear-gradient(180deg, #F4F6F8 0%, #E9EDF2 48%, #EEF2F6 100%);
       isolation: isolate;
     }
 
@@ -195,12 +200,16 @@
       position: fixed;
       inset: 0;
       background-image:
-        linear-gradient(rgba(15, 17, 21, 0.018) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(15, 17, 21, 0.018) 1px, transparent 1px);
-      background-size: 72px 72px;
-      opacity: 0.85;
+        linear-gradient(rgba(15, 17, 21, 0.014) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(15, 17, 21, 0.014) 1px, transparent 1px);
+      background-size: 96px 96px;
+      opacity: 0.5;
       pointer-events: none;
       z-index: 0;
+    }
+
+    a {
+      color: inherit;
     }
 
     .sr-only {
@@ -215,23 +224,14 @@
       border: 0 !important;
     }
 
-    .field {
-      position: fixed;
-      inset: 0;
-      overflow: hidden;
-      z-index: 0;
-      pointer-events: none;
-    }
-
     .page {
       position: relative;
       z-index: 1;
       width: 100%;
       min-height: 100dvh;
-      padding: 1rem 1.4rem 1rem;
+      padding: 1rem 1.35rem;
       display: grid;
       grid-template-rows: auto 1fr auto;
-      pointer-events: none;
     }
 
     .topline,
@@ -240,23 +240,14 @@
       justify-content: space-between;
       align-items: center;
       gap: 1rem;
-      font-size: 0.68rem;
-      letter-spacing: 0.22em;
+      font-size: 0.66rem;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--muted);
     }
 
-    .topline,
-    .hero,
-    .footer,
-    .lockup,
-    .logo-shell,
-    .company-surface {
-      pointer-events: auto;
-    }
-
     .topline {
-      margin-bottom: 0.15rem;
+      min-height: 28px;
     }
 
     .topline .status {
@@ -264,123 +255,36 @@
       display: inline-flex;
       align-items: center;
       gap: 0.65rem;
-      text-shadow: 0 0 12px rgba(122, 48, 48, 0.08);
     }
 
     .status-dot {
-      width: 8px;
-      height: 8px;
+      width: 7px;
+      height: 7px;
       border-radius: 999px;
       background: var(--signal);
-      animation: blink 1.2s steps(1, end) infinite;
+      animation: blink 1.4s steps(1, end) infinite;
       box-shadow: 0 0 0 4px rgba(122, 48, 48, 0.06);
     }
 
     .hero {
+      width: 100%;
       display: grid;
       place-items: center;
-      align-content: center;
-      min-height: 100%;
-      position: relative;
-      padding: 0;
+      padding: clamp(1rem, 2vh, 1.8rem) 0;
     }
 
     .lockup {
-      position: relative;
+      width: var(--measure);
       display: grid;
       place-items: center;
-      gap: 0.9rem;
       text-align: center;
-      padding: 0.4rem 1.8rem 0.5rem;
-      transform: none;
-      width: var(--hero-measure);
-    }
-
-    .lockup::before,
-    .lockup::after {
-      content: "";
-      position: absolute;
-      top: 50%;
-      width: min(10vw, 96px);
-      height: 1px;
-      background: linear-gradient(90deg, rgba(51, 75, 110, 0.18), transparent);
-      opacity: 0.52;
-      transform: translateY(-50%);
-      pointer-events: none;
-    }
-
-    .lockup::before {
-      left: -1.2rem;
-    }
-
-    .lockup::after {
-      right: -1.2rem;
-      transform: translateY(-50%) rotate(180deg);
-      background: linear-gradient(90deg, rgba(122, 48, 48, 0.18), transparent);
+      gap: 0.9rem;
     }
 
     .logo-shell {
       position: relative;
       display: inline-block;
       line-height: 0;
-      isolation: isolate;
-    }
-
-    .logo-shell::before {
-      content: "";
-      position: absolute;
-      left: 50%;
-      bottom: -16px;
-      width: min(44vw, 340px);
-      height: 16px;
-      transform: translateX(-50%);
-      background: radial-gradient(ellipse at center, rgba(15, 17, 21, 0.14), rgba(15, 17, 21, 0) 72%);
-      filter: blur(16px);
-      z-index: 0;
-      pointer-events: none;
-    }
-
-    .logo-shell::after {
-      content: "";
-      position: absolute;
-      inset: -1rem -1.8rem;
-      border: 1px solid rgba(51, 75, 110, 0.05);
-      border-radius: 999px;
-      z-index: 0;
-      opacity: 0.56;
-      animation: breathe 18s ease-in-out infinite;
-      pointer-events: none;
-      mask-image: radial-gradient(circle at center, transparent 44%, black 78%);
-    }
-
-    .logo-wrap {
-      position: relative;
-      z-index: 2;
-      display: inline-flex;
-      align-items: flex-end;
-      justify-content: center;
-    }
-
-    .logo-wrap::before,
-    .logo-wrap::after {
-      content: "";
-      position: absolute;
-      top: 50%;
-      width: 12px;
-      height: 12px;
-      transform: translateY(-50%);
-      border-radius: 999px;
-      border: 1px solid rgba(51, 75, 110, 0.14);
-      opacity: 0.45;
-    }
-
-    .logo-wrap::before {
-      left: -34px;
-    }
-
-    .logo-wrap::after {
-      right: -34px;
-      border-color: rgba(122, 48, 48, 0.16);
     }
 
     .logo {
@@ -389,7 +293,7 @@
       max-width: 100%;
       height: auto;
       object-fit: contain;
-      filter: drop-shadow(0 18px 30px rgba(15, 17, 21, 0.06));
+      filter: drop-shadow(0 18px 32px rgba(15, 17, 21, 0.055));
     }
 
     .logo-fallback {
@@ -403,271 +307,201 @@
     }
 
     .subline {
-      max-width: 50rem;
       margin: 0;
-      font-size: 0.7rem;
-      line-height: 1.48;
+      color: var(--muted);
+      font-size: 0.72rem;
       letter-spacing: 0.22em;
       text-transform: uppercase;
-      color: var(--muted);
-      text-wrap: balance;
-      text-shadow: 0 1px 0 rgba(255, 255, 255, 0.2);
     }
 
     .hero-divider {
-      width: min(100%, 540px);
+      width: min(100%, 420px);
       height: 1px;
       background: linear-gradient(
         90deg,
         rgba(51, 75, 110, 0),
-        rgba(51, 75, 110, 0.16) 18%,
-        rgba(122, 48, 48, 0.14) 50%,
-        rgba(51, 75, 110, 0.16) 82%,
+        rgba(51, 75, 110, 0.18),
+        rgba(122, 48, 48, 0.12),
         rgba(51, 75, 110, 0)
       );
-      opacity: 0.78;
     }
 
     .company-surface {
-      width: min(calc(100% - 24px), 1040px);
-      margin: 0.9rem auto 0;
-      padding: 20px 22px 15px;
-      border-radius: 28px;
+      width: min(calc(100% - 24px), 1020px);
+      margin: 0.65rem auto 0;
+      padding: clamp(22px, 3vw, 34px);
+      border-radius: 30px;
       border: 1px solid var(--line);
       background:
-        linear-gradient(180deg, rgba(255,255,255,0.95), rgba(255,255,255,0.885)),
-        radial-gradient(circle at top right, rgba(51, 75, 110, 0.05), transparent 30%),
-        radial-gradient(circle at bottom left, rgba(122, 48, 48, 0.035), transparent 24%);
+        linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.78));
       box-shadow:
-        0 20px 48px rgba(15, 17, 21, 0.05),
-        inset 0 1px 0 rgba(255,255,255,0.65);
-      position: relative;
-      z-index: 3;
-    }
-
-    .company-surface::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      border-radius: 28px;
-      background:
-        linear-gradient(180deg, rgba(255,255,255,0.18), rgba(255,255,255,0)),
-        radial-gradient(circle at 18% 18%, rgba(255,255,255,0.22), transparent 22%);
+        0 24px 60px rgba(15, 17, 21, 0.055),
+        inset 0 1px 0 rgba(255,255,255,0.68);
+      text-align: left;
     }
 
     .company-surface-head {
-      position: relative;
-      z-index: 1;
       display: grid;
-      gap: 7px;
-      margin: 0 0 14px;
-      max-width: 880px;
-      text-align: left;
-      justify-items: start;
+      gap: 10px;
+      max-width: 850px;
+      margin-bottom: 22px;
+    }
+
+    .eyebrow {
+      font-size: 0.62rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--muted);
+      font-weight: 700;
     }
 
     .company-surface-head h2 {
       margin: 0;
-      font-size: clamp(1.9rem, 3vw, 2.85rem);
+      max-width: 760px;
+      font-size: clamp(2.15rem, 4vw, 4.25rem);
       line-height: 0.94;
-      letter-spacing: -0.06em;
-      font-weight: 700;
+      letter-spacing: -0.075em;
+      font-weight: 760;
     }
 
     .company-surface-head p {
       margin: 0;
-      color: #36414e;
+      max-width: 780px;
+      color: #343D49;
       line-height: 1.62;
-      font-size: 13px;
-      max-width: 62rem;
-      text-align: left;
+      font-size: clamp(0.95rem, 1.2vw, 1.05rem);
     }
 
     .company-surface-secondary {
-      margin-top: 2px !important;
-      color: #44505d !important;
-      font-size: 12px !important;
-      max-width: 62rem !important;
+      color: #4A5562 !important;
+      font-size: 0.92rem !important;
+      max-width: 760px !important;
     }
 
-    .eyebrow {
-      font-size: 10px;
+    .standard-line {
+      margin: 0 0 20px;
+      padding: 15px 0 0;
+      border-top: 1px solid rgba(15, 17, 21, 0.08);
+      color: var(--signal);
+      font-size: 0.72rem;
+      line-height: 1.55;
+      letter-spacing: 0.11em;
       text-transform: uppercase;
-      letter-spacing: 0.22em;
-      color: var(--muted);
-      font-weight: 500;
+      font-weight: 760;
     }
 
     .company-surface-grid {
-      position: relative;
-      z-index: 1;
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 12px;
-      align-items: start;
-      max-width: 920px;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
       margin: 0;
     }
 
     .company-card {
       display: grid;
       gap: 8px;
-      padding: 15px 14px 12px;
-      border-radius: 18px;
+      min-height: 154px;
+      padding: 16px 15px;
+      border-radius: 20px;
       border: 1px solid rgba(15, 17, 21, 0.08);
-      background:
-        linear-gradient(180deg, rgba(255,255,255,0.92), rgba(255,255,255,0.74)),
-        linear-gradient(135deg, rgba(51, 75, 110, 0.03), rgba(54, 85, 74, 0.025));
-      box-shadow: 0 10px 22px rgba(15, 17, 21, 0.03);
-      transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease, background 180ms ease;
-      position: relative;
-      overflow: hidden;
+      background: rgba(255, 255, 255, 0.58);
       text-decoration: none;
-      align-content: start;
-      min-height: 118px;
-      text-align: left;
-    }
-
-    .company-card::after {
-      content: "";
-      position: absolute;
-      inset: auto -12% -22% auto;
-      width: 58%;
-      height: 48%;
-      background: radial-gradient(circle, rgba(51, 75, 110, 0.08), transparent 68%);
-      pointer-events: none;
+      transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
     }
 
     .company-card:hover {
       transform: translateY(-2px);
       border-color: rgba(51, 75, 110, 0.18);
-      box-shadow: 0 14px 28px rgba(15, 17, 21, 0.05);
-      background:
-        linear-gradient(180deg, rgba(255,255,255,0.97), rgba(255,255,255,0.82)),
-        linear-gradient(135deg, rgba(51, 75, 110, 0.04), rgba(54, 85, 74, 0.03));
+      background: rgba(255, 255, 255, 0.78);
+    }
+
+    .card-eyebrow {
+      color: var(--slate);
+      font-size: 0.54rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font-weight: 800;
+    }
+
+    .card-eyebrow.capital {
+      color: var(--signal);
     }
 
     .company-card h3 {
       margin: 0;
-      font-size: 1rem;
-      line-height: 1.05;
-      letter-spacing: -0.04em;
-      font-weight: 700;
+      font-size: 1.02rem;
+      line-height: 1.08;
+      letter-spacing: -0.045em;
+      font-weight: 760;
       color: var(--ink);
-      position: relative;
-      z-index: 1;
     }
 
     .company-card p {
       margin: 0;
-      color: #44505d;
-      font-size: 12px;
-      line-height: 1.56;
-      position: relative;
-      z-index: 1;
-      max-width: 48ch;
+      color: #46515E;
+      font-size: 0.77rem;
+      line-height: 1.5;
     }
 
     .company-card-meta {
       margin-top: auto;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 9px;
+      color: var(--muted);
+      font-size: 0.56rem;
       text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: var(--slate);
-      font-weight: 700;
-      position: relative;
-      z-index: 1;
-    }
-
-    .card-eyebrow {
-      display: inline-flex;
-      width: fit-content;
-      padding: 5px 8px;
-      border-radius: 999px;
-      background: rgba(51, 75, 110, 0.08);
-      border: 1px solid rgba(51, 75, 110, 0.14);
-      color: var(--slate);
-      font-size: 8px;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      font-weight: 700;
-      position: relative;
-      z-index: 1;
-    }
-
-    .card-eyebrow.capital {
-      background: rgba(122, 48, 48, 0.08);
-      border-color: rgba(122, 48, 48, 0.14);
-      color: var(--signal);
+      letter-spacing: 0.13em;
+      font-weight: 800;
     }
 
     .entity-strip {
-      position: relative;
-      z-index: 1;
       display: flex;
       flex-wrap: wrap;
-      justify-content: flex-start;
       gap: 8px;
-      max-width: 920px;
-      margin: 14px 0 0;
-      padding-top: 12px;
-      border-top: 1px solid rgba(15, 17, 21, 0.07);
+      margin: 20px 0 0;
+      padding-top: 18px;
+      border-top: 1px solid rgba(15, 17, 21, 0.08);
     }
 
     .entity-strip span {
       display: inline-flex;
       width: fit-content;
-      padding: 5px 8px;
+      padding: 6px 9px;
       border-radius: 999px;
-      background: rgba(51, 75, 110, 0.07);
-      border: 1px solid rgba(51, 75, 110, 0.12);
+      background: rgba(51, 75, 110, 0.06);
+      border: 1px solid rgba(51, 75, 110, 0.1);
       color: var(--slate);
-      font-size: 8px;
+      font-size: 0.54rem;
       text-transform: uppercase;
-      letter-spacing: 0.13em;
-      font-weight: 700;
-    }
-
-    .entity-strip span:last-child {
-      background: rgba(122, 48, 48, 0.07);
-      border-color: rgba(122, 48, 48, 0.12);
-      color: var(--signal);
+      letter-spacing: 0.12em;
+      font-weight: 800;
     }
 
     .company-surface-links {
-      position: relative;
-      z-index: 1;
       display: flex;
       flex-wrap: wrap;
-      justify-content: flex-start;
-      gap: 14px;
-      margin-top: 13px;
+      gap: 15px;
+      margin-top: 18px;
     }
 
     .company-surface-links a {
       color: var(--signal);
-      font-size: 9px;
+      font-size: 0.62rem;
       text-transform: uppercase;
       letter-spacing: 0.14em;
-      font-weight: 700;
+      font-weight: 800;
       text-decoration: none;
     }
 
     .company-surface-links a:hover {
       text-decoration: underline;
+      text-underline-offset: 4px;
     }
 
     .footer {
       align-items: end;
-      font-size: 0.62rem;
-      letter-spacing: 0.12em;
+      font-size: 0.58rem;
+      letter-spacing: 0.11em;
       color: var(--muted-2);
-      margin-top: 0;
-      padding-top: 1rem;
+      padding-top: 0.7rem;
     }
 
     .footer .contact::before {
@@ -675,7 +509,7 @@
       display: block;
       width: min(18vw, 160px);
       height: 1px;
-      margin: 0 0 0.9rem auto;
+      margin: 0 0 0.8rem auto;
       background: linear-gradient(90deg, transparent, rgba(122, 48, 48, 0.18));
     }
 
@@ -696,62 +530,15 @@
       cursor: pointer;
     }
 
-    .footer a:hover {
-      text-decoration: underline;
-    }
-
+    .footer a:hover,
     .footer button:hover {
       text-decoration: underline;
+      text-underline-offset: 3px;
     }
 
     @keyframes blink {
-      0%, 48% { opacity: 1; }
-      49%, 100% { opacity: 0.18; }
-    }
-
-    @keyframes drift {
-      from { transform: translate3d(-2.4%, -1.6%, 0) scale(1.03); }
-      to { transform: translate3d(2.4%, 1.6%, 0) scale(1.07); }
-    }
-
-    @keyframes cloudShift {
-      from { transform: translate3d(-3.2%, -1.8%, 0) scale(1.03); }
-      to { transform: translate3d(3.6%, 1.8%, 0) scale(1.08); }
-    }
-
-    @keyframes cloudShiftSlow {
-      from { transform: translate3d(2.2%, 0.2%, 0) scale(1.03); }
-      to { transform: translate3d(-2.4%, -0.8%, 0) scale(1.06); }
-    }
-
-    @keyframes cloudShiftReverse {
-      from { transform: translate3d(2.8%, -1.2%, 0) scale(1.02); }
-      to { transform: translate3d(-3.1%, 1.4%, 0) scale(1.06); }
-    }
-
-    @keyframes scan {
-      from { transform: translateY(-130%); }
-      to { transform: translateY(420%); }
-    }
-
-    @keyframes scanX {
-      from { transform: translateX(0); }
-      to { transform: translateX(760%); }
-    }
-
-    @keyframes horizonShift {
-      from { transform: translateX(-50%) translateY(0); }
-      to { transform: translateX(-50%) translateY(1.4%); }
-    }
-
-    @keyframes breathe {
-      0%, 100% { opacity: 0.45; }
-      50% { opacity: 0.72; }
-    }
-
-    @keyframes grainShift {
-      from { transform: translate3d(-1.2%, 0.8%, 0); }
-      to { transform: translate3d(1.4%, -1%, 0); }
+      0%, 52% { opacity: 1; }
+      53%, 100% { opacity: 0.22; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -770,62 +557,15 @@
       }
 
       .page {
-        padding: 0.9rem 1rem 1rem;
-      }
-
-      .hero {
-        padding: 0;
-      }
-
-      .lockup {
-        padding: 0.3rem 1rem 0.45rem;
-      }
-
-      .subline {
-        max-width: 44rem;
-        font-size: 0.64rem;
-        letter-spacing: 0.17em;
-      }
-
-      .hero-divider {
-        width: min(100%, 460px);
+        padding: 0.9rem 1rem;
       }
 
       .company-surface {
-        width: min(calc(100% - 20px), 980px);
-        margin: 0.95rem auto 0;
-        padding: 18px 18px 14px;
+        width: min(calc(100% - 18px), 940px);
       }
 
-      .company-surface-head h2 {
-        font-size: clamp(1.6rem, 2.5vw, 2.3rem);
-      }
-
-      .company-surface-head p {
-        font-size: 12px;
-      }
-
-      .company-card {
-        padding: 14px 12px 11px;
-        min-height: 110px;
-      }
-
-      .company-card h3 {
-        font-size: 0.94rem;
-      }
-
-      .company-card p {
-        font-size: 11px;
-      }
-    }
-
-    @media (max-width: 980px) {
       .company-surface-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .company-surface {
-        width: min(calc(100% - 16px), 760px);
+        grid-template-columns: repeat(2, minmax(0, 1fr));
       }
     }
 
@@ -834,38 +574,31 @@
         --logo-width: min(88vw, 480px);
       }
 
-      body::before,
-      .cloud-band,
-      .cloud-band-secondary,
-      .cloud-floor,
-      .horizon-haze,
-      .scan,
-      .scan-vertical,
-      .lockup::before,
-      .lockup::after,
-      .logo-shell::before,
-      .logo-shell::after {
+      body::before {
         display: none;
       }
 
       .page {
-        padding: 0.9rem 0.75rem 0.9rem;
+        padding: 0.85rem 0.75rem;
       }
 
       .topline,
       .footer {
-        font-size: 0.56rem;
-        letter-spacing: 0.12em;
+        font-size: 0.55rem;
+        letter-spacing: 0.11em;
       }
 
-      .hero {
-        padding: 0.2rem 0 0;
+      .topline {
+        gap: 0.7rem;
+      }
+
+      .topline span:first-child {
+        max-width: 52%;
       }
 
       .subline {
-        width: min(94vw, 28rem);
         font-size: 0.64rem;
-        letter-spacing: 0.13em;
+        letter-spacing: 0.14em;
       }
 
       .hero-divider {
@@ -873,13 +606,33 @@
       }
 
       .company-surface {
-        width: min(calc(100% - 8px), 1200px);
-        padding: 16px 14px 12px;
-        margin: 0.85rem auto 0;
+        width: min(calc(100% - 6px), 760px);
+        padding: 18px 15px;
+        border-radius: 24px;
+      }
+
+      .company-surface-head {
+        margin-bottom: 18px;
       }
 
       .company-surface-head h2 {
-        font-size: 1.75rem;
+        font-size: clamp(2rem, 10vw, 3rem);
+      }
+
+      .company-surface-head p {
+        font-size: 0.9rem;
+      }
+
+      .standard-line {
+        font-size: 0.62rem;
+      }
+
+      .company-surface-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .company-card {
+        min-height: 0;
       }
 
       .entity-strip {
@@ -887,7 +640,7 @@
       }
 
       .company-surface-links {
-        gap: 10px;
+        gap: 11px;
       }
 
       .footer {
@@ -898,25 +651,14 @@
       }
 
       .footer .contact::before {
-        margin: 0 auto 0.85rem;
+        margin: 0 auto 0.8rem;
         background: linear-gradient(90deg, transparent, rgba(122, 48, 48, 0.18), transparent);
       }
     }
   </style>
 </head>
-<body>
-  <div class="field" aria-hidden="true">
-    <div class="wash"></div>
-    <div class="cloud-band"></div>
-    <div class="cloud-band-secondary"></div>
-    <div class="cloud-floor"></div>
-    <div class="horizon-haze"></div>
-    <div class="field-grain"></div>
-    <div class="scan"></div>
-    <div class="scan-vertical"></div>
-    <div class="field-mask"></div>
-  </div>
 
+<body>
   <div class="page">
     <div class="topline" aria-hidden="true">
       <span>Independent AI Trust Standard</span>
@@ -928,20 +670,18 @@
         <h1 class="sr-only">Norynthe is an independent AI evaluation and trust-scoring company.</h1>
 
         <div class="logo-shell" role="img" aria-label="Norynthe logo">
-          <div class="logo-wrap">
-            <img
-              class="logo"
-              src="norynthe-logo.png"
-              alt="Norynthe independent AI evaluation and trust scoring company logo"
-              width="1200"
-              height="630"
-              loading="eager"
-              decoding="async"
-              fetchpriority="high"
-              onerror="if (!this.dataset.fallbackTried) { this.dataset.fallbackTried='true'; this.src='assets/norynthe-logo.png'; } else { this.style.display='none'; document.querySelector('.logo-fallback').style.display='block'; }"
-            >
-            <h2 class="logo-fallback">Norynthe.</h2>
-          </div>
+          <img
+            class="logo"
+            src="norynthe-logo.png"
+            alt="Norynthe independent AI evaluation and trust scoring company logo"
+            width="1200"
+            height="630"
+            loading="eager"
+            decoding="async"
+            fetchpriority="high"
+            onerror="if (!this.dataset.fallbackTried) { this.dataset.fallbackTried='true'; this.src='assets/norynthe-logo.png'; } else { this.style.display='none'; document.querySelector('.logo-fallback').style.display='block'; }"
+          >
+          <h2 class="logo-fallback">Norynthe.</h2>
         </div>
 
         <div class="hero-divider" aria-hidden="true"></div>
@@ -951,30 +691,42 @@
         <section class="company-surface" aria-labelledby="company-surface-title">
           <div class="company-surface-head">
             <div class="eyebrow">Norynthe. / Company Surface</div>
-            <h2 id="company-surface-title">The independent standard layer for AI trust.</h2>
+
+            <h2 id="company-surface-title">
+              The independent standard layer for AI trust.
+            </h2>
+
             <p>
-              Norynthe evaluates AI systems from outside the model, using governed benchmark sets, versioned scoring logic, and traceable assessment records to create public trust signals and enterprise-ready evidence.
+              Norynthe evaluates AI systems from outside the model, using governed benchmark sets,
+              versioned scoring logic, and traceable assessment records to create public trust signals
+              and enterprise-ready evidence.
             </p>
+
             <p class="company-surface-secondary">
-              A Norynthe.Score is not a one-time verdict. It is a living signal tied to benchmark versions, scoring dimensions, reviewer notes, flags, confidence levels, and repeatable evidence.
+              A Norynthe.Score is not a one-time verdict. It is a living signal tied to benchmark
+              versions, scoring dimensions, reviewer notes, flags, confidence levels, and repeatable evidence.
             </p>
           </div>
 
+          <p class="standard-line">
+            Dashboards can be copied. Leaderboards can be copied. A standard is harder to copy.
+          </p>
+
           <div class="company-surface-grid">
             <a class="company-card" href="norynthe-founder-memo.html">
-              <span class="card-eyebrow">Foundational</span>
-              <h3>Founder Memo</h3>
+              <span class="card-eyebrow">Founder Memo</span>
+              <h3>Why independent trust infrastructure matters.</h3>
               <p>
-                Why independent AI trust infrastructure matters, and why model providers should not be the only source of truth for model trust.
+                Model providers should not be the only source of truth for model trust.
               </p>
               <span class="company-card-meta">Public memo</span>
             </a>
 
             <a class="company-card" href="norynthe-investors.html">
-              <span class="card-eyebrow capital">Capital</span>
-              <h3>Investor Overview</h3>
+              <span class="card-eyebrow capital">Investor Overview</span>
+              <h3>Brand, benchmark, record, standard.</h3>
               <p>
-                The company opportunity, standard-forming thesis, benchmark system, assessment records, and public signal strategy behind Norynthe.
+                The company compounds through public signal, governed method, and historical evaluation records.
               </p>
               <span class="company-card-meta">Company direction</span>
             </a>
@@ -983,7 +735,7 @@
               <span class="card-eyebrow">Benchmark Bank</span>
               <h3>The benchmark is the asset.</h3>
               <p>
-                A governed evaluation system that can evolve by sector, risk class, geography, language, model type, use case, and regulatory context.
+                An upgradable evaluation system designed to evolve by sector, risk class, language, model type, and use case.
               </p>
               <span class="company-card-meta">Upgradable method</span>
             </a>
@@ -992,7 +744,7 @@
               <span class="card-eyebrow">Evidence Layer</span>
               <h3>The record is the infrastructure.</h3>
               <p>
-                Assessment records preserve the benchmark version, scoring logic, model output, reviewer notes, flags, confidence level, and evidence behind the score.
+                Assessment records preserve the scoring logic, model output, reviewer notes, flags, confidence, and evidence.
               </p>
               <span class="company-card-meta">Traceable record</span>
             </a>
@@ -1003,14 +755,14 @@
             <span>Outside-the-model trust</span>
             <span>Governed benchmark bank</span>
             <span>Versioned scoring logic</span>
-            <span>Traceable assessment records</span>
+            <span>Traceable records</span>
             <span>Public trust signals</span>
-            <span>Founder: Alan Motley</span>
           </div>
 
           <div class="company-surface-links">
             <a href="norynthe-founder-memo.html">Founder Memo</a>
             <a href="norynthe-investors.html">Investor Overview</a>
+            <a href="https://www.facebook.com/norynthe">Facebook</a>
             <a href="https://www.alanmotley.com/">Founder Profile</a>
             <a href="mailto:hello@norynthe.com">Contact</a>
           </div>
@@ -1019,8 +771,14 @@
     </main>
 
     <footer class="footer">
-      <div>Norynthe.Score · Assessment Records · Benchmark Bank · Public Trust Signals</div>
-      <div class="contact"><a href="mailto:hello@norynthe.com">hello@norynthe.com</a> · <button type="button" id="copy-email">Copy email</button> · © 2026 Norynthe.</div>
+      <div>Norynthe.Score · Benchmark Bank · Assessment Records</div>
+      <div class="contact">
+        <a href="mailto:hello@norynthe.com">hello@norynthe.com</a>
+        ·
+        <button type="button" id="copy-email">Copy email</button>
+        ·
+        © 2026 Norynthe.
+      </div>
     </footer>
   </div>
 
