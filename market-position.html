@@ -1,0 +1,2053 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Norynthe and the Missing Trust Layer in AI</title>
+  <meta
+    name="description"
+    content="Norynthe is building an independent external trust layer for AI systems, distinct from internal governance dashboards, observability tools, and consulting-led audits."
+  >
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta name="theme-color" content="#edf2f5">
+  <link rel="canonical" href="https://www.norynthe.com/market-position">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Norynthe">
+  <meta property="og:title" content="Norynthe and the Missing Trust Layer in AI">
+  <meta
+    property="og:description"
+    content="Most AI governance tools help companies manage AI internally. Norynthe evaluates AI systems externally and turns model behavior into an independent trust signal."
+  >
+  <meta property="og:url" content="https://www.norynthe.com/market-position">
+  <meta property="og:image" content="https://www.norynthe.com/norynthe-social-card.png">
+  <meta property="og:image:alt" content="Norynthe independent AI evaluation and trust scoring">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Norynthe and the Missing Trust Layer in AI">
+  <meta
+    name="twitter:description"
+    content="Norynthe evaluates AI systems externally and turns model behavior into an independent trust signal."
+  >
+  <meta name="twitter:image" content="https://www.norynthe.com/norynthe-social-card.png">
+
+  <link rel="icon" href="https://www.norynthe.com/favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" href="https://www.norynthe.com/norynthe-icon-180.png">
+
+  <style>
+    :root {
+      --bg: #edf2f5;
+      --paper: rgba(255, 255, 255, 0.84);
+      --paper-strong: rgba(255, 255, 255, 0.93);
+      --paper-soft: rgba(255, 255, 255, 0.68);
+      --ink: #111720;
+      --muted: #5d6873;
+      --muted-strong: #46535f;
+      --line: rgba(30, 42, 58, 0.1);
+      --line-strong: rgba(50, 73, 100, 0.16);
+      --slate: #324964;
+      --pine: #36554a;
+      --signal: #7a3030;
+      --gold: #9a7a36;
+      --shadow: 0 22px 54px rgba(18, 23, 30, 0.075);
+      --shadow-soft: 0 12px 28px rgba(18, 23, 30, 0.048);
+      --radius-lg: 24px;
+      --radius-md: 18px;
+      --radius-sm: 12px;
+      --max: 1120px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-height: 100%;
+      color: var(--ink);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        linear-gradient(135deg, rgba(122, 48, 48, 0.07) 0%, rgba(122, 48, 48, 0) 36%),
+        linear-gradient(225deg, rgba(50, 73, 100, 0.12) 0%, rgba(50, 73, 100, 0) 38%),
+        linear-gradient(180deg, #f7f9fb 0%, #edf2f5 48%, #f6f8fa 100%);
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(18, 23, 30, 0.016) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(18, 23, 30, 0.016) 1px, transparent 1px);
+      background-size: 72px 72px;
+      opacity: 0.78;
+      z-index: -1;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+
+    .page {
+      width: min(calc(100% - 48px), var(--max));
+      margin: 0 auto;
+      padding: 28px 0 76px;
+    }
+
+    .topline {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 22px;
+      padding: 12px 16px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.64);
+      box-shadow: var(--shadow-soft);
+      color: #56616c;
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      backdrop-filter: blur(10px);
+    }
+
+    .topline nav,
+    .button-row,
+    .pill-row,
+    .contact-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .topline nav { gap: 14px; }
+
+    .hero,
+    .section-card,
+    .closing-card {
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      background: var(--paper);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 34px;
+      background:
+        linear-gradient(135deg, rgba(50, 73, 100, 0.13) 0%, rgba(50, 73, 100, 0) 42%),
+        linear-gradient(225deg, rgba(122, 48, 48, 0.09) 0%, rgba(122, 48, 48, 0) 44%),
+        linear-gradient(180deg, rgba(255,255,255,0.94), rgba(248,250,252,0.92));
+    }
+
+    .hero-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(280px, 0.42fr);
+      gap: 30px;
+      align-items: end;
+    }
+
+    .back-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+
+    .back-link,
+    .button,
+    .contact-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.8);
+      box-shadow: var(--shadow-soft);
+      color: var(--muted);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      line-height: 1.25;
+      text-align: center;
+      text-transform: uppercase;
+      transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+    }
+
+    .back-link:hover,
+    .button:hover,
+    .contact-pill:hover {
+      transform: translateY(-1px);
+      border-color: rgba(50, 73, 100, 0.2);
+      box-shadow: 0 12px 24px rgba(18, 23, 30, 0.06);
+    }
+
+    .button.primary {
+      border-color: #0f1115;
+      background: #0f1115;
+      color: #fff;
+      box-shadow: 0 14px 28px rgba(18, 23, 30, 0.12);
+    }
+
+    .eyebrow,
+    .section-label,
+    .card-kicker,
+    .matrix-axis,
+    .stack-label {
+      color: #5b6774;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin: 0;
+    }
+
+    h1,
+    h2,
+    h3 {
+      letter-spacing: -0.055em;
+      font-weight: 720;
+    }
+
+    h1 {
+      max-width: 12ch;
+      margin: 24px 0 18px;
+      font-size: clamp(2.65rem, 5.2vw, 4.45rem);
+      line-height: 0.96;
+    }
+
+    h2 {
+      font-size: clamp(1.65rem, 2.7vw, 2.35rem);
+      line-height: 1.04;
+    }
+
+    h3 {
+      font-size: 1.08rem;
+      line-height: 1.12;
+    }
+
+    .lede,
+    .section-head p,
+    .card p,
+    .callout p,
+    .stack-copy,
+    .closing-card p,
+    .note,
+    .why-copy p {
+      color: #4b5866;
+      line-height: 1.76;
+      font-size: 0.98rem;
+    }
+
+    .lede {
+      max-width: 48rem;
+      font-size: 1rem;
+      line-height: 1.76;
+    }
+
+    .hero-statement {
+      margin-top: 18px;
+      padding: 16px 18px;
+      border-left: 3px solid var(--signal);
+      border-radius: 18px;
+      background: rgba(122, 48, 48, 0.055);
+      color: #2d3845;
+      font-size: 1rem;
+      font-weight: 540;
+      line-height: 1.62;
+    }
+
+    .button-row {
+      margin-top: 22px;
+    }
+
+    .hero-aside {
+      display: grid;
+      gap: 14px;
+      align-content: start;
+    }
+
+    .hero-panel {
+      display: grid;
+      gap: 14px;
+      padding: 20px;
+      border: 1px solid rgba(18, 23, 30, 0.08);
+      border-radius: 22px;
+      background: rgba(255,255,255,0.72);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .hero-panel h2 {
+      font-size: clamp(1.28rem, 1.8vw, 1.7rem);
+      line-height: 1.08;
+      letter-spacing: -0.045em;
+    }
+
+    .hero-panel p {
+      color: #4b5866;
+      font-size: 0.9rem;
+      line-height: 1.65;
+    }
+
+    .hero-panel-list {
+      display: grid;
+      gap: 10px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .hero-panel-list li {
+      display: grid;
+      gap: 4px;
+      padding: 11px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(18, 23, 30, 0.07);
+      background: rgba(255,255,255,0.68);
+    }
+
+    .hero-panel-list strong {
+      color: var(--ink);
+      font-size: 0.84rem;
+      line-height: 1.28;
+    }
+
+    .hero-panel-list span {
+      color: var(--muted);
+      font-size: 0.76rem;
+      line-height: 1.45;
+    }
+
+    .signal-section {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr);
+      gap: 16px;
+      align-items: stretch;
+    }
+
+    .signal-card,
+    .mini-card,
+    .card,
+    .callout,
+    .matrix-card,
+    .stack-layer,
+    .flywheel-step {
+      border: 1px solid rgba(18, 23, 30, 0.075);
+      border-radius: var(--radius-md);
+      background: rgba(255, 255, 255, 0.76);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .signal-card {
+      display: grid;
+      gap: 16px;
+      min-height: 100%;
+      padding: 22px;
+    }
+
+    .mark-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .mark {
+      display: inline-grid;
+      place-items: center;
+      width: 54px;
+      height: 54px;
+      border-radius: 18px;
+      background: #0f1115;
+      color: #fff;
+      font-size: 1.35rem;
+      font-weight: 760;
+      letter-spacing: -0.08em;
+      box-shadow: 0 16px 28px rgba(18, 23, 30, 0.13);
+    }
+
+    .score-badge {
+      display: inline-flex;
+      padding: 8px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(50, 73, 100, 0.16);
+      background: rgba(50, 73, 100, 0.075);
+      color: var(--slate);
+      font-size: 0.68rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .signal-card strong {
+      display: block;
+      color: #1a2330;
+      font-size: 1.12rem;
+      font-weight: 650;
+      line-height: 1.45;
+    }
+
+    .signal-card p {
+      color: #4b5866;
+      font-size: 0.94rem;
+      line-height: 1.62;
+    }
+
+    .mini-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .mini-card {
+      display: grid;
+      gap: 6px;
+      padding: 14px;
+      min-height: 92px;
+      align-content: center;
+    }
+
+    .mini-card span {
+      color: var(--muted);
+      font-size: 0.66rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .mini-card b {
+      color: var(--ink);
+      font-size: 0.95rem;
+      line-height: 1.3;
+    }
+
+    section { margin-top: 20px; }
+
+    .section-card {
+      padding: 28px;
+      background: var(--paper-strong);
+    }
+
+    .section-head {
+      display: grid;
+      gap: 12px;
+      margin-bottom: 20px;
+      max-width: 880px;
+    }
+
+    .section-head.wide { max-width: none; }
+
+    .grid-4,
+    .grid-3,
+    .grid-2,
+    .dimension-grid {
+      display: grid;
+      gap: 16px;
+    }
+
+    .grid-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .dimension-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+
+    .card {
+      display: grid;
+      gap: 12px;
+      align-content: start;
+      min-width: 0;
+      padding: 20px;
+    }
+
+    .card-kicker {
+      color: var(--slate);
+      font-size: 0.66rem;
+    }
+
+    .example-list,
+    .question-list {
+      display: grid;
+      gap: 8px;
+      margin: 2px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .example-list li,
+    .question-list li,
+    .dimension-chip,
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      width: fit-content;
+      min-height: 31px;
+      padding: 7px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(18, 23, 30, 0.07);
+      background: rgba(255,255,255,0.72);
+      color: #4d5966;
+      font-size: 0.68rem;
+      font-weight: 760;
+      letter-spacing: 0.1em;
+      line-height: 1.25;
+      text-transform: uppercase;
+    }
+
+    .question-list li {
+      width: 100%;
+      border-radius: 14px;
+      color: #3f4c59;
+      font-size: 0.82rem;
+      font-weight: 650;
+      letter-spacing: 0;
+      line-height: 1.45;
+      text-transform: none;
+    }
+
+    .comparison-columns {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 16px;
+    }
+
+    .comparison-column {
+      padding: 22px;
+      border-radius: 22px;
+      border: 1px solid rgba(18, 23, 30, 0.08);
+      background: rgba(255,255,255,0.72);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .comparison-column.norynthe {
+      border-color: rgba(54, 85, 74, 0.22);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.86), rgba(248,251,250,0.84)),
+        linear-gradient(135deg, rgba(54, 85, 74, 0.075), rgba(54, 85, 74, 0));
+    }
+
+    .comparison-column h3 {
+      margin-bottom: 12px;
+    }
+
+    .comparison-column p {
+      margin-bottom: 14px;
+      color: #4b5866;
+      line-height: 1.72;
+    }
+
+    .callout {
+      margin-top: 16px;
+      padding: 20px 22px;
+      border-left: 3px solid var(--slate);
+      background: rgba(50, 73, 100, 0.06);
+    }
+
+    .callout strong {
+      color: #202b38;
+      font-size: 1.06rem;
+      font-weight: 620;
+      line-height: 1.55;
+    }
+
+    .matrix-shell {
+      display: grid;
+      gap: 12px;
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: rgba(255,255,255,0.58);
+      overflow-x: auto;
+    }
+
+    .matrix-y-label {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .matrix-grid {
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(280px, 1fr));
+      gap: 12px;
+      min-width: 640px;
+    }
+
+    .matrix-grid::before,
+    .matrix-grid::after {
+      content: "";
+      position: absolute;
+      background: rgba(18, 23, 30, 0.09);
+      pointer-events: none;
+    }
+
+    .matrix-grid::before {
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      width: 1px;
+    }
+
+    .matrix-grid::after {
+      left: 0;
+      right: 0;
+      top: 50%;
+      height: 1px;
+    }
+
+    .matrix-card {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      gap: 12px;
+      min-height: 168px;
+      padding: 18px;
+      background: rgba(255,255,255,0.8);
+    }
+
+    .matrix-card.norynthe {
+      border-color: rgba(122, 48, 48, 0.24);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.92), rgba(255,250,250,0.88)),
+        linear-gradient(135deg, rgba(122, 48, 48, 0.085), rgba(122, 48, 48, 0));
+      box-shadow: 0 18px 34px rgba(122, 48, 48, 0.08);
+    }
+
+    .matrix-card span {
+      color: var(--muted);
+      font-size: 0.72rem;
+      line-height: 1.5;
+    }
+
+    .matrix-card ul {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: auto 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .matrix-card li {
+      padding: 6px 8px;
+      border-radius: 999px;
+      background: rgba(50, 73, 100, 0.075);
+      color: var(--slate);
+      font-size: 0.64rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .matrix-card.norynthe li {
+      background: rgba(122, 48, 48, 0.08);
+      color: var(--signal);
+    }
+
+    .matrix-x-labels {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      min-width: 640px;
+      color: var(--muted);
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .matrix-x-labels span:last-child { text-align: right; }
+
+    .graph-card,
+    .flywheel-map {
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: rgba(255,255,255,0.74);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .graph-card {
+      display: grid;
+      gap: 16px;
+      padding: 20px;
+      margin-bottom: 16px;
+      overflow: hidden;
+    }
+
+    .graph-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: flex-start;
+      padding-bottom: 14px;
+      border-bottom: 1px solid rgba(18, 23, 30, 0.07);
+    }
+
+    .graph-head h3 {
+      margin-bottom: 5px;
+    }
+
+    .graph-head p,
+    .graph-caption {
+      color: var(--muted);
+      font-size: 0.84rem;
+      line-height: 1.55;
+    }
+
+    .graph-badge {
+      flex: 0 0 auto;
+      padding: 7px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(50, 73, 100, 0.16);
+      background: rgba(50, 73, 100, 0.07);
+      color: var(--slate);
+      font-size: 0.64rem;
+      font-weight: 820;
+      letter-spacing: 0.11em;
+      text-transform: uppercase;
+    }
+
+    .position-map-shell {
+      overflow-x: auto;
+      padding-bottom: 2px;
+    }
+
+    .position-map,
+    .flywheel-svg {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .position-map {
+      min-width: 720px;
+    }
+
+    .map-grid {
+      stroke: rgba(18, 23, 30, 0.08);
+      stroke-width: 1;
+    }
+
+    .map-axis {
+      stroke: rgba(18, 23, 30, 0.38);
+      stroke-width: 2;
+    }
+
+    .map-axis-label,
+    .map-quadrant-label {
+      fill: #5c6874;
+      font-size: 13px;
+      font-weight: 760;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .map-quadrant-label {
+      fill: rgba(92, 104, 116, 0.72);
+      font-size: 11px;
+    }
+
+    .map-point {
+      stroke: #fff;
+      stroke-width: 3;
+    }
+
+    .map-point.internal { fill: var(--slate); }
+    .map-point.advisory { fill: var(--gold); }
+    .map-point.norynthe { fill: var(--signal); }
+
+    .map-label {
+      fill: #172131;
+      font-size: 14px;
+      font-weight: 760;
+    }
+
+    .map-note {
+      fill: var(--muted);
+      font-size: 12px;
+    }
+
+    .map-tag {
+      display: grid;
+      gap: 4px;
+      max-width: 100%;
+      padding: 9px 10px;
+      border: 1px solid rgba(18, 23, 30, 0.08);
+      border-radius: 12px;
+      background: rgba(255,255,255,0.88);
+      color: #172131;
+      box-shadow: 0 8px 18px rgba(18, 23, 30, 0.045);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.25;
+    }
+
+    .map-tag strong {
+      font-size: 13px;
+      font-weight: 780;
+      letter-spacing: 0;
+    }
+
+    .map-tag span {
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .map-tag.norynthe-tag {
+      border-color: rgba(122, 48, 48, 0.22);
+      background: rgba(255, 248, 248, 0.92);
+    }
+
+    .capability-graph {
+      display: grid;
+      gap: 14px;
+    }
+
+    .capability-row {
+      display: grid;
+      grid-template-columns: minmax(190px, 0.78fr) minmax(0, 1.22fr);
+      gap: 14px;
+      align-items: center;
+      padding: 14px 0;
+      border-bottom: 1px solid rgba(18, 23, 30, 0.06);
+    }
+
+    .capability-row:last-child {
+      border-bottom: 0;
+    }
+
+    .capability-row strong {
+      color: var(--ink);
+      line-height: 1.25;
+    }
+
+    .bar-pair {
+      display: grid;
+      gap: 8px;
+    }
+
+    .bar-line {
+      display: grid;
+      grid-template-columns: 126px minmax(0, 1fr) 38px;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .bar-line span:first-child,
+    .bar-line span:last-child {
+      color: var(--muted);
+      font-size: 0.68rem;
+      font-weight: 780;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .bar-line span:last-child {
+      text-align: right;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .bar-track {
+      height: 11px;
+      overflow: hidden;
+      border-radius: 999px;
+      background: rgba(18, 23, 30, 0.065);
+    }
+
+    .bar-track i {
+      display: block;
+      height: 100%;
+      width: var(--value);
+      border-radius: inherit;
+      background: linear-gradient(90deg, rgba(50, 73, 100, 0.82), rgba(54, 85, 74, 0.78));
+    }
+
+    .bar-track.external i {
+      background: linear-gradient(90deg, rgba(122, 48, 48, 0.82), rgba(154, 122, 54, 0.74));
+    }
+
+    .table-shell {
+      overflow-x: auto;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      background: rgba(255,255,255,0.76);
+      box-shadow: var(--shadow-soft);
+    }
+
+    table {
+      width: 100%;
+      min-width: 980px;
+      border-collapse: collapse;
+    }
+
+    th,
+    td {
+      padding: 13px 14px;
+      border-bottom: 1px solid rgba(18, 23, 30, 0.065);
+      text-align: left;
+      vertical-align: middle;
+      font-size: 0.84rem;
+      line-height: 1.35;
+    }
+
+    th {
+      color: var(--muted);
+      font-size: 0.62rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      background: rgba(50, 73, 100, 0.055);
+    }
+
+    tbody tr:last-child td { border-bottom: 0; }
+
+    tbody tr.norynthe-row td {
+      background: rgba(122, 48, 48, 0.035);
+    }
+
+    .heat {
+      display: inline-flex;
+      justify-content: center;
+      width: 76px;
+      padding: 7px 9px;
+      border-radius: 999px;
+      font-size: 0.68rem;
+      font-weight: 820;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .heat.high {
+      color: var(--pine);
+      border: 1px solid rgba(54, 85, 74, 0.19);
+      background: rgba(54, 85, 74, 0.105);
+    }
+
+    .heat.medium {
+      color: var(--slate);
+      border: 1px solid rgba(50, 73, 100, 0.18);
+      background: rgba(50, 73, 100, 0.095);
+    }
+
+    .heat.low {
+      color: var(--signal);
+      border: 1px solid rgba(122, 48, 48, 0.18);
+      background: rgba(122, 48, 48, 0.095);
+    }
+
+    .note {
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 0.84rem;
+      line-height: 1.6;
+    }
+
+    .stack-visual {
+      display: grid;
+      gap: 12px;
+      max-width: 880px;
+      margin: 0 auto;
+    }
+
+    .stack-layer {
+      display: grid;
+      grid-template-columns: 190px minmax(0, 1fr);
+      gap: 16px;
+      align-items: center;
+      padding: 18px 20px;
+      background: rgba(255,255,255,0.78);
+    }
+
+    .stack-layer.top {
+      border-color: rgba(122, 48, 48, 0.24);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.94), rgba(255,250,250,0.88)),
+        linear-gradient(135deg, rgba(122, 48, 48, 0.075), rgba(122, 48, 48, 0));
+    }
+
+    .stack-label {
+      color: var(--slate);
+      line-height: 1.35;
+    }
+
+    .stack-layer.top .stack-label {
+      color: var(--signal);
+    }
+
+    .stack-copy {
+      font-size: 0.94rem;
+      line-height: 1.62;
+    }
+
+    .dimension-grid {
+      margin-top: 18px;
+    }
+
+    .dimension-chip {
+      width: auto;
+      min-height: 42px;
+      border-radius: 14px;
+      color: #384653;
+      font-size: 0.74rem;
+      letter-spacing: 0.06em;
+      text-align: center;
+      justify-content: center;
+    }
+
+    .flywheel {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+      align-items: stretch;
+      counter-reset: flywheel;
+    }
+
+    .flywheel-map {
+      max-width: 820px;
+      margin: 0 auto 16px;
+      padding: 18px;
+      overflow-x: auto;
+    }
+
+    .flywheel-svg {
+      min-width: 620px;
+    }
+
+    .flywheel-ring {
+      fill: none;
+      stroke: rgba(50, 73, 100, 0.18);
+      stroke-width: 18;
+    }
+
+    .flywheel-arc {
+      fill: none;
+      stroke: rgba(122, 48, 48, 0.72);
+      stroke-linecap: round;
+      stroke-width: 10;
+      stroke-dasharray: 90 26;
+    }
+
+    .flywheel-node {
+      fill: #fff;
+      stroke: rgba(18, 23, 30, 0.11);
+      stroke-width: 2;
+    }
+
+    .flywheel-node.norynthe-node {
+      fill: #fff7f7;
+      stroke: rgba(122, 48, 48, 0.38);
+    }
+
+    .flywheel-number {
+      fill: var(--signal);
+      font-size: 13px;
+      font-weight: 820;
+      text-anchor: middle;
+      dominant-baseline: middle;
+    }
+
+    .flywheel-text {
+      fill: #172131;
+      font-size: 12px;
+      font-weight: 760;
+      text-anchor: middle;
+    }
+
+    .flywheel-center {
+      fill: #111720;
+    }
+
+    .flywheel-center-text {
+      fill: #fff;
+      font-size: 15px;
+      font-weight: 820;
+      text-anchor: middle;
+      dominant-baseline: middle;
+    }
+
+    .flywheel-step {
+      counter-increment: flywheel;
+      position: relative;
+      display: grid;
+      gap: 10px;
+      min-height: 132px;
+      padding: 18px;
+      background: rgba(255,255,255,0.76);
+    }
+
+    .flywheel-step::before {
+      content: counter(flywheel);
+      display: grid;
+      place-items: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 999px;
+      background: #111720;
+      color: #fff;
+      font-size: 0.72rem;
+      font-weight: 820;
+      letter-spacing: 0.08em;
+    }
+
+    .flywheel-step strong {
+      color: var(--ink);
+      line-height: 1.25;
+    }
+
+    .flywheel-step span {
+      color: var(--muted);
+      font-size: 0.82rem;
+      line-height: 1.55;
+    }
+
+    .why-copy {
+      display: grid;
+      gap: 16px;
+      max-width: 840px;
+    }
+
+    .why-copy p:first-child {
+      color: #172131;
+      font-size: 1.02rem;
+      font-weight: 520;
+      line-height: 1.72;
+    }
+
+    .closing-card {
+      padding: 34px;
+      background:
+        linear-gradient(135deg, rgba(50, 73, 100, 0.12) 0%, rgba(50, 73, 100, 0) 40%),
+        linear-gradient(225deg, rgba(122, 48, 48, 0.08) 0%, rgba(122, 48, 48, 0) 42%),
+        linear-gradient(180deg, rgba(255,255,255,0.94), rgba(249,251,252,0.95));
+    }
+
+    .closing-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr);
+      gap: 22px;
+      align-items: center;
+    }
+
+    .closing-card h2 {
+      margin-bottom: 14px;
+      max-width: 10ch;
+    }
+
+    .closing-card p {
+      max-width: 48rem;
+    }
+
+    .closing-panel {
+      display: grid;
+      gap: 12px;
+      padding: 20px;
+      border-radius: 22px;
+      border: 1px solid rgba(18, 23, 30, 0.075);
+      background: rgba(255,255,255,0.72);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 18px;
+      margin-top: 36px;
+      color: var(--muted);
+      font-size: 0.66rem;
+      letter-spacing: 0.12em;
+      line-height: 1.8;
+      text-transform: uppercase;
+    }
+
+    .footer .contact {
+      text-align: right;
+    }
+
+    .footer .contact::before {
+      content: "";
+      display: block;
+      width: min(18vw, 160px);
+      height: 1px;
+      margin: 0 0 0.9rem auto;
+      background: linear-gradient(90deg, transparent, rgba(122, 48, 48, 0.18));
+    }
+
+    .footer a,
+    .footer button {
+      color: inherit;
+    }
+
+    .footer button {
+      appearance: none;
+      border: 0;
+      background: transparent;
+      font: inherit;
+      letter-spacing: inherit;
+      text-transform: inherit;
+      padding: 0;
+      cursor: pointer;
+    }
+
+    .footer a:hover,
+    .footer button:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 1040px) {
+      .hero-grid,
+      .signal-section,
+      .comparison-columns,
+      .closing-grid,
+      .grid-4,
+      .grid-3,
+      .grid-2,
+      .dimension-grid,
+      .flywheel,
+      .capability-row {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-logo {
+        width: min(300px, 70vw);
+      }
+
+      .mini-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 760px) {
+      .page {
+        width: min(calc(100% - 24px), var(--max));
+        padding-top: 18px;
+      }
+
+      .topline {
+        flex-direction: column;
+        align-items: flex-start;
+        border-radius: 20px;
+      }
+
+      .hero,
+      .section-card,
+      .closing-card {
+        padding: 24px 20px 26px;
+      }
+
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero .back-row {
+        display: none;
+      }
+
+      h1 {
+        font-size: clamp(2.35rem, 11vw, 3.3rem);
+      }
+
+      h2 {
+        font-size: clamp(1.7rem, 8vw, 2.35rem);
+      }
+
+      .mini-grid,
+      .stack-layer {
+        grid-template-columns: 1fr;
+      }
+
+      .button,
+      .back-link,
+      .contact-pill {
+        width: 100%;
+      }
+
+      .graph-head {
+        display: grid;
+      }
+
+      .bar-line {
+        grid-template-columns: 1fr;
+        gap: 6px;
+      }
+
+      .bar-line span:last-child {
+        text-align: left;
+      }
+
+      .matrix-shell {
+        padding: 14px;
+      }
+
+      .footer {
+        display: grid;
+        text-align: center;
+      }
+
+      .footer .contact {
+        text-align: center;
+      }
+
+      .footer .contact::before {
+        margin: 0 auto 0.85rem;
+        background: linear-gradient(90deg, transparent, rgba(122, 48, 48, 0.18), transparent);
+      }
+    }
+
+    @media print {
+      body {
+        background: #fff;
+      }
+
+      body::before,
+      .topline,
+      .button-row,
+      .back-row,
+      .contact-row {
+        display: none !important;
+      }
+
+      .page {
+        width: 100%;
+        padding: 0;
+      }
+
+      .hero,
+      .section-card,
+      .closing-card,
+      .card,
+      .signal-card,
+      .matrix-card,
+      .stack-layer,
+      .flywheel-step {
+        box-shadow: none;
+        background: #fff;
+        border-color: #d8dde3;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <header class="topline">
+      <span>Norynthe. / Market Position</span>
+      <nav aria-label="Norynthe pages">
+        <a href="norynthe-index.html">Main Site</a>
+        <a href="norynthe-investors.html">Investor Overview</a>
+        <a href="norynthe-founder-memo.html">Founder Memo</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="page-title">
+        <div class="back-row">
+          <a class="back-link" href="norynthe-index.html">Back To Main Site</a>
+          <a class="back-link" href="norynthe-investors.html">Investor Overview</a>
+        </div>
+
+        <div class="hero-grid">
+          <div>
+            <p class="eyebrow">Independent AI Trust Infrastructure</p>
+            <h1 id="page-title">Norynthe and the Missing Trust Layer in AI</h1>
+            <p class="lede">
+              Most AI governance companies help enterprises manage AI internally. Norynthe is building the independent
+              external layer that helps the market understand which AI systems deserve trust.
+            </p>
+            <div class="hero-statement">
+              The AI market does not only need more dashboards. It needs independent trust infrastructure.
+            </div>
+            <div class="button-row" aria-label="Primary actions">
+              <a class="button primary" href="mailto:hello@norynthe.com">Contact Norynthe</a>
+              <a class="button" href="norynthe-investors.html">Investor Overview</a>
+            </div>
+          </div>
+          <aside class="hero-panel" aria-label="Core positioning">
+            <span class="score-badge">Core Distinction</span>
+            <h2>Internal governance is not the same thing as external trust.</h2>
+            <p>
+              The market has tools that help AI companies manage themselves. Norynthe is built for the stakeholders
+              outside that control boundary.
+            </p>
+            <ul class="hero-panel-list">
+              <li>
+                <strong>Inside-out tools</strong>
+                <span>Policy, controls, telemetry, and internal proof of management.</span>
+              </li>
+              <li>
+                <strong>Outside-in trust</strong>
+                <span>Independent scoring, governed benchmarks, and market-facing credibility.</span>
+              </li>
+              <li>
+                <strong>Norynthe.Score</strong>
+                <span>A repeatable signal outside the model owner's own claims.</span>
+              </li>
+            </ul>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section-card signal-section" aria-label="Norynthe positioning summary">
+        <div class="signal-card">
+          <div class="mark-row">
+            <span class="mark">N.</span>
+            <span class="score-badge">External Signal</span>
+          </div>
+          <strong>
+            Norynthe is not competing to be the dashboard inside the AI company. Norynthe is competing to become the
+            trust signal outside of it.
+          </strong>
+          <p>
+            Most competitors help AI companies govern or improve themselves. Norynthe exists because the market
+            should not have to take the model company's word for it.
+          </p>
+        </div>
+        <div class="mini-grid" aria-label="Positioning attributes">
+          <div class="mini-card">
+            <span>Lens</span>
+            <b>Outside-in</b>
+          </div>
+          <div class="mini-card">
+            <span>Output</span>
+            <b>Trust signal</b>
+          </div>
+          <div class="mini-card">
+            <span>Audience</span>
+            <b>Market-facing</b>
+          </div>
+          <div class="mini-card">
+            <span>Asset</span>
+            <b>Benchmark authority</b>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-card" aria-labelledby="current-market">
+        <div class="section-head">
+          <p class="section-label">The Current Market</p>
+          <h2 id="current-market">A crowded field of internal AI tools.</h2>
+          <p>
+            The market already contains credible tools for governance, observability, technical evaluation, regulatory
+            readiness, and advisory support. Most begin inside the organization that owns or deploys the AI system.
+          </p>
+        </div>
+        <div class="grid-4">
+          <article class="card">
+            <p class="card-kicker">Governance &amp; Compliance Platforms</p>
+            <h3>Policy, controls, and readiness</h3>
+            <p>
+              Help enterprises manage AI policies, documentation, regulatory readiness, risk workflows, and internal controls.
+            </p>
+            <ul class="example-list" aria-label="Examples">
+              <li>Credo AI</li>
+              <li>Vero AI</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <p class="card-kicker">Observability &amp; Evaluation Tools</p>
+            <h3>Testing and production insight</h3>
+            <p>
+              Help technical teams test, monitor, debug, compare, and improve AI applications in development and production.
+            </p>
+            <ul class="example-list" aria-label="Examples">
+              <li>Galileo</li>
+              <li>Arize</li>
+              <li>Braintrust</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <p class="card-kicker">Consulting &amp; Audit Firms</p>
+            <h3>Human-led assurance services</h3>
+            <p>
+              Provide responsible AI, audit readiness, regulatory advisory, and enterprise risk services.
+            </p>
+            <ul class="example-list" aria-label="Examples">
+              <li>PwC</li>
+              <li>Deloitte</li>
+              <li>Big Four advisory firms</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <p class="card-kicker">Operational Monitoring Tools</p>
+            <h3>Production behavior telemetry</h3>
+            <p>
+              Track drift, latency, hallucination patterns, cost, relevance, reliability, and production behavior.
+            </p>
+            <ul class="example-list" aria-label="Examples">
+              <li>Model observability</li>
+              <li>MLOps platforms</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="section-card" aria-labelledby="inside-out">
+        <div class="section-head wide">
+          <p class="section-label">The Difference</p>
+          <h2 id="inside-out">Inside-Out vs. Outside-In</h2>
+        </div>
+
+        <div class="comparison-columns">
+          <article class="comparison-column">
+            <h3>Inside-Out Competitors</h3>
+            <p>Most competitors begin inside the enterprise. They help organizations ask:</p>
+            <ul class="question-list">
+              <li>Are our AI systems documented?</li>
+              <li>Are we compliant?</li>
+              <li>Are our models drifting?</li>
+              <li>Are our prompts performing?</li>
+              <li>Can our internal teams prove control?</li>
+            </ul>
+          </article>
+
+          <article class="comparison-column norynthe">
+            <h3>Norynthe Outside-In</h3>
+            <p>Norynthe begins from the outside. It asks:</p>
+            <ul class="question-list">
+              <li>Can this model be independently evaluated?</li>
+              <li>Can its behavior be compared against governed benchmarks?</li>
+              <li>Can its trustworthiness be scored in a repeatable way?</li>
+              <li>Can buyers, institutions, regulators, and the public understand the model without relying only on the company that built it?</li>
+            </ul>
+          </article>
+        </div>
+
+        <div class="callout">
+          <strong>This is the difference between internal AI management and external AI trust infrastructure.</strong>
+        </div>
+      </section>
+
+      <section class="section-card" aria-labelledby="matrix">
+        <div class="section-head">
+          <p class="section-label">Market Positioning Matrix</p>
+          <h2 id="matrix">Norynthe occupies a different strategic quadrant.</h2>
+          <p>
+            Governance dashboards, observability systems, and advisory firms can be valuable. Norynthe is aimed at the
+            quadrant where external trust signals and independent model credibility meet.
+          </p>
+        </div>
+
+        <article class="graph-card" aria-labelledby="position-map-title">
+          <div class="graph-head">
+            <div>
+              <h3 id="position-map-title">Strategic position map</h3>
+              <p>Approximate category placement across internal management, external signal, operational monitoring, and model credibility.</p>
+            </div>
+            <span class="graph-badge">External trust quadrant</span>
+          </div>
+          <div class="position-map-shell">
+            <svg class="position-map" viewBox="0 0 900 500" role="img" aria-labelledby="position-map-svg-title position-map-svg-desc">
+              <title id="position-map-svg-title">Market positioning graph for Norynthe</title>
+              <desc id="position-map-svg-desc">Norynthe is plotted in the upper-right quadrant for external trust signal and independent model credibility. Internal governance, observability, and advisory categories sit closer to internal management.</desc>
+              <rect x="56" y="38" width="788" height="392" rx="18" fill="rgba(255,255,255,0.72)" stroke="rgba(18,23,30,0.08)"></rect>
+              <line class="map-grid" x1="450" y1="38" x2="450" y2="430"></line>
+              <line class="map-grid" x1="56" y1="234" x2="844" y2="234"></line>
+              <line class="map-axis" x1="56" y1="430" x2="844" y2="430"></line>
+              <line class="map-axis" x1="56" y1="430" x2="56" y2="38"></line>
+
+              <text class="map-axis-label" x="78" y="70">Independent Model Credibility</text>
+              <text class="map-axis-label" x="78" y="408">Operational Monitoring</text>
+              <text class="map-axis-label" x="78" y="456">Internal Governance</text>
+              <text class="map-axis-label" x="622" y="456">External Trust Signal</text>
+
+              <text class="map-quadrant-label" x="96" y="104">Governance / risk advisory</text>
+              <text class="map-quadrant-label" x="586" y="104">External credibility signal</text>
+              <text class="map-quadrant-label" x="96" y="386">Internal management systems</text>
+              <text class="map-quadrant-label" x="586" y="386">External operational signals</text>
+
+              <circle class="map-point advisory" cx="284" cy="170" r="13"></circle>
+              <foreignObject x="304" y="144" width="150" height="66">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="map-tag">
+                  <strong>PwC / Deloitte</strong>
+                  <span>Audit and advisory</span>
+                </div>
+              </foreignObject>
+
+              <circle class="map-point internal" cx="210" cy="318" r="13"></circle>
+              <foreignObject x="230" y="292" width="170" height="68">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="map-tag">
+                  <strong>Credo AI / Vero AI</strong>
+                  <span>Governance and compliance</span>
+                </div>
+              </foreignObject>
+
+              <circle class="map-point internal" cx="314" cy="368" r="13"></circle>
+              <foreignObject x="334" y="338" width="190" height="76">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="map-tag">
+                  <strong>Galileo / Arize / Braintrust</strong>
+                  <span>Evals and observability</span>
+                </div>
+              </foreignObject>
+
+              <circle class="map-point norynthe" cx="690" cy="126" r="16"></circle>
+              <foreignObject x="584" y="144" width="214" height="70">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="map-tag norynthe-tag">
+                  <strong>Norynthe</strong>
+                  <span>Independent external trust signal</span>
+                </div>
+              </foreignObject>
+            </svg>
+          </div>
+          <p class="graph-caption">
+            Placement is directional: the graph shows strategic center of gravity, not audited feature completeness.
+          </p>
+        </article>
+
+        <div class="matrix-shell" aria-label="Market positioning matrix">
+          <div class="matrix-y-label">Independent Model Credibility</div>
+          <div class="matrix-grid">
+            <article class="matrix-card">
+              <p class="matrix-axis">Internal Governance / Credibility Support</p>
+              <h3>Consulting-heavy audit and advisory</h3>
+              <span>Risk programs, review support, and regulatory readiness near governance workflows.</span>
+              <ul>
+                <li>PwC</li>
+                <li>Deloitte</li>
+              </ul>
+            </article>
+
+            <article class="matrix-card norynthe">
+              <p class="matrix-axis">External Trust Signal / Independent Credibility</p>
+              <h3>Norynthe</h3>
+              <span>Independent evaluation outside the model owner's control, converted into a market-facing trust signal.</span>
+              <ul>
+                <li>Norynthe.Score</li>
+                <li>External trust layer</li>
+              </ul>
+            </article>
+
+            <article class="matrix-card">
+              <p class="matrix-axis">Internal Governance / Operational Monitoring</p>
+              <h3>Governance and compliance platforms</h3>
+              <span>Policy, controls, documentation, regulatory workflows, and internal governance operations.</span>
+              <ul>
+                <li>Credo AI</li>
+                <li>Vero AI</li>
+              </ul>
+            </article>
+
+            <article class="matrix-card">
+              <p class="matrix-axis">Internal Evaluation / Operational Monitoring</p>
+              <h3>Evaluation and observability tools</h3>
+              <span>Developer evals, production monitoring, prompt testing, debugging, and application quality loops.</span>
+              <ul>
+                <li>Galileo</li>
+                <li>Arize</li>
+                <li>Braintrust</li>
+              </ul>
+            </article>
+          </div>
+          <div class="matrix-x-labels">
+            <span>Internal Governance</span>
+            <span>External Trust Signal</span>
+          </div>
+          <div class="matrix-y-label">Operational Monitoring</div>
+        </div>
+      </section>
+
+      <section class="section-card" aria-labelledby="heatmap">
+        <div class="section-head">
+          <p class="section-label">Competitive Capability Heatmap</p>
+          <h2 id="heatmap">Capability overlap exists. Strategic center of gravity differs.</h2>
+          <p>
+            The point is not that adjacent tools are irrelevant. The point is that Norynthe is designed around independent
+            external scoring and public trust meaning, not only internal management.
+          </p>
+        </div>
+
+        <article class="graph-card" aria-labelledby="capability-graph-title">
+          <div class="graph-head">
+            <div>
+              <h3 id="capability-graph-title">Internal management vs. external trust signal</h3>
+              <p>A simplified capability profile derived from the qualitative heatmap below.</p>
+            </div>
+            <span class="graph-badge">Strategic estimate</span>
+          </div>
+          <div class="capability-graph" aria-label="Capability bar graph">
+            <div class="capability-row">
+              <strong>Credo AI / Vero AI</strong>
+              <div class="bar-pair">
+                <div class="bar-line">
+                  <span>Internal</span>
+                  <div class="bar-track"><i style="--value: 92%;" aria-hidden="true"></i></div>
+                  <span>92</span>
+                </div>
+                <div class="bar-line">
+                  <span>External</span>
+                  <div class="bar-track external"><i style="--value: 28%;" aria-hidden="true"></i></div>
+                  <span>28</span>
+                </div>
+              </div>
+            </div>
+            <div class="capability-row">
+              <strong>Galileo / Arize / Braintrust</strong>
+              <div class="bar-pair">
+                <div class="bar-line">
+                  <span>Internal</span>
+                  <div class="bar-track"><i style="--value: 82%;" aria-hidden="true"></i></div>
+                  <span>82</span>
+                </div>
+                <div class="bar-line">
+                  <span>External</span>
+                  <div class="bar-track external"><i style="--value: 30%;" aria-hidden="true"></i></div>
+                  <span>30</span>
+                </div>
+              </div>
+            </div>
+            <div class="capability-row">
+              <strong>Big Four / Advisory Firms</strong>
+              <div class="bar-pair">
+                <div class="bar-line">
+                  <span>Internal</span>
+                  <div class="bar-track"><i style="--value: 86%;" aria-hidden="true"></i></div>
+                  <span>86</span>
+                </div>
+                <div class="bar-line">
+                  <span>External</span>
+                  <div class="bar-track external"><i style="--value: 42%;" aria-hidden="true"></i></div>
+                  <span>42</span>
+                </div>
+              </div>
+            </div>
+            <div class="capability-row">
+              <strong>Norynthe</strong>
+              <div class="bar-pair">
+                <div class="bar-line">
+                  <span>Internal</span>
+                  <div class="bar-track"><i style="--value: 62%;" aria-hidden="true"></i></div>
+                  <span>62</span>
+                </div>
+                <div class="bar-line">
+                  <span>External</span>
+                  <div class="bar-track external"><i style="--value: 96%;" aria-hidden="true"></i></div>
+                  <span>96</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <div class="table-shell">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Category</th>
+                <th scope="col">Internal AI Governance</th>
+                <th scope="col">Observability / Monitoring</th>
+                <th scope="col">Compliance Readiness</th>
+                <th scope="col">Developer Eval Tooling</th>
+                <th scope="col">Independent External Scoring</th>
+                <th scope="col">Public Trust Signal</th>
+                <th scope="col">Behavioral Credibility Assessment</th>
+                <th scope="col">Benchmark Governance</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Credo AI / Vero AI</th>
+                <td><span class="heat high">High</span></td>
+                <td><span class="heat medium">Medium</span></td>
+                <td><span class="heat high">High</span></td>
+                <td><span class="heat medium">Medium</span></td>
+                <td><span class="heat low">Low</span></td>
+                <td><span class="heat low">Low</span></td>
+                <td><span class="heat medium">Medium</span></td>
+                <td><span class="heat medium">Medium</span></td>
+              </tr>
+              <tr>
+                <th scope="row">Galileo / Arize / Braintrust</th>
+                <td><span class="heat medium">Medium</span></td>
+                <td><span class="heat high">High</span></td>
+                <td><span class="heat medium">Medium</span></td>
+                <td><span class="heat high">High</span></td>
+                <td><span class="heat low">Low</span></td>
+                <td><span class="heat low">Low</span></td>
+                <td><span class="heat medium">Medium</span></td>
+                <td><span class="heat high">High</span></td>
+              </tr>
+              <tr>
+                <th scope="row">Big Four / Advisory Firms</th>
+                <td><span class="heat high">High</span></td>
+                <td><span class="heat medium">Medium</span></td>
+                <td><span class="heat high">High</span></td>
+                <td><span class="heat low">Low</span></td>
+                <td><span class="heat medium">Medium</span></td>
+                <td><span class="heat low">Low</span></td>
+                <td><span class="heat medium">Medium</span></td>
+                <td><span class="heat medium">Medium</span></td>
+              </tr>
+              <tr class="norynthe-row">
+                <th scope="row">Norynthe</th>
+                <td><span class="heat medium">Medium</span></td>
+                <td><span class="heat medium">Medium</span></td>
+                <td><span class="heat medium">Medium</span></td>
+                <td><span class="heat medium">Medium</span></td>
+                <td><span class="heat high">High</span></td>
+                <td><span class="heat high">High</span></td>
+                <td><span class="heat high">High</span></td>
+                <td><span class="heat high">High</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="note">
+          These comparisons are strategic positioning estimates based on public market positioning, not audited product benchmarks.
+        </p>
+      </section>
+
+      <section class="section-card" aria-labelledby="trust-stack">
+        <div class="section-head">
+          <p class="section-label">The AI Trust Stack</p>
+          <h2 id="trust-stack">Norynthe sits above internal tooling as a market-facing trust signal.</h2>
+          <p>
+            It does not replace governance, observability, or consulting. It creates the independent reference layer those
+            systems do not provide.
+          </p>
+        </div>
+
+        <div class="stack-visual" aria-label="AI trust stack">
+          <article class="stack-layer top">
+            <div class="stack-label">Independent External Trust Signal</div>
+            <p class="stack-copy">Norynthe.Score</p>
+          </article>
+          <article class="stack-layer">
+            <div class="stack-label">Consulting &amp; Audit</div>
+            <p class="stack-copy">Risk advisory, responsible AI programs, regulatory readiness</p>
+          </article>
+          <article class="stack-layer">
+            <div class="stack-label">Internal Tooling</div>
+            <p class="stack-copy">Governance, observability, evals, monitoring, compliance</p>
+          </article>
+          <article class="stack-layer">
+            <div class="stack-label">Model Companies</div>
+            <p class="stack-copy">OpenAI, Anthropic, Google, Meta, Mistral, xAI</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section-card" aria-labelledby="behavioral-credibility">
+        <div class="section-head">
+          <p class="section-label">What Norynthe Evaluates</p>
+          <h2 id="behavioral-credibility">Beyond Performance: Behavioral Credibility</h2>
+          <p>
+            Most AI evaluation tools focus on whether a model functions correctly. Norynthe evaluates whether a model
+            deserves trust.
+          </p>
+        </div>
+        <div class="callout">
+          <strong>Norynthe does not only ask whether a model answered. It asks whether the answer was credible.</strong>
+        </div>
+        <div class="dimension-grid" aria-label="Behavioral credibility dimensions">
+          <span class="dimension-chip">Uncertainty framing</span>
+          <span class="dimension-chip">Omission behavior</span>
+          <span class="dimension-chip">Overconfidence</span>
+          <span class="dimension-chip">Consistency across prompts</span>
+          <span class="dimension-chip">Stability across versions</span>
+          <span class="dimension-chip">Adversarial resilience</span>
+          <span class="dimension-chip">Institutional bias and deference</span>
+          <span class="dimension-chip">User agency preservation</span>
+          <span class="dimension-chip">Evidence handling</span>
+          <span class="dimension-chip">Confidence and reliability</span>
+        </div>
+      </section>
+
+      <section class="section-card" aria-labelledby="flywheel">
+        <div class="section-head">
+          <p class="section-label">Defensibility Flywheel</p>
+          <h2 id="flywheel">The moat is accumulated trust.</h2>
+          <p>
+            The moat is not just software. The moat is accumulated trust, benchmark authority, scoring history,
+            institutional recognition, and the public meaning of the Norynthe.Score.
+          </p>
+        </div>
+        <figure class="flywheel-map">
+          <svg class="flywheel-svg" viewBox="0 0 760 520" role="img" aria-labelledby="flywheel-svg-title flywheel-svg-desc">
+            <title id="flywheel-svg-title">Norynthe defensibility flywheel graph</title>
+            <desc id="flywheel-svg-desc">The flywheel moves from governed benchmark bank to assessment records, model scores, comparisons, market recognition, institutional adoption, benchmark authority, and stronger Norynthe.Score.</desc>
+            <circle class="flywheel-ring" cx="380" cy="260" r="150"></circle>
+            <circle class="flywheel-arc" cx="380" cy="260" r="150" transform="rotate(-90 380 260)"></circle>
+            <circle class="flywheel-center" cx="380" cy="260" r="58"></circle>
+            <text class="flywheel-center-text" x="380" y="254">Norynthe</text>
+            <text class="flywheel-center-text" x="380" y="276">Score</text>
+
+            <g>
+              <circle class="flywheel-node norynthe-node" cx="380" cy="82" r="44"></circle>
+              <text class="flywheel-number" x="380" y="69">1</text>
+              <text class="flywheel-text" x="380" y="94">Benchmark</text>
+              <text class="flywheel-text" x="380" y="111">bank</text>
+            </g>
+            <g>
+              <circle class="flywheel-node" cx="506" cy="134" r="44"></circle>
+              <text class="flywheel-number" x="506" y="121">2</text>
+              <text class="flywheel-text" x="506" y="146">Assessment</text>
+              <text class="flywheel-text" x="506" y="163">records</text>
+            </g>
+            <g>
+              <circle class="flywheel-node" cx="558" cy="260" r="44"></circle>
+              <text class="flywheel-number" x="558" y="247">3</text>
+              <text class="flywheel-text" x="558" y="272">Versioned</text>
+              <text class="flywheel-text" x="558" y="289">scores</text>
+            </g>
+            <g>
+              <circle class="flywheel-node" cx="506" cy="386" r="44"></circle>
+              <text class="flywheel-number" x="506" y="373">4</text>
+              <text class="flywheel-text" x="506" y="398">Cross-model</text>
+              <text class="flywheel-text" x="506" y="415">comparisons</text>
+            </g>
+            <g>
+              <circle class="flywheel-node" cx="380" cy="438" r="44"></circle>
+              <text class="flywheel-number" x="380" y="425">5</text>
+              <text class="flywheel-text" x="380" y="450">Market</text>
+              <text class="flywheel-text" x="380" y="467">recognition</text>
+            </g>
+            <g>
+              <circle class="flywheel-node" cx="254" cy="386" r="44"></circle>
+              <text class="flywheel-number" x="254" y="373">6</text>
+              <text class="flywheel-text" x="254" y="398">Institutional</text>
+              <text class="flywheel-text" x="254" y="415">adoption</text>
+            </g>
+            <g>
+              <circle class="flywheel-node" cx="202" cy="260" r="44"></circle>
+              <text class="flywheel-number" x="202" y="247">7</text>
+              <text class="flywheel-text" x="202" y="272">Benchmark</text>
+              <text class="flywheel-text" x="202" y="289">authority</text>
+            </g>
+            <g>
+              <circle class="flywheel-node norynthe-node" cx="254" cy="134" r="44"></circle>
+              <text class="flywheel-number" x="254" y="121">8</text>
+              <text class="flywheel-text" x="254" y="146">Stronger</text>
+              <text class="flywheel-text" x="254" y="163">Score</text>
+            </g>
+          </svg>
+        </figure>
+
+        <div class="flywheel" aria-label="Norynthe defensibility flywheel details">
+          <div class="flywheel-step">
+            <strong>Governed benchmark bank</strong>
+            <span>Owned tests, dimensions, revisions, and benchmark authority.</span>
+          </div>
+          <div class="flywheel-step">
+            <strong>Structured assessment records</strong>
+            <span>Traceable scoring evidence that can be reviewed and compared.</span>
+          </div>
+          <div class="flywheel-step">
+            <strong>Versioned model scores</strong>
+            <span>Model standing over time, not one-time snapshots.</span>
+          </div>
+          <div class="flywheel-step">
+            <strong>Cross-model comparisons</strong>
+            <span>Shared standards for comparing systems with different owners.</span>
+          </div>
+          <div class="flywheel-step">
+            <strong>Market recognition</strong>
+            <span>The score begins to mean something outside the product itself.</span>
+          </div>
+          <div class="flywheel-step">
+            <strong>Institutional adoption</strong>
+            <span>Buyers, advisors, and stakeholders learn to rely on the signal.</span>
+          </div>
+          <div class="flywheel-step">
+            <strong>Greater benchmark authority</strong>
+            <span>More use strengthens the standard and reveals new benchmark needs.</span>
+          </div>
+          <div class="flywheel-step">
+            <strong>Stronger Norynthe.Score</strong>
+            <span>The trust signal compounds through history, context, and usage.</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-card" aria-labelledby="why-it-matters">
+        <div class="section-head">
+          <p class="section-label">Why It Matters</p>
+          <h2 id="why-it-matters">If AI becomes infrastructure, trust becomes infrastructure too.</h2>
+        </div>
+        <div class="why-copy">
+          <p>
+            The company that owns the trusted external evaluation layer does not merely sell software. It defines the
+            standard by which AI systems are compared, challenged, selected, and trusted.
+          </p>
+          <p>
+            The market already has internal AI governance tools. It already has observability platforms. It already has
+            consulting firms. What it does not yet have is a broadly recognized independent trust-scoring layer for AI systems.
+          </p>
+          <p>
+            That is the category Norynthe is built to define.
+          </p>
+        </div>
+      </section>
+
+      <section class="closing-card" aria-labelledby="closing-title">
+        <div class="closing-grid">
+          <div>
+            <p class="eyebrow">Category Thesis</p>
+            <h2 id="closing-title">AI needs an independent trust layer.</h2>
+            <p>
+              Norynthe is building the standard for how AI systems are evaluated, compared, and trusted outside the model
+              owner's control.
+            </p>
+          </div>
+          <div class="closing-panel">
+            <div class="contact-row" aria-label="Closing actions">
+              <a class="button primary" href="mailto:hello@norynthe.com">Contact Norynthe</a>
+              <a class="button" href="norynthe-investors.html">Investor Overview</a>
+              <a class="button" href="norynthe-founder-memo.html">Founder Memo</a>
+            </div>
+            <div class="pill-row" aria-label="Norynthe closing signals">
+              <span class="pill">External scoring</span>
+              <span class="pill">Public trust signal</span>
+              <span class="pill">Benchmark governance</span>
+              <span class="pill">Behavioral credibility</span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div>Norynthe.Score / Independent External Trust Signal / Governed Benchmark Bank</div>
+      <div class="contact"><a href="mailto:hello@norynthe.com">hello@norynthe.com</a> / <button type="button" id="copy-email">Copy email</button> / © 2026 Norynthe.</div>
+    </footer>
+  </div>
+
+  <script>
+    (function () {
+      const button = document.getElementById('copy-email');
+      if (!button || !navigator.clipboard) return;
+
+      const email = 'hello@norynthe.com';
+      const label = button.textContent;
+
+      button.addEventListener('click', async function () {
+        try {
+          await navigator.clipboard.writeText(email);
+          button.textContent = 'Copied';
+          window.setTimeout(function () {
+            button.textContent = label;
+          }, 1600);
+        } catch (error) {
+          button.textContent = 'Copy failed';
+          window.setTimeout(function () {
+            button.textContent = label;
+          }, 1600);
+        }
+      });
+    }());
+  </script>
+</body>
+</html>
