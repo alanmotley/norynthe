@@ -208,6 +208,13 @@
       text-transform: uppercase;
     }
 
+    .hero-logo {
+      width: min(360px, 62vw);
+      height: auto;
+      margin: 26px 0 22px;
+      filter: drop-shadow(0 14px 24px rgba(18, 23, 30, 0.08));
+    }
+
     h1,
     h2,
     h3,
@@ -224,7 +231,7 @@
 
     h1 {
       max-width: 12ch;
-      margin: 12px 0 18px;
+      margin: 0 0 18px;
       font-size: clamp(2.65rem, 5.2vw, 4.45rem);
       line-height: 0.96;
     }
@@ -1361,6 +1368,16 @@
         <div class="hero-grid">
           <div>
             <p class="eyebrow">Independent AI Trust Infrastructure</p>
+            <img
+              class="hero-logo"
+              src="assets/Norynthe_master.png"
+              alt="Norynthe"
+              width="1039"
+              height="263"
+              loading="eager"
+              decoding="async"
+              fetchpriority="high"
+            >
             <h1 id="page-title">Norynthe and the Missing Trust Layer in AI</h1>
             <p class="lede">
               Most AI governance companies help enterprises manage AI internally. Norynthe is building the independent
