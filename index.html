@@ -2363,6 +2363,136 @@
         font-size: 1.78rem;
       }
     }
+
+    /* Atmospheric field: slow cloud movement behind the institutional grid */
+    .field {
+      display: block;
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+      pointer-events: none;
+      opacity: 0.82;
+    }
+
+    .wash,
+    .cloud-band,
+    .cloud-band-secondary,
+    .cloud-floor,
+    .horizon-haze,
+    .field-grain,
+    .field-mask {
+      position: absolute;
+      pointer-events: none;
+    }
+
+    .wash {
+      inset: -16% -14%;
+      background:
+        linear-gradient(112deg, rgba(255, 255, 255, 0.62) 0%, transparent 30%, rgba(37, 63, 99, 0.075) 52%, transparent 75%),
+        linear-gradient(28deg, transparent 0%, rgba(49, 85, 77, 0.055) 40%, transparent 68%);
+      filter: blur(30px);
+      opacity: 0.82;
+      animation: cloudShiftSlow 48s ease-in-out infinite alternate;
+      will-change: transform;
+    }
+
+    .cloud-band {
+      left: -18%;
+      right: -18%;
+      top: 9%;
+      height: 42%;
+      background:
+        linear-gradient(100deg, transparent 0%, rgba(255, 255, 255, 0.55) 20%, rgba(214, 224, 233, 0.28) 48%, rgba(255, 255, 255, 0.38) 72%, transparent 100%),
+        linear-gradient(180deg, transparent 0%, rgba(37, 63, 99, 0.052) 45%, transparent 100%);
+      filter: blur(42px);
+      opacity: 0.74;
+      animation: cloudShift 56s ease-in-out infinite alternate;
+      will-change: transform;
+    }
+
+    .cloud-band-secondary {
+      left: -22%;
+      right: -22%;
+      top: 41%;
+      height: 38%;
+      background:
+        linear-gradient(82deg, transparent 0%, rgba(255, 255, 255, 0.42) 22%, rgba(117, 51, 52, 0.045) 48%, rgba(49, 85, 77, 0.055) 70%, transparent 100%);
+      filter: blur(46px);
+      opacity: 0.58;
+      animation: cloudShiftReverse 64s ease-in-out infinite alternate;
+      will-change: transform;
+    }
+
+    .cloud-floor {
+      left: -10%;
+      right: -10%;
+      bottom: -6%;
+      height: 34%;
+      background:
+        linear-gradient(180deg, transparent 0%, rgba(255, 255, 255, 0.5) 42%, rgba(228, 234, 240, 0.66) 100%);
+      filter: blur(24px);
+      opacity: 0.72;
+      animation: horizonShift 58s ease-in-out infinite alternate;
+      will-change: transform;
+    }
+
+    .horizon-haze {
+      left: 50%;
+      bottom: 16%;
+      width: 120vw;
+      height: 1px;
+      transform: translateX(-50%);
+      background: linear-gradient(90deg, transparent, rgba(37, 63, 99, 0.22), rgba(117, 51, 52, 0.1), transparent);
+      opacity: 0.34;
+      animation: horizonShift 44s ease-in-out infinite alternate;
+      will-change: transform;
+    }
+
+    .field-grain {
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(15, 17, 21, 0.018) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(15, 17, 21, 0.014) 1px, transparent 1px);
+      background-size: 116px 116px;
+      opacity: 0.44;
+      animation: grainShift 70s linear infinite alternate;
+      will-change: transform;
+    }
+
+    .field-mask {
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(247, 249, 251, 0.1) 0%, transparent 35%, rgba(242, 245, 247, 0.36) 100%);
+    }
+
+    .scan,
+    .scan-vertical {
+      display: none;
+    }
+
+    @media (max-width: 760px) {
+      .field {
+        opacity: 0.62;
+      }
+
+      .cloud-band,
+      .cloud-band-secondary {
+        filter: blur(34px);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .wash,
+      .cloud-band,
+      .cloud-band-secondary,
+      .cloud-floor,
+      .horizon-haze,
+      .field-grain {
+        animation: none !important;
+        transform: none !important;
+      }
+    }
   </style>
 </head>
 <body>
