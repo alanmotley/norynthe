@@ -1347,6 +1347,1022 @@
         padding-top: 18px;
       }
     }
+
+    /* Premium institutional pass */
+    :root {
+      --max-width: 1180px;
+      --institutional-blue: #253F63;
+      --institutional-green: #31554D;
+      --institutional-red: #753334;
+      --paper: rgba(255, 255, 255, 0.72);
+      --paper-strong: rgba(255, 255, 255, 0.9);
+    }
+
+    body {
+      background:
+        linear-gradient(180deg, #F7F9FB 0%, #E9EEF3 46%, #F2F5F7 100%);
+    }
+
+    body::before {
+      background-size: 56px 56px;
+      opacity: 0.32;
+      mask-image: linear-gradient(180deg, black 0%, black 74%, transparent 100%);
+    }
+
+    .page {
+      width: min(calc(100% - 56px), var(--max-width));
+      padding: 30px 0 36px;
+      gap: 34px;
+    }
+
+    .topline {
+      padding-bottom: 18px;
+      border-bottom: 1px solid rgba(15, 17, 21, 0.1);
+    }
+
+    .topline-logo {
+      width: 140px;
+      max-width: 32vw;
+    }
+
+    .topline-nav {
+      gap: 22px;
+    }
+
+    .topline-nav a {
+      min-height: auto;
+      padding: 0;
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+      box-shadow: none;
+      color: #53606C;
+      font-size: 0.62rem;
+      letter-spacing: 0.16em;
+    }
+
+    .topline-nav a:hover {
+      transform: none;
+      border-color: transparent;
+      background: transparent;
+      box-shadow: none;
+      color: var(--ink);
+    }
+
+    .topline-nav a:last-child {
+      min-height: 34px;
+      padding: 0 12px;
+      border: 1px solid rgba(15, 17, 21, 0.13);
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.48);
+      color: #27313B;
+    }
+
+    .hero {
+      padding: 0;
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+      box-shadow: none;
+      overflow: visible;
+    }
+
+    .lockup {
+      display: grid;
+      grid-template-columns: minmax(0, 1.02fr) minmax(360px, 0.72fr);
+      column-gap: 58px;
+      row-gap: 28px;
+      align-items: start;
+    }
+
+    .subline {
+      grid-column: 1;
+      margin: 4px 0 -6px;
+      color: var(--institutional-blue);
+      font-size: 0.66rem;
+      letter-spacing: 0.22em;
+    }
+
+    .hero-copy {
+      grid-column: 1;
+      gap: 22px;
+    }
+
+    .hero-copy h1 {
+      max-width: 12.2ch;
+      font-size: 5.65rem;
+      line-height: 0.92;
+      text-wrap: balance;
+    }
+
+    .hero-copy p {
+      max-width: 58ch;
+      color: #2D3843;
+      font-size: 1.08rem;
+      line-height: 1.72;
+    }
+
+    .hero-actions {
+      gap: 0;
+      margin-top: 10px;
+      border-top: 1px solid rgba(15, 17, 21, 0.1);
+      border-bottom: 1px solid rgba(15, 17, 21, 0.1);
+      width: min(100%, 520px);
+    }
+
+    .hero-actions a {
+      min-height: 50px;
+      padding: 0 18px;
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+      box-shadow: none;
+      color: #2F3A45;
+      justify-content: flex-start;
+      flex: 1 1 0;
+    }
+
+    .hero-actions a + a {
+      border-left: 1px solid rgba(15, 17, 21, 0.1);
+    }
+
+    .hero-actions a:hover {
+      transform: none;
+      background: rgba(255, 255, 255, 0.48);
+      box-shadow: none;
+    }
+
+    .hero-actions .primary {
+      background: transparent;
+      color: var(--institutional-red);
+      box-shadow: none;
+    }
+
+    .hero-actions .primary:hover {
+      background: rgba(122, 48, 48, 0.045);
+      border-color: transparent;
+      color: var(--institutional-red);
+    }
+
+    .trust-artifact {
+      grid-column: 2;
+      grid-row: 1 / span 2;
+      align-self: stretch;
+      min-height: 520px;
+      padding: 24px;
+      border: 1px solid rgba(15, 17, 21, 0.12);
+      border-radius: 8px;
+      background:
+        linear-gradient(180deg, var(--paper-strong), rgba(255, 255, 255, 0.68)),
+        linear-gradient(135deg, rgba(37, 63, 99, 0.05), rgba(49, 85, 77, 0.035));
+      box-shadow: 0 28px 70px rgba(15, 17, 21, 0.08);
+      display: grid;
+      gap: 22px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .trust-artifact::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(37, 63, 99, 0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(37, 63, 99, 0.045) 1px, transparent 1px);
+      background-size: 34px 34px;
+      mask-image: linear-gradient(180deg, black 0%, transparent 82%);
+      pointer-events: none;
+    }
+
+    .trust-artifact > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .artifact-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: start;
+      gap: 18px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid rgba(15, 17, 21, 0.1);
+    }
+
+    .artifact-kicker,
+    .artifact-id,
+    .record-row span,
+    .trace-label,
+    .score-note {
+      color: #596571;
+      font-size: 0.58rem;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      line-height: 1.4;
+      text-transform: uppercase;
+    }
+
+    .artifact-top strong {
+      display: block;
+      margin-top: 8px;
+      color: var(--ink);
+      font-size: 1.1rem;
+      line-height: 1.1;
+    }
+
+    .artifact-id {
+      color: var(--institutional-red);
+      text-align: right;
+    }
+
+    .score-block {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 18px;
+      align-items: end;
+      padding-bottom: 4px;
+    }
+
+    .score-value {
+      color: var(--ink);
+      font-size: 5rem;
+      font-weight: 800;
+      letter-spacing: 0;
+      line-height: 0.86;
+    }
+
+    .score-context {
+      display: grid;
+      gap: 10px;
+      padding-bottom: 5px;
+    }
+
+    .score-context strong {
+      color: #26313B;
+      font-size: 1rem;
+      line-height: 1.25;
+    }
+
+    .score-axis {
+      display: grid;
+      grid-template-columns: 0.54fr 0.28fr 0.18fr;
+      height: 8px;
+      border: 1px solid rgba(15, 17, 21, 0.08);
+      background: rgba(255, 255, 255, 0.66);
+    }
+
+    .score-axis span:nth-child(1) {
+      background: rgba(49, 85, 77, 0.72);
+    }
+
+    .score-axis span:nth-child(2) {
+      background: rgba(37, 63, 99, 0.46);
+    }
+
+    .score-axis span:nth-child(3) {
+      background: rgba(117, 51, 52, 0.42);
+    }
+
+    .trace-panel {
+      border-top: 1px solid rgba(15, 17, 21, 0.1);
+      border-bottom: 1px solid rgba(15, 17, 21, 0.1);
+      padding: 18px 0 16px;
+    }
+
+    .signal-trace {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .record-stack {
+      display: grid;
+      gap: 10px;
+    }
+
+    .record-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 16px;
+      align-items: center;
+      padding: 11px 0;
+      border-bottom: 1px solid rgba(15, 17, 21, 0.08);
+    }
+
+    .record-row:last-child {
+      border-bottom: 0;
+    }
+
+    .record-row strong {
+      color: #172029;
+      font-size: 0.92rem;
+      line-height: 1.25;
+    }
+
+    .record-row span {
+      color: var(--institutional-blue);
+      text-align: right;
+    }
+
+    .company-surface {
+      grid-column: 1 / -1;
+      margin-top: 40px;
+      padding-top: 38px;
+      border-top: 1px solid rgba(15, 17, 21, 0.1);
+    }
+
+    .company-surface-head {
+      max-width: 760px;
+      margin-bottom: 24px;
+    }
+
+    .company-surface-head h2 {
+      font-size: 2.45rem;
+      line-height: 1.06;
+    }
+
+    .company-surface-head p,
+    .company-surface-secondary {
+      max-width: 66ch !important;
+      color: #33404C !important;
+      font-size: 0.95rem !important;
+    }
+
+    .eyebrow {
+      color: var(--institutional-red);
+    }
+
+    .company-surface-grid {
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .company-card {
+      grid-column: span 4;
+      min-height: 204px;
+      padding: 20px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.58);
+      border: 1px solid rgba(15, 17, 21, 0.1);
+      border-top: 2px solid rgba(37, 63, 99, 0.28);
+      box-shadow: none;
+    }
+
+    .company-card:nth-child(n + 4) {
+      grid-column: span 6;
+    }
+
+    .company-card:hover {
+      transform: translateY(-2px);
+      background: rgba(255, 255, 255, 0.86);
+      border-color: rgba(37, 63, 99, 0.2);
+      box-shadow: 0 18px 42px rgba(15, 17, 21, 0.06);
+    }
+
+    .card-eyebrow,
+    .card-eyebrow.capital {
+      padding: 0;
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+      color: var(--institutional-blue);
+      font-size: 0.54rem;
+      letter-spacing: 0.18em;
+    }
+
+    .card-eyebrow.capital {
+      color: var(--institutional-red);
+    }
+
+    .company-card h3 {
+      font-size: 1.18rem;
+      line-height: 1.12;
+    }
+
+    .company-card p {
+      font-size: 0.86rem;
+      line-height: 1.62;
+    }
+
+    .company-card-meta {
+      color: var(--institutional-blue);
+      font-size: 0.56rem;
+      letter-spacing: 0.16em;
+    }
+
+    .entity-strip {
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .entity-strip span {
+      padding: 0 0 8px;
+      border: 0;
+      border-bottom: 1px solid rgba(37, 63, 99, 0.24);
+      border-radius: 0;
+      background: transparent;
+      color: #43505D;
+      font-size: 0.52rem;
+    }
+
+    .company-surface-links {
+      margin-top: 20px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(15, 17, 21, 0.08);
+    }
+
+    .company-surface-links a {
+      color: #532B2C;
+    }
+
+    .footer {
+      padding-top: 24px;
+    }
+
+    @media (max-width: 1040px) {
+      .lockup {
+        grid-template-columns: 1fr;
+        row-gap: 24px;
+      }
+
+      .trust-artifact {
+        grid-column: 1;
+        grid-row: auto;
+        min-height: 0;
+      }
+
+      .hero-copy h1 {
+        max-width: 13ch;
+        font-size: 4.45rem;
+      }
+
+      .company-card,
+      .company-card:nth-child(n + 4) {
+        grid-column: span 6;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .page {
+        width: min(calc(100% - 28px), var(--max-width));
+        gap: 24px;
+      }
+
+      .topline {
+        gap: 18px;
+      }
+
+      .topline-nav {
+        gap: 12px 16px;
+      }
+
+      .topline-nav a:last-child {
+        min-height: auto;
+        padding: 0;
+        border: 0;
+        background: transparent;
+      }
+
+      .hero-copy h1 {
+        max-width: 11.6ch;
+        font-size: 3.35rem;
+        line-height: 0.96;
+      }
+
+      .hero-actions {
+        display: grid;
+        width: 100%;
+      }
+
+      .hero-actions a {
+        flex: auto;
+      }
+
+      .hero-actions a + a {
+        border-left: 0;
+        border-top: 1px solid rgba(15, 17, 21, 0.1);
+      }
+
+      .trust-artifact {
+        padding: 18px;
+      }
+
+      .score-block {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
+      .score-value {
+        font-size: 4.3rem;
+      }
+
+      .company-surface {
+        margin-top: 26px;
+        padding-top: 26px;
+      }
+
+      .company-surface-head h2 {
+        font-size: 2rem;
+      }
+
+      .company-surface-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .company-card,
+      .company-card:nth-child(n + 4) {
+        grid-column: auto;
+      }
+    }
+
+    /* Design pass: evidence system detailing */
+    .hero-proof {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      width: min(100%, 620px);
+      margin-top: 4px;
+      border-top: 1px solid rgba(15, 17, 21, 0.1);
+      border-bottom: 1px solid rgba(15, 17, 21, 0.1);
+    }
+
+    .hero-proof span {
+      display: grid;
+      gap: 6px;
+      min-height: 82px;
+      padding: 16px 16px 14px 0;
+      color: #3D4954;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      line-height: 1.35;
+      text-transform: uppercase;
+    }
+
+    .hero-proof span + span {
+      padding-left: 16px;
+      border-left: 1px solid rgba(15, 17, 21, 0.1);
+    }
+
+    .hero-proof strong {
+      color: var(--institutional-red);
+      font-size: 0.58rem;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      line-height: 1;
+    }
+
+    .trust-artifact {
+      border-top: 3px solid rgba(37, 63, 99, 0.5);
+    }
+
+    .trust-artifact::after {
+      content: "";
+      position: absolute;
+      inset: 14px;
+      border: 1px solid rgba(15, 17, 21, 0.055);
+      border-top: 0;
+      pointer-events: none;
+    }
+
+    .artifact-top::after {
+      content: "";
+      width: 38px;
+      height: 38px;
+      border-top: 1px solid rgba(117, 51, 52, 0.34);
+      border-right: 1px solid rgba(117, 51, 52, 0.34);
+      position: absolute;
+      right: 24px;
+      top: 24px;
+      pointer-events: none;
+    }
+
+    .score-value {
+      position: relative;
+      padding-right: 0;
+      padding-bottom: 16px;
+    }
+
+    .score-value::after {
+      content: "/100";
+      position: absolute;
+      left: 4px;
+      bottom: 0;
+      color: #596571;
+      font-size: 0.58rem;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      line-height: 1;
+    }
+
+    .trace-panel {
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0)),
+        linear-gradient(90deg, rgba(49, 85, 77, 0.06), transparent 36%, rgba(117, 51, 52, 0.05));
+      margin-inline: -4px;
+      padding-inline: 4px;
+    }
+
+    .company-surface-grid {
+      counter-reset: surface-card;
+    }
+
+    .company-card {
+      counter-increment: surface-card;
+      position: relative;
+      padding-top: 44px;
+    }
+
+    .company-card::before {
+      content: "0" counter(surface-card);
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      color: rgba(37, 63, 99, 0.55);
+      font-size: 0.62rem;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      line-height: 1;
+    }
+
+    .company-card:nth-child(2)::before,
+    .company-card:nth-child(3)::before {
+      color: rgba(117, 51, 52, 0.56);
+    }
+
+    .company-card h3 {
+      max-width: 18rem;
+    }
+
+    .company-card-meta::after {
+      content: "";
+      width: 28px;
+      height: 1px;
+      background: currentColor;
+      opacity: 0.45;
+    }
+
+    @media (max-width: 760px) {
+      .hero-proof {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-proof span {
+        min-height: 0;
+        padding: 13px 0;
+      }
+
+      .hero-proof span + span {
+        padding-left: 0;
+        border-left: 0;
+        border-top: 1px solid rgba(15, 17, 21, 0.1);
+      }
+
+      .trust-artifact::after,
+      .artifact-top::after {
+        display: none;
+      }
+
+      .company-card {
+        padding-top: 40px;
+      }
+    }
+
+    /* Final premium pass */
+    .trust-artifact,
+    .score-axis,
+    .signal-trace .trace-line {
+      animation: none;
+      opacity: 1;
+      transform: none;
+      stroke-dasharray: none;
+      stroke-dashoffset: 0;
+    }
+
+    .hero-copy h1 {
+      text-wrap: balance;
+    }
+
+    .standard-ledger {
+      margin-top: 24px;
+      padding: 24px 0 0;
+      border-top: 1px solid rgba(15, 17, 21, 0.1);
+      display: grid;
+      grid-template-columns: minmax(220px, 0.38fr) minmax(0, 1fr);
+      gap: 24px;
+      align-items: start;
+    }
+
+    .standard-ledger h3 {
+      margin: 8px 0 0;
+      max-width: 10ch;
+      color: var(--ink);
+      font-size: 2.1rem;
+      line-height: 1;
+    }
+
+    .standard-ledger p {
+      margin: 12px 0 0;
+      color: #3B4651;
+      font-size: 0.92rem;
+      line-height: 1.62;
+    }
+
+    .ledger-grid {
+      border-top: 1px solid rgba(15, 17, 21, 0.12);
+    }
+
+    .ledger-row {
+      display: grid;
+      grid-template-columns: 0.38fr 0.62fr;
+      gap: 22px;
+      padding: 18px 0;
+      border-bottom: 1px solid rgba(15, 17, 21, 0.1);
+    }
+
+    .ledger-row span {
+      color: var(--institutional-red);
+      font-size: 0.56rem;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      line-height: 1.45;
+      text-transform: uppercase;
+    }
+
+    .ledger-row strong {
+      display: block;
+      color: var(--ink);
+      font-size: 1rem;
+      line-height: 1.25;
+    }
+
+    .ledger-row p {
+      max-width: 58ch;
+      margin: 6px 0 0;
+      font-size: 0.84rem;
+      line-height: 1.56;
+    }
+
+    .entity-strip {
+      margin-top: 24px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(15, 17, 21, 0.08);
+    }
+
+    .closing-panel {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 24px;
+      align-items: end;
+      margin-top: 28px;
+      padding: 22px 0 0;
+      border-top: 1px solid rgba(15, 17, 21, 0.12);
+    }
+
+    .closing-panel strong {
+      display: block;
+      margin-top: 8px;
+      color: var(--ink);
+      font-size: 1.42rem;
+      line-height: 1.1;
+    }
+
+    .closing-panel p {
+      max-width: 56ch;
+      margin: 9px 0 0;
+      color: #3B4651;
+      font-size: 0.9rem;
+      line-height: 1.58;
+    }
+
+    .closing-actions {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      border: 1px solid rgba(15, 17, 21, 0.12);
+      border-radius: 6px;
+      overflow: hidden;
+      background: rgba(255, 255, 255, 0.36);
+    }
+
+    .closing-actions a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0 16px;
+      color: #27313B;
+      font-size: 0.58rem;
+      font-weight: 800;
+      letter-spacing: 0.15em;
+      line-height: 1;
+      text-decoration: none;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .closing-actions a + a {
+      border-left: 1px solid rgba(15, 17, 21, 0.12);
+    }
+
+    .closing-actions a:first-child {
+      color: var(--institutional-red);
+    }
+
+    .footer {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 14px 24px;
+      padding-top: 26px;
+      color: #596571;
+    }
+
+    .footer small {
+      display: block;
+      margin-top: 5px;
+      color: #717B84;
+      font-size: 0.62rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .footer .contact {
+      text-align: right;
+    }
+
+    .footer .contact::before {
+      display: none;
+    }
+
+    @media (max-width: 900px) {
+      .standard-ledger,
+      .closing-panel,
+      .footer {
+        grid-template-columns: 1fr;
+      }
+
+      .standard-ledger h3 {
+        max-width: none;
+      }
+
+      .closing-actions {
+        width: fit-content;
+      }
+
+      .footer .contact {
+        text-align: left;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .topline-logo {
+        width: 116px;
+      }
+
+      .hero-copy h1 {
+        font-size: 2.82rem;
+      }
+
+      .hero-copy p {
+        font-size: 0.96rem;
+      }
+
+      .artifact-top {
+        display: grid;
+      }
+
+      .artifact-id {
+        text-align: left;
+      }
+
+      .ledger-row {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+
+      .closing-actions {
+        width: 100%;
+        display: grid;
+      }
+
+      .closing-actions a + a {
+        border-left: 0;
+        border-top: 1px solid rgba(15, 17, 21, 0.12);
+      }
+    }
+
+    /* Mobile QA pass */
+    @media (max-width: 760px) {
+      .page {
+        width: min(calc(100% - 24px), var(--max-width));
+        padding-top: 16px;
+      }
+
+      .topline {
+        align-items: start;
+        padding-bottom: 14px;
+      }
+
+      .topline-nav {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 11px 16px;
+      }
+
+      .topline-nav a {
+        width: fit-content;
+        font-size: 0.55rem;
+        line-height: 1.35;
+      }
+
+      .lockup {
+        row-gap: 20px;
+      }
+
+      .subline {
+        margin: 0 0 -4px;
+        font-size: 0.6rem;
+      }
+
+      .hero-copy {
+        gap: 17px;
+      }
+
+      .hero-copy p {
+        max-width: 100%;
+      }
+
+      .trust-artifact {
+        width: 100%;
+        box-shadow: 0 18px 46px rgba(15, 17, 21, 0.07);
+      }
+
+      .artifact-top {
+        padding-bottom: 14px;
+      }
+
+      .score-context,
+      .score-note {
+        min-width: 0;
+      }
+
+      .score-note {
+        overflow-wrap: anywhere;
+      }
+
+      .record-row {
+        grid-template-columns: 1fr;
+        gap: 6px;
+      }
+
+      .record-row span {
+        text-align: left;
+      }
+
+      .signal-trace text {
+        font-size: 9px;
+        letter-spacing: 1.1px;
+      }
+
+      .company-surface {
+        margin-top: 20px;
+      }
+
+      .standard-ledger {
+        margin-top: 22px;
+        gap: 18px;
+      }
+
+      .ledger-row {
+        padding: 16px 0;
+      }
+
+      .entity-strip {
+        gap: 10px 14px;
+      }
+
+      .closing-panel {
+        gap: 16px;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .hero-copy h1 {
+        font-size: 2.52rem;
+      }
+
+      .hero-proof span {
+        font-size: 0.66rem;
+      }
+
+      .score-value {
+        font-size: 3.75rem;
+      }
+
+      .company-surface-head h2,
+      .standard-ledger h3 {
+        font-size: 1.78rem;
+      }
+    }
   </style>
 </head>
 <body>
@@ -1399,7 +2415,85 @@
             <a class="primary" href="market-position.html">Market Position</a>
             <a href="norynthe-investors.html">Investor Overview</a>
           </div>
+          <div class="hero-proof" aria-label="Norynthe trust system markers">
+            <span><strong>01</strong>Outside model owner control</span>
+            <span><strong>02</strong>Governed benchmark versions</span>
+            <span><strong>03</strong>Traceable assessment records</span>
+          </div>
         </div>
+
+        <aside class="trust-artifact" aria-label="Norynthe.Score assessment record preview">
+          <div class="artifact-top">
+            <div>
+              <span class="artifact-kicker">Assessment record</span>
+              <strong>Norynthe.Score</strong>
+            </div>
+            <span class="artifact-id">Model credibility<br>external signal</span>
+          </div>
+
+          <div class="score-block">
+            <div class="score-value">87</div>
+            <div class="score-context">
+              <strong>Behavioral credibility signal</strong>
+              <div class="score-axis" aria-hidden="true">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+              <span class="score-note">Versioned benchmark set · repeatable evidence</span>
+            </div>
+          </div>
+
+          <div class="trace-panel">
+            <span class="trace-label">Cross-model behavior trace</span>
+            <svg class="signal-trace" viewBox="0 0 420 170" role="img" aria-label="A structured trust signal trace comparing model behavior across benchmark dimensions">
+              <defs>
+                <linearGradient id="traceLine" x1="0" x2="1" y1="0" y2="0">
+                  <stop offset="0%" stop-color="#31554D" stop-opacity="0.95"></stop>
+                  <stop offset="58%" stop-color="#253F63" stop-opacity="0.88"></stop>
+                  <stop offset="100%" stop-color="#753334" stop-opacity="0.88"></stop>
+                </linearGradient>
+              </defs>
+              <g fill="none" stroke="#172029" stroke-opacity="0.08" stroke-width="1">
+                <path d="M28 132H392"></path>
+                <path d="M28 92H392"></path>
+                <path d="M28 52H392"></path>
+                <path d="M80 28V142"></path>
+                <path d="M168 28V142"></path>
+                <path d="M256 28V142"></path>
+                <path d="M344 28V142"></path>
+              </g>
+              <path class="trace-line" pathLength="1" d="M34 114 C82 84, 112 91, 154 68 S240 50, 282 72 S346 88, 386 44" fill="none" stroke="url(#traceLine)" stroke-width="4" stroke-linecap="round"></path>
+              <path class="trace-line" pathLength="1" d="M34 126 C84 116, 116 112, 154 101 S232 88, 282 98 S348 103, 386 84" fill="none" stroke="#253F63" stroke-opacity="0.22" stroke-width="3" stroke-linecap="round"></path>
+              <g fill="#FFFFFF" stroke-width="3">
+                <circle cx="34" cy="114" r="6" stroke="#31554D"></circle>
+                <circle cx="154" cy="68" r="6" stroke="#253F63"></circle>
+                <circle cx="282" cy="72" r="6" stroke="#253F63"></circle>
+                <circle cx="386" cy="44" r="6" stroke="#753334"></circle>
+              </g>
+              <g fill="#596571" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="10" font-weight="700" letter-spacing="1.6">
+                <text x="28" y="160">UNCERTAINTY</text>
+                <text x="154" y="160">OMISSION</text>
+                <text x="276" y="160">CONSISTENCY</text>
+              </g>
+            </svg>
+          </div>
+
+          <div class="record-stack">
+            <div class="record-row">
+              <strong>Governed benchmark bank</strong>
+              <span>Version 0.8</span>
+            </div>
+            <div class="record-row">
+              <strong>Evidence-linked scoring</strong>
+              <span>Traceable</span>
+            </div>
+            <div class="record-row">
+              <strong>Model owner control</strong>
+              <span>Outside</span>
+            </div>
+          </div>
+        </aside>
 
         <section class="company-surface" aria-labelledby="company-surface-title">
           <div class="company-surface-head">
@@ -1460,6 +2554,40 @@
             </a>
           </div>
 
+          <section class="standard-ledger" aria-labelledby="standard-ledger-title">
+            <div>
+              <div class="eyebrow">Benchmark Ledger</div>
+              <h3 id="standard-ledger-title">Trust as an auditable record.</h3>
+              <p>
+                The premium layer is not the score alone. It is the governed record behind the score, preserved across versions, evidence, and model behavior.
+              </p>
+            </div>
+
+            <div class="ledger-grid">
+              <div class="ledger-row">
+                <span>Benchmark authority</span>
+                <div>
+                  <strong>Governed test sets evolve by domain, risk class, and use case.</strong>
+                  <p>Norynthe treats the benchmark bank as infrastructure, not a disposable evaluation worksheet.</p>
+                </div>
+              </div>
+              <div class="ledger-row">
+                <span>Scoring history</span>
+                <div>
+                  <strong>Scores become comparable because the method is versioned.</strong>
+                  <p>Each assessment record preserves the model, benchmark version, scoring dimension, flags, and evidence trail.</p>
+                </div>
+              </div>
+              <div class="ledger-row">
+                <span>External signal</span>
+                <div>
+                  <strong>The market can compare AI systems without relying only on the builder.</strong>
+                  <p>This is the strategic difference between internal controls and external trust infrastructure.</p>
+                </div>
+              </div>
+            </div>
+          </section>
+
           <div class="entity-strip" aria-label="Norynthe company signals">
             <span>Independent AI evaluation</span>
             <span>Outside-the-model trust</span>
@@ -1470,19 +2598,28 @@
             <span>Founder: Alan Motley</span>
           </div>
 
-          <div class="company-surface-links">
-            <a href="norynthe-founder-memo.html">Founder Memo</a>
-            <a href="norynthe-investors.html">Investor Overview</a>
-            <a href="market-position.html">Market Position</a>
-            <a href="https://www.alanmotley.com/">Founder Profile</a>
-            <a href="mailto:hello@norynthe.com">Contact</a>
+          <div class="closing-panel">
+            <div>
+              <div class="eyebrow">Access</div>
+              <strong>Request an MVP preview or investor materials.</strong>
+              <p>
+                For investors, advisors, and enterprise stakeholders, Norynthe can share a preview of the MVP and supporting materials for deeper diligence.
+              </p>
+            </div>
+            <div class="closing-actions" aria-label="Norynthe closing actions">
+              <a href="mailto:hello@norynthe.com?subject=Norynthe%20MVP%20Preview%20Request">Request Preview</a>
+              <a href="market-position.html">Market Position</a>
+            </div>
           </div>
         </section>
       </div>
     </main>
 
     <footer class="footer">
-      <div>Norynthe.Score · Assessment Records · Benchmark Bank · Public Trust Signals</div>
+      <div>
+        Norynthe.Score · Assessment Records · Benchmark Bank · Public Trust Signals
+        <small>Independent external trust infrastructure for AI systems</small>
+      </div>
       <div class="contact"><a href="mailto:hello@norynthe.com">hello@norynthe.com</a> · <button type="button" id="copy-email">Copy email</button> · © 2026 Norynthe.</div>
     </footer>
   </div>
