@@ -2493,6 +2493,343 @@
         transform: none !important;
       }
     }
+
+    /* Stable ambient strategy: large transform-only atmospheric drift, no opacity pulsing. */
+    .field {
+      opacity: 1;
+      background:
+        radial-gradient(circle at 72% 18%, rgba(143, 177, 203, 0.14), transparent 30%),
+        radial-gradient(circle at 24% 86%, rgba(184, 167, 106, 0.08), transparent 28%),
+        linear-gradient(180deg, rgba(247, 249, 251, 0.72), rgba(233, 237, 242, 0.28));
+      contain: paint;
+      transform: translateZ(0);
+      backface-visibility: hidden;
+    }
+
+    .wash,
+    .cloud-band,
+    .cloud-band-secondary,
+    .cloud-floor,
+    .horizon-haze,
+    .field-grain {
+      transform: translate3d(0, 0, 0);
+      backface-visibility: hidden;
+      will-change: transform;
+    }
+
+    .wash {
+      inset: -20% -18%;
+      background:
+        radial-gradient(ellipse at 32% 24%, rgba(255, 255, 255, 0.55), transparent 34%),
+        radial-gradient(ellipse at 78% 38%, rgba(37, 63, 99, 0.08), transparent 36%),
+        linear-gradient(118deg, rgba(255, 255, 255, 0.48) 0%, transparent 34%, rgba(49, 85, 77, 0.055) 58%, transparent 78%);
+      filter: blur(34px);
+      opacity: 0.78;
+      animation: ambientDriftA 96s cubic-bezier(0.42, 0, 0.58, 1) infinite alternate;
+    }
+
+    .cloud-band {
+      left: -32%;
+      right: -32%;
+      top: 4%;
+      height: 44%;
+      background:
+        linear-gradient(104deg, transparent 0%, rgba(255, 255, 255, 0.50) 18%, rgba(213, 223, 232, 0.30) 48%, rgba(255, 255, 255, 0.36) 74%, transparent 100%),
+        linear-gradient(180deg, transparent 0%, rgba(37, 63, 99, 0.045) 52%, transparent 100%);
+      filter: blur(44px);
+      opacity: 0.68;
+      animation: ambientDriftB 112s cubic-bezier(0.42, 0, 0.58, 1) infinite alternate;
+    }
+
+    .cloud-band-secondary {
+      left: -34%;
+      right: -34%;
+      top: 38%;
+      height: 40%;
+      background:
+        linear-gradient(82deg, transparent 0%, rgba(255, 255, 255, 0.36) 23%, rgba(117, 51, 52, 0.045) 48%, rgba(49, 85, 77, 0.052) 72%, transparent 100%);
+      filter: blur(50px);
+      opacity: 0.52;
+      animation: ambientDriftC 124s cubic-bezier(0.42, 0, 0.58, 1) infinite alternate;
+    }
+
+    .cloud-floor {
+      left: -18%;
+      right: -18%;
+      bottom: -8%;
+      height: 36%;
+      background:
+        linear-gradient(180deg, transparent 0%, rgba(255, 255, 255, 0.48) 45%, rgba(228, 234, 240, 0.62) 100%);
+      filter: blur(28px);
+      opacity: 0.7;
+      animation: ambientFloor 118s cubic-bezier(0.42, 0, 0.58, 1) infinite alternate;
+    }
+
+    .horizon-haze {
+      bottom: 17%;
+      opacity: 0.24;
+      animation: ambientHorizon 132s cubic-bezier(0.42, 0, 0.58, 1) infinite alternate;
+    }
+
+    .field-grain {
+      opacity: 0.32;
+      animation: ambientGrain 160s linear infinite alternate;
+    }
+
+    .scan,
+    .scan-vertical {
+      display: none !important;
+    }
+
+    @keyframes ambientDriftA {
+      from { transform: translate3d(-2.5%, -1%, 0) scale(1.04); }
+      to { transform: translate3d(2.5%, 1.4%, 0) scale(1.08); }
+    }
+
+    @keyframes ambientDriftB {
+      from { transform: translate3d(-3.5%, -0.8%, 0) scale(1.02); }
+      to { transform: translate3d(3.8%, 1.2%, 0) scale(1.075); }
+    }
+
+    @keyframes ambientDriftC {
+      from { transform: translate3d(3.2%, 1.2%, 0) scale(1.07); }
+      to { transform: translate3d(-3.5%, -1.1%, 0) scale(1.02); }
+    }
+
+    @keyframes ambientFloor {
+      from { transform: translate3d(-1.8%, 0, 0) scale(1.02); }
+      to { transform: translate3d(2.2%, -1.2%, 0) scale(1.05); }
+    }
+
+    @keyframes ambientHorizon {
+      from { transform: translateX(-50%) translate3d(-1.2%, 0, 0); }
+      to { transform: translateX(-50%) translate3d(1.2%, -1%, 0); }
+    }
+
+    @keyframes ambientGrain {
+      from { transform: translate3d(0, 0, 0); }
+      to { transform: translate3d(-42px, 26px, 0); }
+    }
+
+    @media (max-width: 760px) {
+      .wash,
+      .cloud-band,
+      .cloud-band-secondary {
+        filter: blur(38px);
+      }
+
+      .cloud-band-secondary {
+        opacity: 0.42;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .wash,
+      .cloud-band,
+      .cloud-band-secondary,
+      .cloud-floor,
+      .horizon-haze,
+      .field-grain {
+        animation: none !important;
+        transform: none !important;
+      }
+    }
+
+    /* Assessment record motion: deliberate product signal, not decorative blinking. */
+    .trust-artifact {
+      animation: recordSettle 900ms cubic-bezier(0.2, 0.82, 0.2, 1) 120ms both;
+      transform-origin: center right;
+    }
+
+    .trust-artifact::before {
+      animation: recordGridDrift 34s linear infinite alternate;
+      will-change: transform;
+    }
+
+    .trust-artifact::after {
+      z-index: 2;
+      background:
+        linear-gradient(104deg, transparent 0%, transparent 38%, rgba(255, 255, 255, 0.32) 48%, transparent 58%, transparent 100%);
+      background-size: 240% 100%;
+      background-position: 120% 0;
+      opacity: 1;
+      animation: recordSheen 12s cubic-bezier(0.42, 0, 0.58, 1) 1.6s infinite;
+      mix-blend-mode: screen;
+    }
+
+    .artifact-top,
+    .score-block,
+    .trace-panel,
+    .record-row {
+      animation: recordItemIn 700ms cubic-bezier(0.2, 0.82, 0.2, 1) both;
+    }
+
+    .artifact-top {
+      animation-delay: 260ms;
+    }
+
+    .score-block {
+      animation-delay: 420ms;
+    }
+
+    .trace-panel {
+      animation-delay: 620ms;
+    }
+
+    .record-row:nth-child(1) {
+      animation-delay: 820ms;
+    }
+
+    .record-row:nth-child(2) {
+      animation-delay: 960ms;
+    }
+
+    .record-row:nth-child(3) {
+      animation-delay: 1100ms;
+    }
+
+    .artifact-id::before {
+      content: "";
+      display: inline-block;
+      width: 7px;
+      height: 7px;
+      margin: 0 8px 1px 0;
+      border-radius: 999px;
+      background: var(--institutional-red);
+      box-shadow: 0 0 0 4px rgba(117, 51, 52, 0.07);
+      animation: recordStatusPulse 4.8s ease-in-out infinite;
+    }
+
+    .score-value {
+      animation: scoreResolve 900ms cubic-bezier(0.2, 0.82, 0.2, 1) 480ms both, scoreHold 8s ease-in-out 1.6s infinite;
+      transform-origin: left bottom;
+    }
+
+    .score-axis {
+      overflow: hidden;
+    }
+
+    .score-axis span {
+      transform-origin: left center;
+      transform: scaleX(0);
+      animation: axisResolve 920ms cubic-bezier(0.2, 0.82, 0.2, 1) both;
+    }
+
+    .score-axis span:nth-child(1) {
+      animation-delay: 620ms;
+    }
+
+    .score-axis span:nth-child(2) {
+      animation-delay: 760ms;
+    }
+
+    .score-axis span:nth-child(3) {
+      animation-delay: 900ms;
+    }
+
+    .signal-trace .trace-line {
+      stroke-dasharray: 1;
+      stroke-dashoffset: 1;
+      animation: traceDrawIn 1.55s cubic-bezier(0.25, 0.82, 0.24, 1) 900ms both;
+    }
+
+    .signal-trace .trace-line + .trace-line {
+      animation-delay: 1250ms;
+    }
+
+    .signal-trace circle {
+      transform-box: fill-box;
+      transform-origin: center;
+      animation: traceNodeWake 820ms cubic-bezier(0.2, 0.82, 0.2, 1) 1.45s both;
+    }
+
+    .signal-trace circle:nth-of-type(2) {
+      animation-delay: 1.7s;
+    }
+
+    .signal-trace circle:nth-of-type(3) {
+      animation-delay: 1.95s;
+    }
+
+    .signal-trace circle:nth-of-type(4) {
+      animation-delay: 2.2s;
+    }
+
+    @keyframes recordSettle {
+      from { transform: translate3d(0, 14px, 0) scale(0.985); filter: saturate(0.92); }
+      to { transform: translate3d(0, 0, 0) scale(1); filter: saturate(1); }
+    }
+
+    @keyframes recordItemIn {
+      from { opacity: 0; transform: translate3d(0, 10px, 0); }
+      to { opacity: 1; transform: translate3d(0, 0, 0); }
+    }
+
+    @keyframes recordGridDrift {
+      from { transform: translate3d(-10px, -8px, 0); }
+      to { transform: translate3d(10px, 8px, 0); }
+    }
+
+    @keyframes recordSheen {
+      0%, 42% { background-position: 120% 0; }
+      68%, 100% { background-position: -120% 0; }
+    }
+
+    @keyframes recordStatusPulse {
+      0%, 100% { transform: scale(1); box-shadow: 0 0 0 4px rgba(117, 51, 52, 0.07); }
+      50% { transform: scale(1.08); box-shadow: 0 0 0 7px rgba(117, 51, 52, 0.04); }
+    }
+
+    @keyframes scoreResolve {
+      from { opacity: 0; transform: translate3d(-8px, 8px, 0) scale(0.94); }
+      to { opacity: 1; transform: translate3d(0, 0, 0) scale(1); }
+    }
+
+    @keyframes scoreHold {
+      0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+      50% { transform: translate3d(0, -1px, 0) scale(1.006); }
+    }
+
+    @keyframes axisResolve {
+      from { transform: scaleX(0); }
+      to { transform: scaleX(1); }
+    }
+
+    @keyframes traceDrawIn {
+      from { stroke-dashoffset: 1; opacity: 0.35; }
+      to { stroke-dashoffset: 0; opacity: 1; }
+    }
+
+    @keyframes traceNodeWake {
+      0% { transform: scale(0.72); opacity: 0.25; }
+      58% { transform: scale(1.12); opacity: 1; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .trust-artifact,
+      .trust-artifact::before,
+      .trust-artifact::after,
+      .artifact-top,
+      .score-block,
+      .trace-panel,
+      .record-row,
+      .artifact-id::before,
+      .score-value,
+      .score-axis span,
+      .signal-trace .trace-line,
+      .signal-trace circle {
+        animation: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+        filter: none !important;
+      }
+
+      .signal-trace .trace-line {
+        stroke-dasharray: none !important;
+        stroke-dashoffset: 0 !important;
+      }
+    }
   </style>
 </head>
 <body>
@@ -2503,14 +2840,12 @@
     <div class="cloud-floor"></div>
     <div class="horizon-haze"></div>
     <div class="field-grain"></div>
-    <div class="scan"></div>
-    <div class="scan-vertical"></div>
     <div class="field-mask"></div>
   </div>
 
   <div class="page">
     <header class="topline">
-      <a class="topline-brand" href="index.html" aria-label="Norynthe home">
+      <a class="topline-brand" href="norynthe-index.html" aria-label="Norynthe home">
         <img
           class="topline-logo"
           src="norynthe-logo.png"
