@@ -395,10 +395,10 @@
     .logo-fallback {
       display: none;
       margin: 0;
-      font-size: clamp(3.5rem, 11vw, 8rem);
+      font-size: 5.6rem;
       line-height: 0.9;
       font-weight: 700;
-      letter-spacing: -0.08em;
+      letter-spacing: 0;
       color: var(--ink);
     }
 
@@ -469,9 +469,9 @@
 
     .company-surface-head h2 {
       margin: 0;
-      font-size: clamp(1.9rem, 3vw, 2.85rem);
+      font-size: 2.35rem;
       line-height: 0.94;
-      letter-spacing: -0.06em;
+      letter-spacing: 0;
       font-weight: 700;
     }
 
@@ -552,7 +552,7 @@
       margin: 0;
       font-size: 1rem;
       line-height: 1.05;
-      letter-spacing: -0.04em;
+      letter-spacing: 0;
       font-weight: 700;
       color: var(--ink);
       position: relative;
@@ -798,7 +798,7 @@
       }
 
       .company-surface-head h2 {
-        font-size: clamp(1.6rem, 2.5vw, 2.3rem);
+        font-size: 2.1rem;
       }
 
       .company-surface-head p {
@@ -902,6 +902,451 @@
         background: linear-gradient(90deg, transparent, rgba(122, 48, 48, 0.18), transparent);
       }
     }
+
+    /* Homepage refinement pass */
+    :root {
+      --logo-width: min(70vw, 360px);
+      --max-width: 1120px;
+      --surface: rgba(255, 255, 255, 0.84);
+      --surface-solid: #FBFCFD;
+      --shadow-soft: 0 28px 80px rgba(15, 17, 21, 0.08);
+    }
+
+    body {
+      background:
+        linear-gradient(180deg, #F5F7F9 0%, #E9EDF2 54%, #F1F4F7 100%);
+    }
+
+    body::before {
+      background-size: 64px 64px;
+      opacity: 0.46;
+    }
+
+    .field {
+      display: none;
+    }
+
+    .page {
+      width: min(calc(100% - 48px), var(--max-width));
+      min-height: 100dvh;
+      margin: 0 auto;
+      padding: 26px 0 34px;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      gap: 26px;
+      pointer-events: auto;
+    }
+
+    .topline {
+      margin: 0;
+      padding: 0;
+      letter-spacing: 0;
+      text-transform: none;
+      color: var(--muted);
+    }
+
+    .topline a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .topline-brand {
+      display: inline-flex;
+      align-items: center;
+      color: var(--ink);
+      font-size: 1.28rem;
+      line-height: 1;
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+
+    .topline-logo {
+      display: block;
+      width: 140px;
+      max-width: 28vw;
+      height: auto;
+    }
+
+    .topline-nav {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .topline-nav a,
+    .hero-actions a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 38px;
+      padding: 0 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(15, 17, 21, 0.1);
+      background: rgba(255, 255, 255, 0.72);
+      box-shadow: 0 10px 24px rgba(15, 17, 21, 0.035);
+      color: #27313B;
+      font-size: 0.62rem;
+      font-weight: 800;
+      letter-spacing: 0.13em;
+      line-height: 1;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: transform 160ms ease, border-color 160ms ease, box-shadow 160ms ease, background 160ms ease;
+    }
+
+    .topline-nav a:hover,
+    .hero-actions a:hover {
+      transform: translateY(-1px);
+      border-color: rgba(51, 75, 110, 0.22);
+      background: rgba(255, 255, 255, 0.94);
+      box-shadow: 0 14px 30px rgba(15, 17, 21, 0.055);
+    }
+
+    .hero {
+      min-height: 0;
+      place-items: stretch;
+      align-content: start;
+      padding: 52px 44px 44px;
+      border: 1px solid var(--line);
+      border-radius: 30px;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.78)),
+        linear-gradient(135deg, rgba(51, 75, 110, 0.05), rgba(54, 85, 74, 0.035));
+      box-shadow: var(--shadow-soft);
+      overflow: hidden;
+    }
+
+    .lockup {
+      width: 100%;
+      padding: 0;
+      place-items: start;
+      gap: 18px;
+      text-align: left;
+    }
+
+    .lockup::before,
+    .lockup::after,
+    .logo-shell::after,
+    .logo-wrap::before,
+    .logo-wrap::after,
+    .company-surface::before,
+    .company-card::after {
+      display: none;
+    }
+
+    .logo-shell::before {
+      left: 0;
+      bottom: -10px;
+      width: min(32vw, 260px);
+      height: 18px;
+      transform: none;
+      opacity: 0.55;
+    }
+
+    .logo-wrap {
+      justify-content: flex-start;
+    }
+
+    .logo {
+      width: var(--logo-width);
+      filter: drop-shadow(0 15px 22px rgba(15, 17, 21, 0.055));
+    }
+
+    .logo-fallback {
+      font-size: 5.6rem;
+      letter-spacing: 0;
+    }
+
+    .subline {
+      width: auto;
+      max-width: none;
+      margin: 2px 0 -6px;
+      color: var(--slate);
+      font-size: 0.68rem;
+      font-weight: 800;
+      letter-spacing: 0.21em;
+      text-align: left;
+    }
+
+    .hero-divider {
+      display: none;
+      width: 100%;
+      margin: 0;
+    }
+
+    .hero-copy {
+      display: grid;
+      gap: 16px;
+      max-width: 850px;
+    }
+
+    .hero-copy h1 {
+      margin: 0;
+      max-width: 13.8ch;
+      color: var(--ink);
+      font-size: 5.15rem;
+      font-weight: 800;
+      letter-spacing: 0;
+      line-height: 0.94;
+    }
+
+    .hero-copy p {
+      margin: 0;
+      max-width: 62ch;
+      color: #2F3A45;
+      font-size: 1.12rem;
+      line-height: 1.66;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 2px;
+    }
+
+    .hero-actions a {
+      min-height: 42px;
+      padding: 0 16px;
+    }
+
+    .hero-actions .primary {
+      border-color: rgba(122, 48, 48, 0.2);
+      background: #15191F;
+      color: #FFFFFF;
+      box-shadow: 0 16px 34px rgba(15, 17, 21, 0.12);
+    }
+
+    .hero-actions .primary:hover {
+      background: #0F1115;
+      border-color: rgba(15, 17, 21, 0.44);
+    }
+
+    .company-surface {
+      width: 100%;
+      margin: 20px 0 0;
+      padding: 0;
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+      box-shadow: none;
+    }
+
+    .company-surface-head {
+      gap: 8px;
+      max-width: 830px;
+      margin: 0 0 18px;
+    }
+
+    .company-surface-head h2 {
+      font-size: 2.1rem;
+      line-height: 1.08;
+      letter-spacing: 0;
+    }
+
+    .company-surface-head p,
+    .company-surface-secondary {
+      color: #36414E !important;
+      font-size: 0.91rem !important;
+      line-height: 1.62 !important;
+      max-width: 68ch !important;
+    }
+
+    .eyebrow {
+      color: var(--signal);
+      font-size: 0.62rem;
+      font-weight: 800;
+      letter-spacing: 0.2em;
+    }
+
+    .company-surface-grid {
+      max-width: none;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .company-card {
+      grid-column: span 2;
+      min-height: 172px;
+      padding: 18px;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.74);
+      border-color: rgba(15, 17, 21, 0.09);
+      box-shadow: 0 12px 28px rgba(15, 17, 21, 0.035);
+    }
+
+    .company-card:nth-child(n + 4) {
+      grid-column: span 3;
+    }
+
+    .company-card h3 {
+      font-size: 1.08rem;
+      line-height: 1.08;
+      letter-spacing: 0;
+    }
+
+    .company-card p {
+      color: #3E4A55;
+      font-size: 0.82rem;
+      line-height: 1.58;
+    }
+
+    .card-eyebrow {
+      border-radius: 999px;
+      background: rgba(51, 75, 110, 0.07);
+      font-size: 0.5rem;
+    }
+
+    .company-card-meta {
+      color: #334B6E;
+      font-size: 0.55rem;
+    }
+
+    .entity-strip {
+      max-width: none;
+      margin-top: 16px;
+      padding-top: 16px;
+    }
+
+    .entity-strip span {
+      background: rgba(255, 255, 255, 0.62);
+      font-size: 0.5rem;
+    }
+
+    .company-surface-links {
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    .company-surface-links a {
+      color: #5E2A2A;
+      font-size: 0.57rem;
+      letter-spacing: 0.14em;
+    }
+
+    .footer {
+      margin: 0;
+      padding-top: 22px;
+      border-top: 1px solid rgba(15, 17, 21, 0.08);
+      align-items: center;
+      line-height: 1.6;
+    }
+
+    .footer .contact::before {
+      display: none;
+    }
+
+    @media (max-width: 980px) {
+      .page {
+        width: min(calc(100% - 32px), var(--max-width));
+        padding-top: 20px;
+      }
+
+      .topline {
+        align-items: flex-start;
+        gap: 14px;
+      }
+
+      .topline-nav {
+        justify-content: flex-end;
+      }
+
+      .hero {
+        padding: 34px;
+        border-radius: 26px;
+      }
+
+      .hero-copy h1 {
+        max-width: 13ch;
+        font-size: 4.2rem;
+      }
+
+      .company-surface-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .company-card,
+      .company-card:nth-child(n + 4) {
+        grid-column: auto;
+      }
+    }
+
+    @media (max-width: 680px) {
+      body::before {
+        display: none;
+      }
+
+      .page {
+        width: min(calc(100% - 24px), var(--max-width));
+        padding: 16px 0 24px;
+        gap: 18px;
+      }
+
+      .topline {
+        display: grid;
+        justify-items: start;
+      }
+
+      .topline-nav {
+        justify-content: flex-start;
+      }
+
+      .topline-nav a {
+        min-height: 35px;
+        padding: 0 11px;
+        font-size: 0.55rem;
+      }
+
+      .topline-logo {
+        width: 129px;
+      }
+
+      .hero {
+        padding: 26px 20px;
+        border-radius: 22px;
+      }
+
+      .logo {
+        width: min(76vw, 310px);
+      }
+
+      .subline {
+        font-size: 0.6rem;
+        letter-spacing: 0.17em;
+      }
+
+      .hero-copy h1 {
+        max-width: 11ch;
+        font-size: 3.2rem;
+      }
+
+      .hero-copy p {
+        font-size: 0.98rem;
+      }
+
+      .hero-actions {
+        width: 100%;
+      }
+
+      .hero-actions a {
+        flex: 1 1 100%;
+        min-height: 42px;
+      }
+
+      .company-surface-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .company-card {
+        min-height: 0;
+      }
+
+      .footer {
+        padding-top: 18px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -918,40 +1363,48 @@
   </div>
 
   <div class="page">
-    <div class="topline" aria-hidden="true">
-      <span>Independent AI Trust Standard</span>
-      <span class="status"><span class="status-dot"></span>Norynthe.Score</span>
-    </div>
+    <header class="topline">
+      <a class="topline-brand" href="norynthe-index.html" aria-label="Norynthe home">
+        <img
+          class="topline-logo"
+          src="norynthe-logo.png"
+          alt="Norynthe."
+          width="1200"
+          height="630"
+          loading="eager"
+          decoding="async"
+          onerror="if (!this.dataset.fallbackTried) { this.dataset.fallbackTried='true'; this.src='assets/Norynthe_master.png'; } else { this.replaceWith(document.createTextNode('Norynthe.')); }"
+        >
+      </a>
+      <nav class="topline-nav" aria-label="Main navigation">
+        <a href="norynthe-founder-memo.html">Founder Memo</a>
+        <a href="norynthe-investors.html">Investor Overview</a>
+        <a href="market-position.html">Market Position</a>
+        <a href="mailto:hello@norynthe.com">Contact</a>
+      </nav>
+    </header>
 
     <main class="hero" aria-label="Norynthe homepage">
       <div class="lockup">
-        <h1 class="sr-only">Norynthe is an independent AI evaluation and trust-scoring company.</h1>
-
-        <div class="logo-shell" role="img" aria-label="Norynthe logo">
-          <div class="logo-wrap">
-            <img
-              class="logo"
-              src="norynthe-logo.png"
-              alt="Norynthe independent AI evaluation and trust scoring company logo"
-              width="1200"
-              height="630"
-              loading="eager"
-              decoding="async"
-              fetchpriority="high"
-              onerror="if (!this.dataset.fallbackTried) { this.dataset.fallbackTried='true'; this.src='assets/norynthe-logo.png'; } else { this.style.display='none'; document.querySelector('.logo-fallback').style.display='block'; }"
-            >
-            <h2 class="logo-fallback">Norynthe.</h2>
-          </div>
-        </div>
-
-        <div class="hero-divider" aria-hidden="true"></div>
+        <p class="sr-only">Norynthe is an independent AI evaluation and trust-scoring company.</p>
 
         <p class="subline">Outside the model.</p>
+
+        <div class="hero-copy">
+          <h1>The independent trust signal outside the model.</h1>
+          <p>
+            Norynthe evaluates AI systems beyond the model owner's control, turning governed benchmarks, behavioral evidence, and versioned assessment records into trust signals the market can understand.
+          </p>
+          <div class="hero-actions" aria-label="Norynthe primary actions">
+            <a class="primary" href="market-position.html">Market Position</a>
+            <a href="norynthe-investors.html">Investor Overview</a>
+          </div>
+        </div>
 
         <section class="company-surface" aria-labelledby="company-surface-title">
           <div class="company-surface-head">
             <div class="eyebrow">Norynthe. / Company Surface</div>
-            <h2 id="company-surface-title">The independent standard layer for AI trust.</h2>
+            <h2 id="company-surface-title">A public evidence layer for AI credibility.</h2>
             <p>
               Norynthe evaluates AI systems from outside the model, using governed benchmark sets, versioned scoring logic, and traceable assessment records to create public trust signals and enterprise-ready evidence.
             </p>
