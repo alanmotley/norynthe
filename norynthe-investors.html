@@ -200,18 +200,6 @@
       z-index: 1;
     }
 
-    .utility-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0;
-      width: fit-content;
-      max-width: 100%;
-      margin-bottom: 28px;
-      border-top: 1px solid var(--line);
-      border-bottom: 1px solid var(--line);
-    }
-
-    .utility-row a,
     .hero-link,
     .contact-pill {
       display: inline-flex;
@@ -227,13 +215,11 @@
       transition: background 160ms ease, color 160ms ease, border-color 160ms ease, transform 160ms ease;
     }
 
-    .utility-row a + a,
-    .hero-link + .hero-link,
+    .hero-link,
     .contact-pill + .contact-pill {
       border-left: 1px solid var(--line);
     }
 
-    .utility-row a:hover,
     .hero-link:hover,
     .contact-pill:hover {
       background: rgba(255, 255, 255, 0.56);
@@ -633,14 +619,12 @@
         margin-top: 22px;
       }
 
-      .utility-row,
       .hero-links,
       .contact-row {
         display: grid;
         width: 100%;
       }
 
-      .utility-row a + a,
       .hero-link + .hero-link,
       .contact-pill + .contact-pill {
         border-left: 0;
@@ -711,12 +695,6 @@
 
     <main>
       <section class="hero" aria-labelledby="investor-title">
-        <div class="utility-row" aria-label="Investor overview navigation">
-          <a href="index.html">Back To Main Site</a>
-          <a href="market-position.html">Market Position</a>
-          <a href="norynthe-founder-memo.html">Founder Memo</a>
-        </div>
-
         <div class="hero-grid">
           <div>
             <p class="eyebrow">Investor Overview</p>
