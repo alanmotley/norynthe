@@ -41,7 +41,7 @@
       --paper: rgba(255, 255, 255, 0.62);
       --paper-strong: rgba(255, 255, 255, 0.86);
       --max-width: 1180px;
-      --reader-width: 900px;
+      --reader-width: 760px;
       --radius: 8px;
     }
 
@@ -88,7 +88,7 @@
       z-index: 1;
       width: min(calc(100% - 56px), var(--max-width));
       margin: 0 auto;
-      padding: 30px 0 46px;
+      padding: 30px 0 54px;
     }
 
     .topline {
@@ -188,10 +188,11 @@
 
     .hero {
       margin-top: 34px;
-      padding: 30px;
+      padding: 38px 40px 36px;
       background:
-        linear-gradient(180deg, rgba(255, 255, 255, 0.82), rgba(255, 255, 255, 0.58)),
-        radial-gradient(circle at 88% 16%, rgba(37, 63, 99, 0.09), transparent 28%);
+        linear-gradient(180deg, rgba(255, 255, 255, 0.86), rgba(255, 255, 255, 0.62)),
+        radial-gradient(circle at 82% 18%, rgba(37, 63, 99, 0.08), transparent 30%),
+        radial-gradient(circle at 16% 88%, rgba(117, 51, 52, 0.045), transparent 28%);
     }
 
     .hero::before,
@@ -233,10 +234,11 @@
     }
 
     .hero .subline {
-      margin-bottom: 18px;
-      color: #53606C;
-      font-size: 0.42rem;
-      letter-spacing: 0.16em;
+      display: inline-flex;
+      margin-bottom: 20px;
+      color: var(--institutional-blue);
+      font-size: 0.62rem;
+      letter-spacing: 0.18em;
     }
 
     h1,
@@ -248,30 +250,44 @@
     }
 
     h1 {
-      max-width: 12.5ch;
-      margin-bottom: 18px;
-      font-size: clamp(3.2rem, 6.2vw, 5.05rem);
-      line-height: 0.93;
+      max-width: 12.7ch;
+      margin-bottom: 20px;
+      font-size: clamp(3.2rem, 5.8vw, 4.82rem);
+      line-height: 0.94;
       text-wrap: balance;
     }
 
     .hero-copy {
-      max-width: 880px;
+      max-width: none;
+      display: grid;
+      grid-template-columns: minmax(0, 0.58fr) minmax(320px, 0.42fr);
+      gap: 48px;
+      align-items: start;
     }
 
-    .hero-copy > p {
-      max-width: 66ch;
+    .hero-main,
+    .hero-detail {
+      min-width: 0;
+    }
+
+    .hero-detail {
+      padding-top: 44px;
+    }
+
+    .hero-detail p {
+      max-width: 48ch;
       color: #2D3843;
-      font-size: 1.02rem;
-      line-height: 1.78;
+      font-size: 0.98rem;
+      line-height: 1.66;
     }
 
     .meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 6px;
+      width: 100%;
       margin-top: 24px;
-      padding-top: 18px;
+      padding-top: 20px;
       border-top: 1px solid var(--line);
     }
 
@@ -279,6 +295,7 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
+      min-height: 32px;
       padding-bottom: 8px;
       border-bottom: 1px solid rgba(37, 63, 99, 0.24);
       color: #43505D;
@@ -296,42 +313,51 @@
     }
 
     main > section {
-      margin-top: 18px;
+      margin-top: 20px;
     }
 
     .surface-card {
-      padding: 28px;
+      padding: 34px 36px;
       background: rgba(255, 255, 255, 0.56);
     }
 
     .surface-head {
-      max-width: 820px;
+      max-width: none;
+      display: grid;
+      grid-template-columns: minmax(260px, 0.46fr) minmax(0, 0.54fr);
+      gap: 34px;
+      align-items: start;
     }
 
     .eyebrow {
+      grid-column: 1;
       margin-bottom: 11px;
       color: var(--institutional-red);
     }
 
     .surface-head h2 {
-      max-width: 17ch;
-      font-size: clamp(2.08rem, 4vw, 3rem);
+      grid-column: 1;
+      max-width: 14ch;
+      font-size: clamp(2.08rem, 3.8vw, 2.86rem);
       line-height: 1;
       text-wrap: balance;
     }
 
     .surface-head p {
-      max-width: 68ch;
-      margin-top: 11px;
+      grid-column: 2;
+      grid-row: 1 / span 2;
+      align-self: center;
+      max-width: 54ch;
+      margin-top: 2px;
       color: #33404C;
-      font-size: 0.96rem;
-      line-height: 1.72;
+      font-size: 1rem;
+      line-height: 1.74;
     }
 
     .memo-card {
       width: 100%;
-      margin: 18px 0 0;
-      padding: 34px;
+      margin: 20px 0 0;
+      padding: 46px 44px 50px;
       background: rgba(255, 255, 255, 0.72);
     }
 
@@ -345,25 +371,25 @@
     }
 
     .memo-intro {
-      padding: 18px 20px;
-      margin-bottom: 28px;
+      padding: 22px 24px;
+      margin-bottom: 38px;
       border-left: 3px solid var(--institutional-red);
       border-radius: 0 var(--radius) var(--radius) 0;
       background: rgba(117, 51, 52, 0.045);
       color: #26313B;
-      font-size: 1.06rem;
+      font-size: 1.12rem;
       font-weight: 800;
-      line-height: 1.62;
+      line-height: 1.58;
     }
 
     .memo-section {
-      margin-top: 32px;
+      margin-top: 42px;
     }
 
     .memo-section h2,
     .closing h2 {
-      margin-bottom: 12px;
-      font-size: clamp(1.55rem, 2.7vw, 2.12rem);
+      margin-bottom: 14px;
+      font-size: clamp(1.64rem, 2.55vw, 2.06rem);
       line-height: 1.06;
       text-wrap: balance;
     }
@@ -373,24 +399,24 @@
       margin-top: 14px;
       color: #202A34;
       font-size: 1rem;
-      line-height: 1.86;
+      line-height: 1.82;
     }
 
     blockquote {
-      margin: 30px 0;
-      padding: 18px 20px;
+      margin: 40px 0;
+      padding: 22px 24px;
       border-left: 3px solid var(--institutional-red);
       border-radius: 0 var(--radius) var(--radius) 0;
       background: rgba(117, 51, 52, 0.045);
       color: #26313B;
-      font-size: 1.08rem;
+      font-size: 1.12rem;
       font-weight: 800;
-      line-height: 1.62;
+      line-height: 1.58;
     }
 
     .closing {
-      margin-top: 34px;
-      padding-top: 26px;
+      margin-top: 44px;
+      padding-top: 30px;
       border-top: 1px solid var(--line);
     }
 
@@ -408,12 +434,12 @@
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 14px;
-      margin-top: 18px;
+      margin-top: 20px;
     }
 
     .ledger-card {
-      min-height: 190px;
-      padding: 19px;
+      min-height: 176px;
+      padding: 22px;
       background: rgba(255, 255, 255, 0.62);
       transition: transform 160ms ease, background 160ms ease, border-color 160ms ease, box-shadow 160ms ease;
     }
@@ -453,7 +479,7 @@
       display: grid;
       grid-template-columns: 1fr auto;
       gap: 14px 24px;
-      margin-top: 30px;
+      margin-top: 34px;
       padding-top: 26px;
       border-top: 1px solid var(--line);
       color: #596571;
@@ -524,20 +550,49 @@
       .hero,
       .surface-card,
       .memo-card {
-        padding: 20px;
+        padding: 22px 20px;
       }
 
       .hero {
         margin-top: 22px;
       }
 
+      .hero .subline {
+        margin-bottom: 18px;
+        font-size: 0.6rem;
+      }
+
+      .hero-copy {
+        grid-template-columns: 1fr;
+        gap: 18px;
+      }
+
+      .hero-detail {
+        padding-top: 0;
+      }
+
       h1 {
         max-width: none;
-        font-size: 3.05rem;
+        font-size: 3rem;
         overflow-wrap: anywhere;
       }
 
-      .hero-copy > p,
+      .meta {
+        gap: 6px;
+        width: 100%;
+      }
+
+      .surface-head {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .surface-head p {
+        grid-column: 1;
+        grid-row: auto;
+      }
+
+      .hero-detail p,
       .surface-head p,
       .memo-section p,
       .closing p {
@@ -549,9 +604,22 @@
         font-size: 2.05rem;
       }
 
+      .memo-card {
+        padding-top: 26px;
+        padding-bottom: 30px;
+      }
+
       .memo-intro,
       blockquote {
         font-size: 1rem;
+      }
+
+      .memo-section {
+        margin-top: 34px;
+      }
+
+      blockquote {
+        margin: 32px 0;
       }
 
       .ledger-card {
@@ -596,17 +664,21 @@
     <main>
       <section class="hero" aria-labelledby="memo-title">
         <div class="hero-copy">
-          <p class="subline">Founder Memo</p>
-          <h1 id="memo-title">Why trust needs an external standard.</h1>
-          <p>
-            This memo sits beneath the public signal and the method. It states the operating claim behind Norynthe:
-            AI systems are not only probabilistic, they are interpretive, and they should not be trusted without an
-            external standard capable of scoring what they preserve, compress, and normalize under the appearance of coherence.
-          </p>
-          <div class="meta" aria-label="Founder memo markers">
-            <span>Founder View</span>
-            <span>Interpretive Integrity</span>
-            <span>Trust Infrastructure</span>
+          <div class="hero-main">
+            <p class="subline">Founder Memo</p>
+            <h1 id="memo-title">Why trust needs an external standard.</h1>
+          </div>
+          <div class="hero-detail">
+            <p>
+              This memo sits beneath the public signal and the method. It states the operating claim behind Norynthe:
+              AI systems are not only probabilistic, they are interpretive, and they should not be trusted without an
+              external standard capable of scoring what they preserve, compress, and normalize under the appearance of coherence.
+            </p>
+            <div class="meta" aria-label="Founder memo markers">
+              <span>Founder View</span>
+              <span>Interpretive Integrity</span>
+              <span>Trust Infrastructure</span>
+            </div>
           </div>
         </div>
       </section>
