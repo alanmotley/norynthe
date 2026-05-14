@@ -8,40 +8,53 @@
     name="description"
     content="Investor overview for Norynthe, an independent AI scoring and verification infrastructure layer."
   >
+  <link rel="canonical" href="https://www.norynthe.com/norynthe-investors.html">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Norynthe.">
+  <meta property="og:title" content="Norynthe Investor Overview">
+  <meta property="og:description" content="The company opportunity, standard-forming thesis, benchmark system, assessment records, and public signal strategy behind Norynthe.">
+  <meta property="og:url" content="https://www.norynthe.com/norynthe-investors.html">
+  <meta property="og:image" content="https://www.norynthe.com/norynthe-social-card.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Norynthe Investor Overview">
+  <meta name="twitter:description" content="The investor thesis for Norynthe as independent external trust infrastructure for AI systems.">
+  <meta name="twitter:image" content="https://www.norynthe.com/norynthe-social-card.png">
   <link rel="icon" type="image/png" href="favicon.png">
   <link rel="apple-touch-icon" href="favicon.png">
   <style>
     :root {
-      --bg: #ecf1f5;
-      --paper: rgba(255, 255, 255, 0.82);
-      --paper-strong: rgba(255, 255, 255, 0.92);
-      --ink: #12171e;
-      --muted: #5c6772;
-      --line: rgba(18, 23, 30, 0.08);
-      --line-strong: rgba(50, 73, 100, 0.14);
-      --slate: #324964;
-      --signal: #7a3030;
-      --gold: #a18444;
-      --shadow: 0 22px 54px rgba(18, 23, 30, 0.08);
-      --shadow-soft: 0 12px 28px rgba(18, 23, 30, 0.05);
-      --radius-lg: 28px;
-      --radius-md: 18px;
-      --radius-sm: 12px;
-      --max: 1120px;
+      --bg: #E9EDF2;
+      --ink: #0F1115;
+      --muted: #58616A;
+      --muted-2: #6B747E;
+      --line: rgba(15, 17, 21, 0.1);
+      --line-soft: rgba(15, 17, 21, 0.07);
+      --institutional-blue: #253F63;
+      --institutional-green: #31554D;
+      --institutional-red: #753334;
+      --paper: rgba(255, 255, 255, 0.62);
+      --paper-strong: rgba(255, 255, 255, 0.86);
+      --max-width: 1180px;
+      --radius: 8px;
     }
 
     * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+
+    html {
+      scroll-behavior: smooth;
+      background: var(--bg);
+    }
+
     body {
       margin: 0;
       min-height: 100%;
+      width: 100%;
       color: var(--ink);
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       background:
-        radial-gradient(circle at 16% 14%, rgba(122, 48, 48, 0.08), transparent 26%),
-        radial-gradient(circle at 82% 12%, rgba(50, 73, 100, 0.14), transparent 28%),
-        radial-gradient(circle at 50% 46%, rgba(255, 255, 255, 0.34), transparent 38%),
-        linear-gradient(180deg, #f5f8fa 0%, #ecf1f5 52%, #f4f7f9 100%);
+        radial-gradient(circle at 78% 12%, rgba(143, 177, 203, 0.20), transparent 30%),
+        radial-gradient(circle at 18% 82%, rgba(184, 167, 106, 0.12), transparent 26%),
+        linear-gradient(180deg, #F7F9FB 0%, #E9EEF3 48%, #F2F5F7 100%);
       overflow-x: hidden;
     }
 
@@ -49,218 +62,273 @@
       content: "";
       position: fixed;
       inset: 0;
+      z-index: 0;
       pointer-events: none;
       background-image:
-        linear-gradient(rgba(18, 23, 30, 0.016) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(18, 23, 30, 0.016) 1px, transparent 1px);
-      background-size: 72px 72px;
-      opacity: 0.8;
-      z-index: -1;
+        linear-gradient(rgba(15, 17, 21, 0.018) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(15, 17, 21, 0.018) 1px, transparent 1px);
+      background-size: 56px 56px;
+      opacity: 0.36;
+      mask-image: linear-gradient(180deg, black 0%, black 76%, transparent 100%);
     }
 
     a { color: inherit; text-decoration: none; }
     img { display: block; max-width: 100%; }
+    h1, h2, h3, p { margin: 0; }
 
     .page {
-      width: min(calc(100% - 40px), var(--max));
+      position: relative;
+      z-index: 1;
+      width: min(calc(100% - 56px), var(--max-width));
       margin: 0 auto;
-      padding: 28px 0 76px;
+      padding: 30px 0 46px;
     }
 
     .topline {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 16px;
-      margin-bottom: 22px;
-      padding: 12px 16px;
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      background: rgba(255,255,255,0.62);
-      box-shadow: var(--shadow-soft);
-      color: #56616c;
-      font-size: 0.72rem;
-      letter-spacing: 0.18em;
+      gap: 1rem;
+      padding-bottom: 18px;
+      border-bottom: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 0.68rem;
+      letter-spacing: 0.22em;
       text-transform: uppercase;
-      backdrop-filter: blur(10px);
+    }
+
+    .topline-brand {
+      display: inline-flex;
+      align-items: center;
+      color: var(--ink);
+      font-size: 1.28rem;
+      line-height: 1;
+      font-weight: 800;
+      letter-spacing: 0;
+      text-transform: none;
+    }
+
+    .topline-logo {
+      width: 140px;
+      max-width: 32vw;
+      height: auto;
+    }
+
+    .topline-wordmark {
+      color: var(--ink);
+      font-size: 1.28rem;
+      font-weight: 800;
+      letter-spacing: 0;
+      text-transform: none;
     }
 
     .topline nav {
       display: flex;
       flex-wrap: wrap;
-      gap: 14px;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 22px;
+    }
+
+    .topline nav a {
+      display: inline-flex;
+      align-items: center;
+      color: #53606C;
+      font-size: 0.62rem;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      line-height: 1;
+      text-transform: uppercase;
+      transition: color 160ms ease;
+    }
+
+    .topline nav a:hover {
+      color: var(--ink);
+    }
+
+    .topline nav a:last-child {
+      min-height: 34px;
+      padding: 0 12px;
+      border: 1px solid rgba(15, 17, 21, 0.13);
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.48);
+      color: #27313B;
+      transition: border-color 160ms ease, background 160ms ease;
+    }
+
+    .topline nav a:last-child:hover {
+      border-color: rgba(51, 75, 110, 0.22);
+      background: rgba(255, 255, 255, 0.82);
     }
 
     .hero,
     .section-card,
     .ask-card {
       position: relative;
-      overflow: hidden;
       border: 1px solid var(--line);
-      border-radius: var(--radius-lg);
+      border-top: 3px solid rgba(37, 63, 99, 0.32);
+      border-radius: var(--radius);
       background: var(--paper);
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(10px);
+      overflow: hidden;
     }
 
     .hero {
-      padding: 36px 38px 34px;
-      margin-bottom: 22px;
+      margin-top: 34px;
+      padding: 30px;
       background:
-        radial-gradient(circle at 86% 16%, rgba(50, 73, 100, 0.16), transparent 28%),
-        radial-gradient(circle at 12% 88%, rgba(122, 48, 48, 0.11), transparent 24%),
-        radial-gradient(circle at 50% 44%, rgba(255,255,255,0.52), transparent 34%),
-        linear-gradient(180deg, rgba(255,255,255,0.94), rgba(248,250,252,0.92));
+        linear-gradient(180deg, rgba(255, 255, 255, 0.82), rgba(255, 255, 255, 0.58)),
+        radial-gradient(circle at 88% 16%, rgba(37, 63, 99, 0.09), transparent 28%);
+      box-shadow: 0 24px 68px rgba(15, 17, 21, 0.08);
     }
 
-    .hero::after {
+    .hero::before,
+    .ask-card::before {
       content: "";
       position: absolute;
-      inset: auto 26px 24px auto;
-      width: 240px;
-      height: 240px;
-      border-radius: 999px;
-      background: radial-gradient(circle at center, rgba(255,255,255,0.74), rgba(255,255,255,0));
-      opacity: 0.8;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(37, 63, 99, 0.038) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(37, 63, 99, 0.038) 1px, transparent 1px);
+      background-size: 34px 34px;
+      mask-image: linear-gradient(180deg, black 0%, transparent 76%);
       pointer-events: none;
     }
 
-    .back-row {
+    .hero > *,
+    .ask-card > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .utility-row {
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
-      margin-bottom: 24px;
+      gap: 0;
+      width: fit-content;
+      max-width: 100%;
+      margin-bottom: 28px;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
     }
 
-    .back-link,
-    .hero-link {
+    .utility-row a,
+    .hero-link,
+    .contact-pill {
       display: inline-flex;
       align-items: center;
-      justify-content: center;
-      min-height: 42px;
-      padding: 10px 14px;
-      border-radius: 999px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,0.8);
-      color: var(--muted);
-      font-size: 0.72rem;
-      letter-spacing: 0.14em;
+      min-height: 46px;
+      padding: 0 16px;
+      color: #2F3A45;
+      font-size: 0.6rem;
+      font-weight: 800;
+      letter-spacing: 0.15em;
+      line-height: 1;
       text-transform: uppercase;
-      box-shadow: var(--shadow-soft);
-      transition: transform 180ms ease, box-shadow 180ms ease;
+      transition: background 160ms ease, color 160ms ease, border-color 160ms ease, transform 160ms ease;
     }
 
-    .back-link:hover,
-    .hero-link:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 12px 24px rgba(18, 23, 30, 0.06);
+    .utility-row a + a,
+    .hero-link + .hero-link,
+    .contact-pill + .contact-pill {
+      border-left: 1px solid var(--line);
+    }
+
+    .utility-row a:hover,
+    .hero-link:hover,
+    .contact-pill:hover {
+      background: rgba(255, 255, 255, 0.56);
+      color: var(--ink);
     }
 
     .hero-grid {
       display: grid;
-      grid-template-columns: minmax(0, 1.25fr) minmax(280px, 0.75fr);
-      gap: 22px;
+      grid-template-columns: minmax(0, 1.18fr) minmax(300px, 0.82fr);
+      gap: 28px;
       align-items: start;
     }
 
-    .eyebrow {
-      margin: 0 0 18px;
-      color: #5a6672;
-      font-size: 0.72rem;
-      letter-spacing: 0.2em;
+    .eyebrow,
+    .glance-kicker,
+    .section-label,
+    .card-kicker,
+    .pill,
+    .materials-note strong,
+    .ask-point strong,
+    .footer-note {
+      font-weight: 800;
       text-transform: uppercase;
     }
 
-    .hero-logo {
-      width: min(360px, 64vw);
-      margin-bottom: 18px;
-      filter: drop-shadow(0 14px 24px rgba(18, 23, 30, 0.08));
+    .eyebrow {
+      margin-bottom: 14px;
+      color: var(--institutional-blue);
+      font-size: 0.64rem;
+      letter-spacing: 0.22em;
+      line-height: 1.45;
     }
 
-    h1, h2, h3 {
-      margin: 0;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      font-weight: 700;
-      letter-spacing: -0.05em;
+    .hero-logo {
+      width: 184px;
+      margin-bottom: 24px;
+    }
+
+    h1,
+    h2,
+    h3 {
+      color: var(--ink);
+      font-weight: 800;
+      letter-spacing: 0;
     }
 
     h1 {
-      max-width: 10ch;
+      max-width: 10.8ch;
       margin-bottom: 18px;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      font-weight: 700;
-      font-size: clamp(2.8rem, 6vw, 5rem);
-      line-height: 0.92;
-      letter-spacing: -0.065em;
+      font-size: clamp(3.05rem, 6.2vw, 5.15rem);
+      line-height: 0.93;
+      text-wrap: balance;
     }
 
     .lede {
-      max-width: 44rem;
-      margin: 0;
-      color: #485563;
-      font-size: 1.04rem;
-      line-height: 1.86;
+      max-width: 46rem;
+      color: #2D3843;
+      font-size: 1.02rem;
+      line-height: 1.78;
     }
 
     .hero-links {
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 22px;
+      gap: 0;
+      width: fit-content;
+      max-width: 100%;
+      margin-top: 24px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.34);
+      overflow: hidden;
     }
 
     .hero-link.primary {
-      background: #0f1115;
-      color: #fff;
-      border-color: #0f1115;
-      box-shadow: 0 14px 28px rgba(18, 23, 30, 0.12);
+      color: var(--institutional-red);
     }
 
     .hero-pills {
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
+      gap: 12px;
       margin-top: 24px;
-    }
-
-    .materials-note {
-      margin-top: 18px;
-      padding: 14px 16px;
-      border-radius: 18px;
-      border: 1px solid rgba(18, 23, 30, 0.07);
-      background: rgba(255,255,255,0.58);
-      box-shadow: var(--shadow-soft);
-      color: #55616d;
-    }
-
-    .materials-note strong {
-      display: block;
-      margin-bottom: 6px;
-      color: var(--slate);
-      font-size: 0.7rem;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-    }
-
-    .materials-note span {
-      display: block;
-      font-size: 0.86rem;
-      line-height: 1.72;
     }
 
     .pill {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 10px 14px;
-      border-radius: 999px;
-      border: 1px solid rgba(18, 23, 30, 0.07);
-      background: rgba(255,255,255,0.68);
-      color: var(--muted);
-      font-size: 0.72rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      box-shadow: var(--shadow-soft);
+      padding-bottom: 8px;
+      border-bottom: 1px solid rgba(37, 63, 99, 0.24);
+      color: #43505D;
+      font-size: 0.54rem;
+      letter-spacing: 0.16em;
+      line-height: 1.35;
     }
 
     .pill::before {
@@ -268,7 +336,31 @@
       width: 6px;
       height: 6px;
       border-radius: 999px;
-      background: rgba(122, 48, 48, 0.55);
+      background: rgba(117, 51, 52, 0.56);
+    }
+
+    .materials-note {
+      max-width: 48rem;
+      margin-top: 22px;
+      padding-top: 16px;
+      border-top: 1px solid var(--line);
+      color: #3B4651;
+    }
+
+    .materials-note strong {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--institutional-red);
+      font-size: 0.56rem;
+      letter-spacing: 0.17em;
+      line-height: 1.45;
+    }
+
+    .materials-note span {
+      display: block;
+      max-width: 56ch;
+      font-size: 0.88rem;
+      line-height: 1.62;
     }
 
     .glance {
@@ -276,35 +368,52 @@
       gap: 14px;
     }
 
+    .glance-card,
+    .card,
+    .ask-point {
+      border: 1px solid var(--line-soft);
+      border-top: 2px solid rgba(37, 63, 99, 0.24);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, 0.62);
+      transition: transform 160ms ease, background 160ms ease, border-color 160ms ease, box-shadow 160ms ease;
+    }
+
+    .glance-card:hover,
+    .card:hover,
+    .ask-point:hover {
+      transform: translateY(-2px);
+      background: rgba(255, 255, 255, 0.88);
+      border-color: rgba(37, 63, 99, 0.18);
+      box-shadow: 0 18px 42px rgba(15, 17, 21, 0.06);
+    }
+
     .glance-card {
-      padding: 18px 18px 20px;
-      border-radius: 20px;
-      border: 1px solid rgba(50, 73, 100, 0.12);
-      background: rgba(255,255,255,0.76);
-      box-shadow: var(--shadow-soft);
+      min-height: 158px;
+      padding: 18px;
     }
 
-    .glance-kicker {
-      margin-bottom: 8px;
-      color: #5b6774;
-      font-size: 0.68rem;
+    .glance-kicker,
+    .section-label,
+    .card-kicker {
+      color: var(--institutional-blue);
+      font-size: 0.56rem;
       letter-spacing: 0.18em;
-      text-transform: uppercase;
+      line-height: 1.45;
     }
 
-    .glance-card h3 {
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      font-weight: 700;
-      margin-bottom: 8px;
-      font-size: 1.14rem;
-      letter-spacing: -0.04em;
+    .glance-card h3,
+    .card h3 {
+      margin: 10px 0 8px;
+      font-size: 1.12rem;
+      line-height: 1.14;
     }
 
-    .glance-card p {
-      margin: 0;
-      color: #4c5966;
-      line-height: 1.7;
-      font-size: 0.95rem;
+    .glance-card p,
+    .card p,
+    .card li {
+      color: #3E4A55;
+      font-size: 0.9rem;
+      line-height: 1.64;
     }
 
     section {
@@ -312,44 +421,40 @@
     }
 
     .section-card {
-      padding: 28px 28px 30px;
-      background: var(--paper-strong);
+      padding: 28px;
+      background: rgba(255, 255, 255, 0.56);
     }
 
     .section-head {
       display: grid;
-      gap: 10px;
-      margin-bottom: 18px;
+      gap: 11px;
+      max-width: 880px;
+      margin-bottom: 20px;
     }
 
     .section-label {
-      color: #5c6874;
-      font-size: 0.72rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
+      color: var(--institutional-red);
     }
 
     .section-head h2 {
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      font-weight: 700;
-      font-size: clamp(1.9rem, 3.6vw, 2.8rem);
-      line-height: 0.98;
-      letter-spacing: -0.055em;
+      max-width: 18ch;
+      font-size: clamp(2.08rem, 4vw, 3rem);
+      line-height: 1;
+      text-wrap: balance;
     }
 
     .section-head p {
-      margin: 0;
-      max-width: 56rem;
-      color: #4b5866;
-      line-height: 1.8;
-      font-size: 0.98rem;
+      max-width: 68ch;
+      color: #33404C;
+      font-size: 0.96rem;
+      line-height: 1.72;
     }
 
     .grid-3,
     .grid-2,
     .grid-4 {
       display: grid;
-      gap: 16px;
+      gap: 14px;
     }
 
     .grid-3 {
@@ -365,35 +470,12 @@
     }
 
     .card {
-      padding: 20px;
-      border-radius: 20px;
-      border: 1px solid rgba(18, 23, 30, 0.07);
-      background: rgba(255,255,255,0.72);
-      box-shadow: var(--shadow-soft);
+      min-height: 190px;
+      padding: 19px;
     }
 
     .card-kicker {
-      margin-bottom: 10px;
-      color: #5b6774;
-      font-size: 0.68rem;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-    }
-
-    .card h3 {
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      font-weight: 700;
-      margin-bottom: 10px;
-      font-size: 1.12rem;
-      line-height: 1.05;
-      letter-spacing: -0.04em;
-    }
-
-    .card p,
-    .card li {
-      color: #4b5865;
-      line-height: 1.72;
-      font-size: 0.95rem;
+      color: var(--institutional-blue);
     }
 
     .card ul {
@@ -402,118 +484,99 @@
     }
 
     .quote-band {
-      padding: 20px 22px;
-      border-left: 3px solid var(--signal);
-      border-radius: 18px;
-      background: rgba(122, 48, 48, 0.05);
-      color: #2b3643;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      font-size: 1.2rem;
-      font-weight: 650;
-      line-height: 1.65;
+      padding: 18px 20px;
+      border-left: 3px solid var(--institutional-red);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      background: rgba(117, 51, 52, 0.045);
+      color: #26313B;
+      font-size: 1.1rem;
+      font-weight: 800;
+      line-height: 1.56;
     }
 
     .ask-card {
-      padding: 30px;
       margin-top: 18px;
+      padding: 30px;
+      border-top-color: rgba(117, 51, 52, 0.34);
       background:
-        radial-gradient(circle at 84% 18%, rgba(50, 73, 100, 0.14), transparent 26%),
-        radial-gradient(circle at 12% 84%, rgba(122, 48, 48, 0.09), transparent 24%),
-        linear-gradient(180deg, rgba(255,255,255,0.94), rgba(249,251,252,0.95));
+        linear-gradient(180deg, rgba(255, 255, 255, 0.84), rgba(255, 255, 255, 0.58)),
+        radial-gradient(circle at 82% 14%, rgba(37, 63, 99, 0.09), transparent 26%);
     }
 
     .ask-grid {
       display: grid;
-      grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr);
-      gap: 20px;
+      grid-template-columns: minmax(0, 1.1fr) minmax(300px, 0.9fr);
+      gap: 22px;
       align-items: start;
     }
 
     .ask-copy h2 {
+      max-width: 15ch;
       margin-bottom: 14px;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      font-weight: 700;
-      font-size: clamp(2rem, 4vw, 3rem);
-      line-height: 0.96;
-      letter-spacing: -0.06em;
+      font-size: clamp(2.08rem, 4vw, 3rem);
+      line-height: 1;
+      text-wrap: balance;
     }
 
     .ask-copy p {
-      margin: 0 0 14px;
-      color: #4b5866;
-      line-height: 1.84;
-      font-size: 0.98rem;
+      max-width: 66ch;
+      margin-bottom: 14px;
+      color: #33404C;
+      font-size: 0.96rem;
+      line-height: 1.72;
     }
 
     .ask-points {
       display: grid;
-      gap: 12px;
+      gap: 14px;
     }
 
     .ask-point {
-      padding: 16px 16px 17px;
-      border-radius: 18px;
-      border: 1px solid var(--line-strong);
-      background: rgba(255,255,255,0.8);
-      box-shadow: var(--shadow-soft);
+      padding: 17px;
     }
 
     .ask-point strong {
       display: block;
-      margin-bottom: 6px;
-      font-size: 0.9rem;
-      letter-spacing: 0.02em;
-      text-transform: uppercase;
-      color: var(--slate);
+      margin-bottom: 7px;
+      color: var(--institutional-blue);
+      font-size: 0.56rem;
+      letter-spacing: 0.17em;
+      line-height: 1.45;
     }
 
     .ask-point span {
       display: block;
-      color: #4d5a67;
-      line-height: 1.72;
-      font-size: 0.93rem;
+      color: #3E4A55;
+      font-size: 0.9rem;
+      line-height: 1.64;
     }
 
     .contact-row {
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 20px;
+      gap: 0;
+      width: fit-content;
+      max-width: 100%;
+      margin-top: 22px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.34);
+      overflow: hidden;
     }
 
-    .contact-pill {
-      display: inline-flex;
-      align-items: center;
-      min-height: 42px;
-      padding: 10px 14px;
-      border-radius: 999px;
-      border: 1px solid rgba(18, 23, 30, 0.08);
-      background: rgba(255,255,255,0.78);
-      box-shadow: var(--shadow-soft);
-      color: var(--ink);
-      font-size: 0.72rem;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
+    .contact-pill:first-child {
+      color: var(--institutional-red);
     }
 
     .footer-note {
-      width: min(100%, 56rem);
-      margin: 36px auto 0;
+      margin: 30px auto 0;
+      padding-top: 24px;
+      border-top: 1px solid var(--line);
+      color: #596571;
+      font-size: 0.62rem;
+      letter-spacing: 0.13em;
+      line-height: 1.7;
       text-align: center;
-      color: var(--muted);
-      font-size: 0.74rem;
-      letter-spacing: 0.11em;
-      line-height: 1.8;
-      text-transform: uppercase;
-    }
-
-    .footer-note::before {
-      content: "";
-      display: block;
-      width: min(22vw, 180px);
-      height: 1px;
-      margin: 0 auto 16px;
-      background: linear-gradient(90deg, transparent, rgba(122, 48, 48, 0.18), transparent);
     }
 
     @media (max-width: 960px) {
@@ -524,248 +587,349 @@
       .grid-4 {
         grid-template-columns: 1fr;
       }
+
+      .grid-4 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
     }
 
     @media (max-width: 760px) {
+      body::before { display: none; }
+
       .page {
-        width: min(calc(100% - 24px), var(--max));
-        padding-top: 18px;
+        width: min(calc(100% - 24px), var(--max-width));
+        padding: 16px 0 28px;
       }
 
       .topline {
-        flex-direction: column;
-        align-items: flex-start;
+        display: grid;
+        justify-items: start;
+        gap: 14px;
+      }
+
+      .topline-logo {
+        width: 129px;
+      }
+
+      .topline nav {
+        justify-content: flex-start;
+        gap: 0.78rem 1rem;
+      }
+
+      .topline nav a {
+        font-size: 0.55rem;
+        line-height: 1.35;
+      }
+
+      .topline nav a:last-child {
+        min-height: auto;
+        padding: 0;
+        border: 0;
+        background: transparent;
       }
 
       .hero,
       .section-card,
       .ask-card {
-        padding: 24px 20px 26px;
+        padding: 20px;
+      }
+
+      .hero {
+        margin-top: 22px;
+      }
+
+      .utility-row,
+      .hero-links,
+      .contact-row {
+        display: grid;
+        width: 100%;
+      }
+
+      .utility-row a + a,
+      .hero-link + .hero-link,
+      .contact-pill + .contact-pill {
+        border-left: 0;
+        border-top: 1px solid var(--line);
+      }
+
+      h1 {
+        max-width: none;
+        font-size: 3.05rem;
+        overflow-wrap: anywhere;
+      }
+
+      .hero-logo {
+        width: 154px;
+      }
+
+      .lede,
+      .section-head p,
+      .ask-copy p {
+        font-size: 0.96rem;
+      }
+
+      .glance-card,
+      .card {
+        min-height: 0;
+      }
+
+      .grid-4 {
+        grid-template-columns: 1fr;
+      }
+
+      .section-head h2,
+      .ask-copy h2 {
+        max-width: none;
+        font-size: 2.05rem;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .topline-logo {
+        width: 116px;
+      }
+
+      h1 {
+        font-size: 2.72rem;
       }
     }
   </style>
 </head>
 <body>
   <div class="page">
-    <div class="topline">
-      <span>Investor Overview</span>
-      <nav>
-        <a href="index.html">Main Site</a>
-        <a href="market-position.html">Market Position</a>
+    <header class="topline">
+      <a class="topline-brand" href="index.html" aria-label="Norynthe. home">
+        <img
+          class="topline-logo"
+          src="norynthe-logo.png"
+          alt="Norynthe."
+          width="1200"
+          height="630"
+          loading="eager"
+          decoding="async"
+          onerror="if (!this.dataset.fallbackTried) { this.dataset.fallbackTried='true'; this.src='assets/Norynthe_master.png'; } else { this.replaceWith(Object.assign(document.createElement('span'), { className: 'topline-wordmark', textContent: 'Norynthe.' })); }"
+        >
+      </a>
+      <nav aria-label="Main navigation">
         <a href="norynthe-founder-memo.html">Founder Memo</a>
+        <a href="norynthe-investors.html" aria-current="page">Investor Overview</a>
+        <a href="market-position.html">Market Position</a>
+        <a href="mailto:hello@norynthe.com">Contact</a>
       </nav>
-    </div>
+    </header>
 
-    <section class="hero">
-      <div class="back-row">
-        <a class="back-link" href="index.html">Back To Main Site</a>
-        <a class="back-link" href="market-position.html">Market Position</a>
-        <a class="back-link" href="norynthe-founder-memo.html">Founder Memo</a>
-      </div>
-
-      <div class="hero-grid">
-        <div>
-          <p class="eyebrow">Investor Overview</p>
-          <img
-            class="hero-logo"
-            src="norynthe-logo.png"
-            alt="Norynthe"
-            onerror="if (!this.dataset.fallbackTried) { this.dataset.fallbackTried='true'; this.src='assets/Norynthe_master.png'; } else { this.style.display='none'; }"
-          >
-          <h1>The trust standard behind Norynthe.Score.</h1>
-          <p class="lede">
-            Norynthe is building an independent trust company for AI. Norynthe.Score is the public signal. The Norynthe Model
-            is the proprietary scoring engine that turns controlled benchmark assets into ranked model standing, score detail,
-            and institution-ready reporting.
-          </p>
-          <div class="hero-links">
-            <a class="hero-link primary" href="norynthe-founder-memo.html">Founder Memo</a>
-            <a class="hero-link" href="market-position.html">Market Position</a>
-            <a class="hero-link" href="index.html">Main Site</a>
-          </div>
-          <div class="hero-pills">
-            <span class="pill">Norynthe.Score</span>
-            <span class="pill">Norynthe Model</span>
-            <span class="pill">Benchmark Layer</span>
-            <span class="pill">Reporting Layer</span>
-          </div>
-          <div class="materials-note">
-            <strong>Additional Materials</strong>
-            <span>Investor materials, use-case materials, report surfaces, and the MVP demo are available by request via <a href="mailto:hello@norynthe.com">hello@norynthe.com</a>.</span>
-          </div>
+    <main>
+      <section class="hero" aria-labelledby="investor-title">
+        <div class="utility-row" aria-label="Investor overview navigation">
+          <a href="index.html">Back To Main Site</a>
+          <a href="market-position.html">Market Position</a>
+          <a href="norynthe-founder-memo.html">Founder Memo</a>
         </div>
 
-        <div class="glance">
-          <article class="glance-card">
-            <div class="glance-kicker">Category</div>
-            <h3>AI trust company</h3>
-            <p>Not a model wrapper and not a model training company. Norynthe sits outside the model as the independent scoring layer.</p>
+        <div class="hero-grid">
+          <div>
+            <p class="eyebrow">Investor Overview</p>
+            <img
+              class="hero-logo"
+              src="norynthe-logo.png"
+              alt="Norynthe"
+              onerror="if (!this.dataset.fallbackTried) { this.dataset.fallbackTried='true'; this.src='assets/Norynthe_master.png'; } else { this.style.display='none'; }"
+            >
+            <h1 id="investor-title">The trust standard behind Norynthe.<wbr>Score.</h1>
+            <p class="lede">
+              Norynthe is building an independent trust company for AI. Norynthe.Score is the public signal. The Norynthe Model
+              is the proprietary scoring engine that turns controlled benchmark assets into ranked model standing, score detail,
+              and institution-ready reporting.
+            </p>
+            <div class="hero-links" aria-label="Investor overview primary links">
+              <a class="hero-link primary" href="norynthe-founder-memo.html">Founder Memo</a>
+              <a class="hero-link" href="market-position.html">Market Position</a>
+              <a class="hero-link" href="index.html">Main Site</a>
+            </div>
+            <div class="hero-pills" aria-label="Norynthe investor pillars">
+              <span class="pill">Norynthe.Score</span>
+              <span class="pill">Norynthe Model</span>
+              <span class="pill">Benchmark Layer</span>
+              <span class="pill">Reporting Layer</span>
+            </div>
+            <div class="materials-note">
+              <strong>Additional Materials</strong>
+              <span>Investor materials, use-case materials, report surfaces, and the MVP demo are available by request via <a href="mailto:hello@norynthe.com">hello@norynthe.com</a>.</span>
+            </div>
+          </div>
+
+          <div class="glance" aria-label="Investor overview at a glance">
+            <article class="glance-card">
+              <div class="glance-kicker">Category</div>
+              <h3>AI trust company</h3>
+              <p>Not a model wrapper and not a model training company. Norynthe sits outside the model as the independent scoring layer.</p>
+            </article>
+            <article class="glance-card">
+              <div class="glance-kicker">Core Question</div>
+              <h3>Which model has standing under an external standard?</h3>
+              <p>When multiple models appear capable, Norynthe helps enterprises decide which one is strongest for consequential use and why.</p>
+            </article>
+            <article class="glance-card">
+              <div class="glance-kicker">Why It Matters</div>
+              <h3>Trust is becoming a budgeted decision</h3>
+              <p>As AI moves into procurement, regulated review, and operational workflows, trust becomes infrastructure rather than marketing.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-card" aria-labelledby="why-company-title">
+        <div class="section-head">
+          <div class="section-label">Why This Company</div>
+          <h2 id="why-company-title">Independent scoring becomes infrastructure.</h2>
+          <p>
+            Most AI evaluation still collapses into demos, brand perception, leaderboard headlines, or provider-controlled benchmarks.
+            Norynthe starts from a different premise: enterprises need a governed basis for deciding how probabilistic systems should
+            be interpreted, trusted, compared, and operationalized.
+          </p>
+        </div>
+        <div class="quote-band">
+          The opportunity is larger than model scoring alone. The deeper category is enterprise judgment around probabilistic systems.
+        </div>
+      </section>
+
+      <section class="section-card" aria-labelledby="why-now-title">
+        <div class="section-head">
+          <div class="section-label">Why Now</div>
+          <h2 id="why-now-title">AI adoption is moving faster than external scoring.</h2>
+          <p>
+            That timing gap creates room for a company that is benchmark-owned, rubric-governed, and enterprise-legible from the start.
+            The investor case is not only that AI is growing. It is that the governance and trust layer around AI remains materially underbuilt.
+          </p>
+        </div>
+        <div class="grid-3">
+          <article class="card">
+            <div class="card-kicker">Pressure</div>
+            <h3>Enterprise model choice is now a real decision</h3>
+            <p>Organizations are choosing systems for workflows with procurement, policy, legal, and operational consequences.</p>
           </article>
-          <article class="glance-card">
-            <div class="glance-kicker">Core Question</div>
-            <h3>Which model has standing under an external standard?</h3>
-            <p>When multiple models appear capable, Norynthe helps enterprises decide which one is strongest for consequential use and why.</p>
+          <article class="card">
+            <div class="card-kicker">Gap</div>
+            <h3>Independent trust standards are still scarce</h3>
+            <p>Most current evaluation surfaces are either too narrow, too vendor-shaped, or too weakly explained to support consequential use.</p>
           </article>
-          <article class="glance-card">
-            <div class="glance-kicker">Why It Matters</div>
-            <h3>Trust is becoming a budgeted decision</h3>
-            <p>As AI moves into procurement, regulated review, and operational workflows, trust becomes infrastructure rather than marketing.</p>
+          <article class="card">
+            <div class="card-kicker">Opening</div>
+            <h3>The trust layer becomes a durable category</h3>
+            <p>If enterprises need a governed external standard, the evaluation layer itself becomes strategic infrastructure rather than tooling garnish.</p>
           </article>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section class="section-card">
-      <div class="section-head">
-        <div class="section-label">Why This Company</div>
-        <h2>Independent scoring becomes infrastructure.</h2>
-        <p>
-          Most AI evaluation still collapses into demos, brand perception, leaderboard headlines, or provider-controlled benchmarks.
-          Norynthe starts from a different premise: enterprises need a governed basis for deciding how probabilistic systems should
-          be interpreted, trusted, compared, and operationalized.
-        </p>
-      </div>
-      <div class="quote-band">
-        The opportunity is larger than model scoring alone. The deeper category is enterprise judgment around probabilistic systems.
-      </div>
-    </section>
-
-    <section class="section-card">
-      <div class="section-head">
-        <div class="section-label">Why Now</div>
-        <h2>AI adoption is moving faster than external scoring.</h2>
-        <p>
-          That timing gap creates room for a company that is benchmark-owned, rubric-governed, and enterprise-legible from the start.
-          The investor case is not only that AI is growing. It is that the governance and trust layer around AI remains materially underbuilt.
-        </p>
-      </div>
-      <div class="grid-3">
-        <article class="card">
-          <div class="card-kicker">Pressure</div>
-          <h3>Enterprise model choice is now a real decision</h3>
-          <p>Organizations are choosing systems for workflows with procurement, policy, legal, and operational consequences.</p>
-        </article>
-        <article class="card">
-          <div class="card-kicker">Gap</div>
-          <h3>Independent trust standards are still scarce</h3>
-          <p>Most current evaluation surfaces are either too narrow, too vendor-shaped, or too weakly explained to support consequential use.</p>
-        </article>
-        <article class="card">
-          <div class="card-kicker">Opening</div>
-          <h3>The trust layer becomes a durable category</h3>
-          <p>If enterprises need a governed external standard, the evaluation layer itself becomes strategic infrastructure rather than tooling garnish.</p>
-        </article>
-      </div>
-    </section>
-
-    <section class="section-card">
-      <div class="section-head">
-        <div class="section-label">What Exists Today</div>
-        <h2>The system already has public signal, internal method, and reporting depth.</h2>
-        <p>
-          Norynthe already has a working public layer, a controlled internal method, strategic supporting materials, and reporting surfaces that make the system legible to buyers, researchers, and investors.
-        </p>
-      </div>
-      <div class="grid-4">
-        <article class="card">
-          <div class="card-kicker">Method</div>
-          <h3>Method Layer</h3>
-          <p>Controlled method documents covering scoring, comparison, verification, and interpretive integrity under the Norynthe standard.</p>
-        </article>
-        <article class="card">
-          <div class="card-kicker">Surface</div>
-          <h3>Report Layer</h3>
-          <p>Reporting surfaces that turn the score into an evidence-backed decision artifact.</p>
-        </article>
-        <article class="card">
-          <div class="card-kicker">Strategic Materials</div>
-          <h3>Founder + Institutional Context</h3>
-          <p>Supporting materials that connect the standard to procurement, governance, and deployment decisions.</p>
-        </article>
-        <article class="card">
-          <div class="card-kicker">Architecture</div>
-          <h3>Scoring Architecture</h3>
-          <p>Public score dimensions, diagnostic lenses, deterministic resolution, and a calibration layer under Norynthe control.</p>
-        </article>
-      </div>
-    </section>
-
-    <section class="section-card">
-      <div class="section-head">
-        <div class="section-label">Why It Can Be Defensible</div>
-        <h2>The asset is the benchmark layer, scoring engine, and reporting authority.</h2>
-        <p>
-          Norynthe becomes more defensible as the benchmark, rubric governance, reporting system, and verification layer harden together.
-          Over time, the owned-compute path strengthens that defensibility by turning evaluator behavior into something the company can control,
-          protect, and improve directly.
-        </p>
-      </div>
-      <div class="grid-3">
-        <article class="card">
-          <div class="card-kicker">Governance</div>
-          <h3>Workbook ownership</h3>
-          <p>The rubric, calibration suite, anchor examples, and revision logic create a governed standard rather than a prompt hack.</p>
-        </article>
-        <article class="card">
-          <div class="card-kicker">Product</div>
-          <h3>Norynthe.Score + Reports</h3>
-          <p>The public signal is legible to the market, and the reporting layer adds deeper score detail for institutional use.</p>
-        </article>
-        <article class="card">
-          <div class="card-kicker">Infrastructure</div>
-          <h3>Evaluator control path</h3>
-          <p>Owning more of the evaluator layer over time creates a stronger asset base than a company built only on rented inference.</p>
-        </article>
-      </div>
-    </section>
-
-    <section class="ask-card">
-      <div class="ask-grid">
-        <div class="ask-copy">
-          <p class="eyebrow">The Ask</p>
-          <h2>Capital should harden the scoring engine.</h2>
+      <section class="section-card" aria-labelledby="exists-title">
+        <div class="section-head">
+          <div class="section-label">What Exists Today</div>
+          <h2 id="exists-title">The system already has public signal, internal method, and reporting depth.</h2>
           <p>
-            Norynthe is preparing for aligned investor conversations around the next build phase. The goal is not simply to fund more pages
-            or more prompt experiments. It is to harden the benchmark, evaluator, reporting, and enterprise-deployment layers into a real trust product.
+            Norynthe already has a working public layer, a controlled internal method, strategic supporting materials, and reporting surfaces that make the system legible to buyers, researchers, and investors.
           </p>
+        </div>
+        <div class="grid-4">
+          <article class="card">
+            <div class="card-kicker">Method</div>
+            <h3>Method Layer</h3>
+            <p>Controlled method documents covering scoring, comparison, verification, and interpretive integrity under the Norynthe standard.</p>
+          </article>
+          <article class="card">
+            <div class="card-kicker">Surface</div>
+            <h3>Report Layer</h3>
+            <p>Reporting surfaces that turn the score into an evidence-backed decision artifact.</p>
+          </article>
+          <article class="card">
+            <div class="card-kicker">Strategic Materials</div>
+            <h3>Founder + Institutional Context</h3>
+            <p>Supporting materials that connect the standard to procurement, governance, and deployment decisions.</p>
+          </article>
+          <article class="card">
+            <div class="card-kicker">Architecture</div>
+            <h3>Scoring Architecture</h3>
+            <p>Public score dimensions, diagnostic lenses, deterministic resolution, and a calibration layer under Norynthe control.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section-card" aria-labelledby="defensible-title">
+        <div class="section-head">
+          <div class="section-label">Why It Can Be Defensible</div>
+          <h2 id="defensible-title">The asset is the benchmark layer, scoring engine, and reporting authority.</h2>
           <p>
-            The right investors for this company will understand that the category is not “yet another AI app.” It is independent trust infrastructure
-            for a world where probabilistic systems increasingly shape enterprise decisions.
+            Norynthe becomes more defensible as the benchmark, rubric governance, reporting system, and verification layer harden together.
+            Over time, the owned-compute path strengthens that defensibility by turning evaluator behavior into something the company can control,
+            protect, and improve directly.
           </p>
-          <p>
-            Detailed fundraising structure can be shared directly in conversation. This page is meant to clarify the thesis, the asset logic,
-            and what capital is intended to harden.
-          </p>
-          <p>
-            White paper access, use-case documents, and a guided MVP demo are available on request for qualified investor conversations.
-          </p>
-          <div class="contact-row">
-            <a class="contact-pill" href="mailto:hello@norynthe.com">hello@norynthe.com</a>
-            <a class="contact-pill" href="market-position.html">Market Position</a>
-            <a class="contact-pill" href="norynthe-founder-memo.html">Founder Memo</a>
-            <a class="contact-pill" href="index.html">Main Site</a>
+        </div>
+        <div class="grid-3">
+          <article class="card">
+            <div class="card-kicker">Governance</div>
+            <h3>Workbook ownership</h3>
+            <p>The rubric, calibration suite, anchor examples, and revision logic create a governed standard rather than a prompt hack.</p>
+          </article>
+          <article class="card">
+            <div class="card-kicker">Product</div>
+            <h3>Norynthe.Score + Reports</h3>
+            <p>The public signal is legible to the market, and the reporting layer adds deeper score detail for institutional use.</p>
+          </article>
+          <article class="card">
+            <div class="card-kicker">Infrastructure</div>
+            <h3>Evaluator control path</h3>
+            <p>Owning more of the evaluator layer over time creates a stronger asset base than a company built only on rented inference.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="ask-card" aria-labelledby="ask-title">
+        <div class="ask-grid">
+          <div class="ask-copy">
+            <p class="eyebrow">The Ask</p>
+            <h2 id="ask-title">Capital should harden the scoring engine.</h2>
+            <p>
+              Norynthe is preparing for aligned investor conversations around the next build phase. The goal is not simply to fund more pages
+              or more prompt experiments. It is to harden the benchmark, evaluator, reporting, and enterprise-deployment layers into a real trust product.
+            </p>
+            <p>
+              The right investors for this company will understand that the category is not “yet another AI app.” It is independent trust infrastructure
+              for a world where probabilistic systems increasingly shape enterprise decisions.
+            </p>
+            <p>
+              Detailed fundraising structure can be shared directly in conversation. This page is meant to clarify the thesis, the asset logic,
+              and what capital is intended to harden.
+            </p>
+            <p>
+              White paper access, use-case documents, and a guided MVP demo are available on request for qualified investor conversations.
+            </p>
+            <div class="contact-row" aria-label="Investor contact links">
+              <a class="contact-pill" href="mailto:hello@norynthe.com">hello@norynthe.com</a>
+              <a class="contact-pill" href="market-position.html">Market Position</a>
+              <a class="contact-pill" href="norynthe-founder-memo.html">Founder Memo</a>
+              <a class="contact-pill" href="index.html">Main Site</a>
+            </div>
+          </div>
+          <div class="ask-points">
+            <div class="ask-point">
+              <strong>Benchmark Expansion</strong>
+              <span>Broaden the governed benchmark and deepen calibration so the standard becomes stronger and harder to replicate superficially.</span>
+            </div>
+            <div class="ask-point">
+              <strong>Evaluator Hardening</strong>
+              <span>Advance the scorer, critic, resolver, and verification layers into a more durable and enterprise-ready system.</span>
+            </div>
+            <div class="ask-point">
+              <strong>Enterprise Pilots</strong>
+              <span>Translate the framework into real organizational selection, governance, and deployment workflows with serious users.</span>
+            </div>
+            <div class="ask-point">
+              <strong>Owned Compute Path</strong>
+              <span>Create a credible route toward direct control of the evaluator layer as the company’s trust infrastructure position strengthens.</span>
+            </div>
           </div>
         </div>
-        <div class="ask-points">
-          <div class="ask-point">
-            <strong>Benchmark Expansion</strong>
-            <span>Broaden the governed benchmark and deepen calibration so the standard becomes stronger and harder to replicate superficially.</span>
-          </div>
-          <div class="ask-point">
-            <strong>Evaluator Hardening</strong>
-            <span>Advance the scorer, critic, resolver, and verification layers into a more durable and enterprise-ready system.</span>
-          </div>
-          <div class="ask-point">
-            <strong>Enterprise Pilots</strong>
-            <span>Translate the framework into real organizational selection, governance, and deployment workflows with serious users.</span>
-          </div>
-          <div class="ask-point">
-            <strong>Owned Compute Path</strong>
-            <span>Create a credible route toward direct control of the evaluator layer as the company’s trust infrastructure position strengthens.</span>
-          </div>
-        </div>
-      </div>
-    </section>
+      </section>
+    </main>
 
     <p class="footer-note">Norynthe Investor Overview · Public signal, private method, controlled benchmark layer · © 2026 Norynthe.</p>
   </div>
