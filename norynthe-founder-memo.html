@@ -3,456 +3,747 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Norynthe Founder Memo</title>
+  <title>Norynthe Founder Memo | Why Trust Needs an External Standard</title>
   <meta
     name="description"
     content="A founder memo on why Norynthe exists and why independent AI trust infrastructure matters."
   >
-  <link rel="icon" type="image/png" href="favicon.png">
-  <link rel="apple-touch-icon" href="favicon.png">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta name="theme-color" content="#E9EDF2">
+  <link rel="canonical" href="https://www.norynthe.com/norynthe-founder-memo.html">
+
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Norynthe.">
+  <meta property="og:title" content="Norynthe Founder Memo | Why Trust Needs an External Standard">
+  <meta property="og:description" content="Why independent AI trust infrastructure matters, and why model providers should not be the only source of truth for model trust.">
+  <meta property="og:url" content="https://www.norynthe.com/norynthe-founder-memo.html">
+  <meta property="og:image" content="https://www.norynthe.com/norynthe-social-card.png">
+  <meta property="og:image:alt" content="Norynthe. independent AI evaluation and trust scoring">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Norynthe Founder Memo | Why Trust Needs an External Standard">
+  <meta name="twitter:description" content="A founder memo on why Norynthe exists and why independent AI trust infrastructure matters.">
+  <meta name="twitter:image" content="https://www.norynthe.com/norynthe-social-card.png">
+
+  <link rel="icon" href="/favicon.png">
+  <link rel="apple-touch-icon" href="/favicon.png">
+
   <style>
     :root {
-      --bg: #edf2f5;
-      --paper: rgba(252, 253, 254, 0.9);
-      --paper-strong: rgba(255, 255, 255, 0.94);
-      --ink: #13181f;
-      --muted: #5d6873;
-      --line: rgba(41, 56, 78, 0.11);
-      --slate: #324964;
-      --signal: #7a3030;
-      --shadow: 0 22px 52px rgba(19, 23, 28, 0.07);
-      --shadow-soft: 0 10px 24px rgba(19, 23, 28, 0.045);
-      --shadow-mist: 0 28px 70px rgba(19, 23, 28, 0.08);
-      --radius-lg: 28px;
-      --radius-md: 18px;
-      --max: 940px;
+      --bg: #E9EDF2;
+      --ink: #0F1115;
+      --muted: #58616A;
+      --muted-2: #6B747E;
+      --line: rgba(15, 17, 21, 0.1);
+      --line-soft: rgba(15, 17, 21, 0.07);
+      --institutional-blue: #253F63;
+      --institutional-red: #753334;
+      --paper: rgba(255, 255, 255, 0.62);
+      --paper-strong: rgba(255, 255, 255, 0.86);
+      --max-width: 1180px;
+      --reader-width: 900px;
+      --radius: 8px;
     }
 
     * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+
+    html {
+      scroll-behavior: smooth;
+      background: var(--bg);
+    }
+
     body {
       margin: 0;
       min-height: 100%;
+      width: 100%;
       color: var(--ink);
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       background:
-        radial-gradient(circle at 18% 14%, rgba(122, 48, 48, 0.08), transparent 24%),
-        radial-gradient(circle at 82% 10%, rgba(50, 73, 100, 0.11), transparent 28%),
-        linear-gradient(180deg, #f5f8fa 0%, #edf2f5 48%, #f6f8fa 100%);
+        radial-gradient(circle at 78% 12%, rgba(143, 177, 203, 0.20), transparent 30%),
+        radial-gradient(circle at 18% 82%, rgba(184, 167, 106, 0.12), transparent 26%),
+        linear-gradient(180deg, #F7F9FB 0%, #E9EEF3 48%, #F2F5F7 100%);
+      overflow-x: hidden;
     }
 
     body::before {
       content: "";
       position: fixed;
       inset: 0;
+      z-index: 0;
       pointer-events: none;
       background-image:
-        linear-gradient(rgba(19, 23, 28, 0.015) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(19, 23, 28, 0.015) 1px, transparent 1px);
-      background-size: 72px 72px;
-      opacity: 0.75;
-      z-index: -1;
+        linear-gradient(rgba(15, 17, 21, 0.018) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(15, 17, 21, 0.018) 1px, transparent 1px);
+      background-size: 56px 56px;
+      opacity: 0.36;
+      mask-image: linear-gradient(180deg, black 0%, black 76%, transparent 100%);
     }
 
     a { color: inherit; text-decoration: none; }
     img { display: block; max-width: 100%; }
+    h1, h2, h3, p, blockquote { margin: 0; }
 
     .page {
-      width: min(calc(100% - 40px), var(--max));
+      position: relative;
+      z-index: 1;
+      width: min(calc(100% - 56px), var(--max-width));
       margin: 0 auto;
-      padding: 30px 0 76px;
+      padding: 30px 0 46px;
     }
 
     .topline {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 16px;
-      margin-bottom: 22px;
-      padding: 12px 16px;
-      color: #556472;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      font-size: 0.72rem;
-      letter-spacing: 0.18em;
+      gap: 1rem;
+      padding-bottom: 18px;
+      border-bottom: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 0.68rem;
+      letter-spacing: 0.22em;
       text-transform: uppercase;
-      border: 1px solid rgba(41, 56, 78, 0.09);
-      border-radius: 999px;
-      background: rgba(255,255,255,0.62);
-      backdrop-filter: blur(10px);
-      box-shadow: var(--shadow-soft);
     }
 
-    .topline nav {
+    .topline-brand {
+      display: inline-flex;
+      align-items: center;
+      color: var(--ink);
+      font-size: 1.28rem;
+      line-height: 1;
+      font-weight: 800;
+      letter-spacing: 0;
+      text-transform: none;
+    }
+
+    .topline-logo {
+      width: 140px;
+      max-width: 32vw;
+      height: auto;
+    }
+
+    .topline-wordmark {
+      color: var(--ink);
+      font-size: 1.28rem;
+      font-weight: 800;
+      letter-spacing: 0;
+      text-transform: none;
+    }
+
+    .topline-nav {
       display: flex;
       flex-wrap: wrap;
-      gap: 14px;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 22px;
+    }
+
+    .topline-nav a {
+      display: inline-flex;
+      align-items: center;
+      color: #53606C;
+      font-size: 0.62rem;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      line-height: 1;
+      text-transform: uppercase;
+      transition: color 160ms ease;
+    }
+
+    .topline-nav a:hover {
+      color: var(--ink);
+    }
+
+    .topline-nav .contact-link {
+      min-height: 34px;
+      padding: 0 12px;
+      border: 1px solid rgba(15, 17, 21, 0.13);
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.48);
+      color: #27313B;
+      transition: border-color 160ms ease, background 160ms ease;
+    }
+
+    .topline-nav .contact-link:hover {
+      border-color: rgba(51, 75, 110, 0.22);
+      background: rgba(255, 255, 255, 0.82);
     }
 
     .hero,
-    .memo {
-      background: var(--paper);
+    .memo-card,
+    .surface-card,
+    .ledger-card {
+      position: relative;
       border: 1px solid var(--line);
-      border-radius: var(--radius-lg);
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(10px);
+      border-top: 3px solid rgba(37, 63, 99, 0.32);
+      border-radius: var(--radius);
+      background: var(--paper);
+      overflow: hidden;
+    }
+
+    .hero,
+    .memo-card,
+    .surface-card {
+      box-shadow: 0 24px 68px rgba(15, 17, 21, 0.08);
     }
 
     .hero {
-      position: relative;
-      overflow: hidden;
-      padding: 36px 38px 34px;
-      margin-bottom: 24px;
+      margin-top: 34px;
+      padding: 30px;
       background:
-        radial-gradient(circle at 85% 16%, rgba(50, 73, 100, 0.15), transparent 28%),
-        radial-gradient(circle at 10% 88%, rgba(122, 48, 48, 0.10), transparent 24%),
-        radial-gradient(circle at 50% 44%, rgba(255,255,255,0.5), transparent 34%),
-        linear-gradient(180deg, rgba(252, 253, 254, 0.95), rgba(248, 250, 252, 0.93));
-      box-shadow: var(--shadow-mist);
+        linear-gradient(180deg, rgba(255, 255, 255, 0.82), rgba(255, 255, 255, 0.58)),
+        radial-gradient(circle at 88% 16%, rgba(37, 63, 99, 0.09), transparent 28%);
     }
 
-    .hero::after {
+    .hero::before,
+    .surface-card::before,
+    .memo-card::before {
       content: "";
       position: absolute;
-      inset: auto 28px 24px auto;
-      width: 220px;
-      height: 220px;
-      border-radius: 999px;
-      background: radial-gradient(circle at center, rgba(255,255,255,0.75), rgba(255,255,255,0));
-      opacity: 0.82;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(37, 63, 99, 0.038) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(37, 63, 99, 0.038) 1px, transparent 1px);
+      background-size: 34px 34px;
+      mask-image: linear-gradient(180deg, black 0%, transparent 74%);
       pointer-events: none;
     }
 
-    .back-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-bottom: 20px;
+    .hero > *,
+    .surface-card > *,
+    .memo-card > * {
+      position: relative;
+      z-index: 1;
     }
 
-    .back-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 10px 14px;
-      border-radius: 999px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,0.84);
-      color: var(--muted);
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      font-size: 0.72rem;
-      letter-spacing: 0.14em;
+    .subline,
+    .eyebrow,
+    .meta span,
+    .card-eyebrow,
+    .footer small {
+      font-weight: 800;
       text-transform: uppercase;
-      box-shadow: var(--shadow-soft);
-      transition: transform 180ms ease, box-shadow 180ms ease;
     }
 
-    .back-link:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 12px 24px rgba(19, 23, 28, 0.06);
-    }
-
-    .hero-logo {
-      width: min(360px, 62vw);
-      margin-bottom: 18px;
-      filter: drop-shadow(0 14px 24px rgba(19, 23, 28, 0.08));
-    }
-
+    .subline,
     .eyebrow {
-      margin: 0 0 16px;
-      color: #5c6875;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      font-size: 0.72rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
+      color: var(--institutional-blue);
+      font-size: 0.64rem;
+      letter-spacing: 0.22em;
+      line-height: 1.45;
+    }
+
+    .subline {
+      margin-bottom: 18px;
+    }
+
+    h1,
+    h2,
+    h3 {
+      color: var(--ink);
+      font-weight: 800;
+      letter-spacing: 0;
     }
 
     h1 {
-      margin: 0 0 16px;
-      max-width: 11ch;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      font-weight: 700;
-      font-size: clamp(2.5rem, 5vw, 4.2rem);
-      line-height: 0.94;
-      letter-spacing: -0.065em;
+      max-width: 12.5ch;
+      margin-bottom: 18px;
+      font-size: clamp(3.2rem, 6.2vw, 5.05rem);
+      line-height: 0.93;
+      text-wrap: balance;
     }
 
-    .subtitle {
-      margin: 0;
-      max-width: 42rem;
-      color: #4c5a67;
+    .hero-copy {
+      max-width: 880px;
+    }
+
+    .hero-copy > p {
+      max-width: 66ch;
+      color: #2D3843;
       font-size: 1.02rem;
-      line-height: 1.9;
+      line-height: 1.78;
     }
 
     .meta {
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 22px;
+      gap: 12px;
+      margin-top: 24px;
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
     }
 
     .meta span {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 10px 14px;
-      border-radius: 999px;
-      border: 1px solid rgba(50, 73, 100, 0.12);
-      background: linear-gradient(180deg, rgba(255,255,255,0.84), rgba(249,251,252,0.9));
-      color: #4f5d6a;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      font-size: 0.72rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      box-shadow: var(--shadow-soft);
+      padding-bottom: 8px;
+      border-bottom: 1px solid rgba(37, 63, 99, 0.24);
+      color: #43505D;
+      font-size: 0.54rem;
+      letter-spacing: 0.16em;
+      line-height: 1.35;
     }
 
-    .memo {
-      position: relative;
-      overflow: hidden;
-      padding: 40px 42px 46px;
-      background:
-        linear-gradient(180deg, rgba(255,255,255,0.88), rgba(248,250,252,0.92));
-    }
-
-    .memo::before {
+    .meta span::before {
       content: "";
-      position: absolute;
-      inset: 0 auto auto 0;
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: rgba(117, 51, 52, 0.56);
+    }
+
+    main > section {
+      margin-top: 18px;
+    }
+
+    .surface-card {
+      padding: 28px;
+      background: rgba(255, 255, 255, 0.56);
+    }
+
+    .surface-head {
+      max-width: 820px;
+    }
+
+    .eyebrow {
+      margin-bottom: 11px;
+      color: var(--institutional-red);
+    }
+
+    .surface-head h2 {
+      max-width: 17ch;
+      font-size: clamp(2.08rem, 4vw, 3rem);
+      line-height: 1;
+      text-wrap: balance;
+    }
+
+    .surface-head p {
+      max-width: 68ch;
+      margin-top: 11px;
+      color: #33404C;
+      font-size: 0.96rem;
+      line-height: 1.72;
+    }
+
+    .memo-card {
       width: 100%;
-      height: 1px;
-      background: linear-gradient(90deg, rgba(50, 73, 100, 0.28), rgba(122, 48, 48, 0.16), transparent 72%);
-      pointer-events: none;
+      margin: 18px 0 0;
+      padding: 34px;
+      background: rgba(255, 255, 255, 0.72);
+    }
+
+    .memo-card > .memo-intro,
+    .memo-card > .memo-section,
+    .memo-card > blockquote,
+    .memo-card > .closing {
+      max-width: var(--reader-width);
+      margin-left: auto;
+      margin-right: auto;
     }
 
     .memo-intro {
-      padding: 20px 22px;
-      margin-bottom: 30px;
-      border: 1px solid rgba(50, 73, 100, 0.11);
-      border-radius: var(--radius-md);
-      background:
-        radial-gradient(circle at top right, rgba(50, 73, 100, 0.06), transparent 34%),
-        linear-gradient(180deg, rgba(255,255,255,0.84), rgba(249,251,252,0.9));
-      box-shadow: var(--shadow-soft);
+      padding: 18px 20px;
+      margin-bottom: 28px;
+      border-left: 3px solid var(--institutional-red);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      background: rgba(117, 51, 52, 0.045);
+      color: #26313B;
+      font-size: 1.06rem;
+      font-weight: 800;
+      line-height: 1.62;
     }
 
-    .memo-intro p {
-      margin: 0;
-      color: #43515f;
+    .memo-section {
+      margin-top: 32px;
+    }
+
+    .memo-section h2,
+    .closing h2 {
+      margin-bottom: 12px;
+      font-size: clamp(1.55rem, 2.7vw, 2.12rem);
+      line-height: 1.06;
+      text-wrap: balance;
+    }
+
+    .memo-section p,
+    .closing p {
+      margin-top: 14px;
+      color: #202A34;
       font-size: 1rem;
-      line-height: 1.82;
-    }
-
-    h2 {
-      margin: 36px 0 12px;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      font-weight: 700;
-      font-size: clamp(1.55rem, 2.8vw, 2rem);
-      line-height: 1.02;
-      letter-spacing: -0.055em;
-    }
-
-    p {
-      margin: 0 0 16px;
-      font-size: 1.03rem;
-      line-height: 1.92;
-      color: #202833;
+      line-height: 1.86;
     }
 
     blockquote {
-      margin: 24px 0 26px;
-      padding: 20px 22px;
-      border-left: 3px solid rgba(122, 48, 48, 0.72);
-      border-radius: 14px;
-      color: #2d3946;
-      background:
-        linear-gradient(180deg, rgba(255,255,255,0.82), rgba(248,250,252,0.88));
-      box-shadow: 0 8px 20px rgba(19, 23, 28, 0.04);
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      font-size: 1.03rem;
-      font-weight: 650;
-      line-height: 1.85;
+      margin: 30px 0;
+      padding: 18px 20px;
+      border-left: 3px solid var(--institutional-red);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      background: rgba(117, 51, 52, 0.045);
+      color: #26313B;
+      font-size: 1.08rem;
+      font-weight: 800;
+      line-height: 1.62;
     }
 
     .closing {
-      margin-top: 30px;
-      padding-top: 22px;
-      border-top: 1px solid rgba(41, 56, 78, 0.10);
+      margin-top: 34px;
+      padding-top: 26px;
+      border-top: 1px solid var(--line);
     }
 
     .signoff {
       margin-top: 24px;
-      color: #45525f;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      font-size: 0.78rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      line-height: 1.8;
-    }
-
-    .footer-note {
-      width: min(100%, 54rem);
-      margin: 3.8rem auto 0;
-      text-align: center;
-      color: var(--muted);
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      font-size: 0.74rem;
-      letter-spacing: 0.1em;
+      color: var(--institutional-blue);
+      font-size: 0.58rem;
+      font-weight: 800;
+      letter-spacing: 0.16em;
       line-height: 1.8;
       text-transform: uppercase;
     }
 
-    .footer-note::before {
-      content: "";
+    .memo-ledger {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .ledger-card {
+      min-height: 190px;
+      padding: 19px;
+      background: rgba(255, 255, 255, 0.62);
+      transition: transform 160ms ease, background 160ms ease, border-color 160ms ease, box-shadow 160ms ease;
+    }
+
+    .ledger-card:hover {
+      transform: translateY(-2px);
+      background: rgba(255, 255, 255, 0.88);
+      border-color: rgba(37, 63, 99, 0.18);
+      box-shadow: 0 18px 42px rgba(15, 17, 21, 0.06);
+    }
+
+    .card-eyebrow {
+      display: inline-flex;
+      color: var(--institutional-blue);
+      font-size: 0.56rem;
+      letter-spacing: 0.18em;
+      line-height: 1.45;
+    }
+
+    .card-eyebrow.capital {
+      color: var(--institutional-red);
+    }
+
+    .ledger-card h3 {
+      margin: 10px 0 8px;
+      font-size: 1.12rem;
+      line-height: 1.14;
+    }
+
+    .ledger-card p {
+      color: #3E4A55;
+      font-size: 0.9rem;
+      line-height: 1.64;
+    }
+
+    .footer {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 14px 24px;
+      margin-top: 30px;
+      padding-top: 26px;
+      border-top: 1px solid var(--line);
+      color: #596571;
+      font-size: 0.68rem;
+      letter-spacing: 0.18em;
+      line-height: 1.6;
+      text-transform: uppercase;
+    }
+
+    .footer small {
       display: block;
-      width: min(22vw, 180px);
-      height: 1px;
-      margin: 0 auto 1rem;
-      background: linear-gradient(90deg, transparent, rgba(122, 48, 48, 0.18), transparent);
+      margin-top: 5px;
+      color: #717B84;
+      font-size: 0.62rem;
+      letter-spacing: 0.12em;
+    }
+
+    .footer div:last-child {
+      text-align: right;
+    }
+
+    @media (max-width: 960px) {
+      .memo-ledger,
+      .footer {
+        grid-template-columns: 1fr;
+      }
+
+      .footer div:last-child {
+        text-align: left;
+      }
     }
 
     @media (max-width: 760px) {
+      body::before { display: none; }
+
       .page {
-        width: min(calc(100% - 24px), var(--max));
-        padding-top: 18px;
+        width: min(calc(100% - 24px), var(--max-width));
+        padding: 16px 0 28px;
       }
 
       .topline {
-        flex-direction: column;
-        align-items: flex-start;
+        display: grid;
+        justify-items: start;
+        gap: 14px;
+      }
+
+      .topline-logo {
+        width: 129px;
+      }
+
+      .topline-nav {
+        justify-content: flex-start;
+        gap: 0.78rem 1rem;
+      }
+
+      .topline-nav a {
+        font-size: 0.55rem;
+        line-height: 1.35;
+      }
+
+      .topline-nav .contact-link {
+        min-height: auto;
+        padding: 0;
+        border: 0;
+        background: transparent;
       }
 
       .hero,
-      .memo {
-        padding: 24px 20px 30px;
+      .surface-card,
+      .memo-card {
+        padding: 20px;
+      }
+
+      .hero {
+        margin-top: 22px;
+      }
+
+      h1 {
+        max-width: none;
+        font-size: 3.05rem;
+        overflow-wrap: anywhere;
+      }
+
+      .hero-copy > p,
+      .surface-head p,
+      .memo-section p,
+      .closing p {
+        font-size: 0.96rem;
+      }
+
+      .surface-head h2 {
+        max-width: none;
+        font-size: 2.05rem;
+      }
+
+      .memo-intro,
+      blockquote {
+        font-size: 1rem;
+      }
+
+      .ledger-card {
+        min-height: 0;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .topline-logo {
+        width: 116px;
+      }
+
+      h1 {
+        font-size: 2.72rem;
       }
     }
   </style>
 </head>
 <body>
   <div class="page">
-    <div class="topline">
-      <span>Founder Memo</span>
-      <nav>
-        <a href="index.html">Main Site</a>
+    <header class="topline">
+      <a class="topline-brand" href="index.html" aria-label="Norynthe. home">
+        <img
+          class="topline-logo"
+          src="norynthe-logo.png"
+          alt="Norynthe."
+          width="1200"
+          height="630"
+          loading="eager"
+          decoding="async"
+          onerror="if (!this.dataset.fallbackTried) { this.dataset.fallbackTried='true'; this.src='assets/Norynthe_master.png'; } else { this.replaceWith(Object.assign(document.createElement('span'), { className: 'topline-wordmark', textContent: 'Norynthe.' })); }"
+        >
+      </a>
+      <nav class="topline-nav" aria-label="Main navigation">
+        <a href="norynthe-founder-memo.html" aria-current="page">Founder Memo</a>
         <a href="norynthe-investors.html">Investor Overview</a>
-        <a href="mailto:hello@norynthe.com">Contact</a>
+        <a href="market-position.html">Market Position</a>
+        <a class="contact-link" href="mailto:hello@norynthe.com">Contact</a>
       </nav>
-    </div>
+    </header>
 
-    <section class="hero">
-      <div class="back-row">
-        <a class="back-link" href="index.html">Back To Main Site</a>
-        <a class="back-link" href="norynthe-investors.html">Investor Overview</a>
-      </div>
-      <div class="eyebrow">Founder Memo</div>
-      <img class="hero-logo" src="norynthe-logo.png" alt="Norynthe." onerror="if (!this.dataset.fallbackTried) { this.dataset.fallbackTried='true'; this.src='assets/Norynthe_master.png'; } else { this.style.display='none'; }">
-      <h1>Why trust needs an external standard.</h1>
-      <p class="subtitle">
-        This memo sits beneath the public signal and the method. It states the operating claim behind Norynthe:
-        AI systems are not only probabilistic, they are interpretive, and they should not be trusted without an
-        external standard capable of scoring what they preserve, compress, and normalize under the appearance of coherence.
-      </p>
-      <div class="meta">
-        <span>Founder View</span>
-        <span>Interpretive Integrity</span>
-        <span>Trust Infrastructure</span>
-      </div>
-    </section>
-
-    <article class="memo">
-      <div class="memo-intro">
-        <p>
-          The internal method explains the scoring architecture. The public site explains the signal. This memo explains the conviction:
-          enterprises need an independent standard outside the model for how probabilistic systems are interpreted,
-          trusted, compared, and operationalized.
-        </p>
-      </div>
-
-      <h2>Output quality is not the whole trust problem</h2>
-      <p>
-        Many people still talk about AI risk as if the central problem is whether a model gets facts right. That matters,
-        but it is not sufficient. The deeper problem is that these systems increasingly generate interpretations, summaries,
-        recommendations, and frames that other people then act on. When that happens, the question is no longer only whether
-        a response is technically accurate. The question is whether the system preserved meaning, carried forward the right
-        weight, and remained trustworthy in how it shaped judgment.
-      </p>
-      <p>
-        That is the problem space I care about. I do not think organizations only need better output quality. I think they need
-        a stronger way to decide how probabilistic systems should be understood, trusted, compared, and put into use.
-      </p>
-
-      <h2>Fluency is not a trust signal</h2>
-      <p>
-        What makes current systems persuasive is often the same thing that makes them dangerous to over-trust. They can sound
-        balanced while narrowing meaning. They can sound complete while omitting what matters. They can sound neutral while
-        quietly smoothing away structural, symbolic, or human weight. The failure is not always loud. Often it is polished.
-      </p>
-      <p>
-        That is one reason I became increasingly convinced that enterprises cannot rely on model outputs, benchmark headlines,
-        or vendor framing alone. If the system generating the interpretation is also the thing being trusted, then too much of
-        the decision collapses into style, comfort, and perception.
-      </p>
-
-      <blockquote>
-        The core issue is not only whether a system can generate language. It is whether that language can be treated as a
-        trustworthy basis for real decisions.
-      </blockquote>
-
-      <h2>Why Norynthe Exists</h2>
-      <p>
-        I built Norynthe because I do not think systems that generate interpretation should be trusted without scrutiny. There
-        needs to be a layer outside the system that can examine not only the output, but the framing, the omissions, the
-        compression, the comparative behavior, and the logic that leads one model to be treated as more defensible than another.
-      </p>
-      <p>
-        Norynthe is that external layer. It is meant to turn model comparison into a governed decision process rather than a
-        vague impression. It is meant to produce a signal, an explanation layer, and a verification layer that organizations
-        can actually use when the stakes become real.
-      </p>
-
-      <h2>Why enterprises need an external standard</h2>
-      <p>
-        Enterprises are increasingly being asked to operationalize systems that are probabilistic by nature. That means they are
-        also being asked to make policy, procurement, and workflow decisions under uncertainty. In that environment, trust cannot
-        be a branding exercise. It has to become infrastructure.
-      </p>
-      <p>
-        That is why I believe the company opportunity here is larger than scoring alone. The deeper category is enterprise judgment
-        around probabilistic systems: how they are interpreted, how they are compared, where they can be trusted, where they need
-        escalation, and how they should actually be operationalized in real workflows.
-      </p>
-
-      <h2>What Norynthe is being built to become</h2>
-      <p>
-        I do not want Norynthe to become another wrapper, another dashboard, or another thin interface around someone else’s system.
-        I want it to become a standard outside the model. That means benchmark ownership, rubric governance, explainable reporting,
-        verification logic, and eventually the infrastructure needed to harden and defend the evaluator layer itself.
-      </p>
-      <p>
-        If that happens, Norynthe will not simply help people decide which model they like. It will help institutions decide which
-        systems are most defensible for consequential use, and why.
-      </p>
-
-      <div class="closing">
-        <h2>Standard before adoption</h2>
-        <p>
-          The method is only one expression of the company. Norynthe, to me, begins one step deeper than that. It begins with the
-          conviction that interpretation itself needs oversight. Once that becomes clear, the rest of the system follows:
-          scoring, reporting, verification, governance, and enterprise use.
-        </p>
-        <p>
-          That is the through-line behind Norynthe. Not better outputs alone, but better judgment around how probabilistic systems
-          are interpreted, trusted, compared, and operationalized.
-        </p>
-        <div class="signoff">
-          Alan Motley<br>
-          Founder, Norynthe
+    <main>
+      <section class="hero" aria-labelledby="memo-title">
+        <div class="hero-copy">
+          <p class="subline">Founder Memo</p>
+          <h1 id="memo-title">Why trust needs an external standard.</h1>
+          <p>
+            This memo sits beneath the public signal and the method. It states the operating claim behind Norynthe:
+            AI systems are not only probabilistic, they are interpretive, and they should not be trusted without an
+            external standard capable of scoring what they preserve, compress, and normalize under the appearance of coherence.
+          </p>
+          <div class="meta" aria-label="Founder memo markers">
+            <span>Founder View</span>
+            <span>Interpretive Integrity</span>
+            <span>Trust Infrastructure</span>
+          </div>
         </div>
-      </div>
-    </article>
+      </section>
 
-    <p class="footer-note">Norynthe Founder Memo · Public signal, private method, external standard · © 2026 Norynthe.</p>
+      <section class="surface-card" aria-labelledby="memo-surface-title">
+        <div class="surface-head">
+          <div class="eyebrow">Norynthe. / Founder Surface</div>
+          <h2 id="memo-surface-title">The conviction behind the trust layer.</h2>
+          <p>
+            The internal method explains the scoring architecture. The public site explains the signal. This memo explains the conviction:
+            enterprises need an independent standard outside the model for how probabilistic systems are interpreted, trusted, compared, and operationalized.
+          </p>
+        </div>
+      </section>
+
+      <article class="memo-card" aria-label="Founder memo body">
+        <p class="memo-intro">
+          The central issue is not whether AI systems can produce fluent outputs. The central issue is whether those outputs
+          can be trusted as a basis for consequential judgment.
+        </p>
+
+        <section class="memo-section">
+          <h2>Output quality is not the whole trust problem</h2>
+          <p>
+            Many people still talk about AI risk as if the central problem is whether a model gets facts right. That matters,
+            but it is not sufficient. The deeper problem is that these systems increasingly generate interpretations, summaries,
+            recommendations, and frames that other people then act on. When that happens, the question is no longer only whether
+            a response is technically accurate. The question is whether the system preserved meaning, carried forward the right
+            weight, and remained trustworthy in how it shaped judgment.
+          </p>
+          <p>
+            That is the problem space I care about. I do not think organizations only need better output quality. I think they need
+            a stronger way to decide how probabilistic systems should be understood, trusted, compared, and put into use.
+          </p>
+        </section>
+
+        <section class="memo-section">
+          <h2>Fluency is not a trust signal</h2>
+          <p>
+            What makes current systems persuasive is often the same thing that makes them dangerous to over-trust. They can sound
+            balanced while narrowing meaning. They can sound complete while omitting what matters. They can sound neutral while
+            quietly smoothing away structural, symbolic, or human weight. The failure is not always loud. Often it is polished.
+          </p>
+          <p>
+            That is one reason I became increasingly convinced that enterprises cannot rely on model outputs, benchmark headlines,
+            or vendor framing alone. If the system generating the interpretation is also the thing being trusted, then too much of
+            the decision collapses into style, comfort, and perception.
+          </p>
+        </section>
+
+        <blockquote>
+          The core issue is not only whether a system can generate language. It is whether that language can be treated as a
+          trustworthy basis for real decisions.
+        </blockquote>
+
+        <section class="memo-section">
+          <h2>Why Norynthe Exists</h2>
+          <p>
+            I built Norynthe because I do not think systems that generate interpretation should be trusted without scrutiny. There
+            needs to be a layer outside the system that can examine not only the output, but the framing, the omissions, the
+            compression, the comparative behavior, and the logic that leads one model to be treated as more defensible than another.
+          </p>
+          <p>
+            Norynthe is that external layer. It is meant to turn model comparison into a governed decision process rather than a
+            vague impression. It is meant to produce a signal, an explanation layer, and a verification layer that organizations
+            can actually use when the stakes become real.
+          </p>
+        </section>
+
+        <section class="memo-section">
+          <h2>Why enterprises need an external standard</h2>
+          <p>
+            Enterprises are increasingly being asked to operationalize systems that are probabilistic by nature. That means they are
+            also being asked to make policy, procurement, and workflow decisions under uncertainty. In that environment, trust cannot
+            be a branding exercise. It has to become infrastructure.
+          </p>
+          <p>
+            That is why I believe the company opportunity here is larger than scoring alone. The deeper category is enterprise judgment
+            around probabilistic systems: how they are interpreted, how they are compared, where they can be trusted, where they need
+            escalation, and how they should actually be operationalized in real workflows.
+          </p>
+        </section>
+
+        <section class="memo-section">
+          <h2>What Norynthe is being built to become</h2>
+          <p>
+            I do not want Norynthe to become another wrapper, another dashboard, or another thin interface around someone else’s system.
+            I want it to become a standard outside the model. That means benchmark ownership, rubric governance, explainable reporting,
+            verification logic, and eventually the infrastructure needed to harden and defend the evaluator layer itself.
+          </p>
+          <p>
+            If that happens, Norynthe will not simply help people decide which model they like. It will help institutions decide which
+            systems are most defensible for consequential use, and why.
+          </p>
+        </section>
+
+        <div class="closing">
+          <h2>Standard before adoption</h2>
+          <p>
+            The method is only one expression of the company. Norynthe, to me, begins one step deeper than that. It begins with the
+            conviction that interpretation itself needs oversight. Once that becomes clear, the rest of the system follows:
+            scoring, reporting, verification, governance, and enterprise use.
+          </p>
+          <p>
+            That is the through-line behind Norynthe. Not better outputs alone, but better judgment around how probabilistic systems
+            are interpreted, trusted, compared, and operationalized.
+          </p>
+          <div class="signoff">
+            Alan Motley<br>
+            Founder, Norynthe
+          </div>
+        </div>
+      </article>
+
+      <section class="memo-ledger" aria-label="Founder memo trust principles">
+        <div class="ledger-card">
+          <span class="card-eyebrow">Principle</span>
+          <h3>Trust cannot collapse into fluency.</h3>
+          <p>Polished language can conceal omissions, compression, framing shifts, and decision risk.</p>
+        </div>
+        <div class="ledger-card">
+          <span class="card-eyebrow capital">Standard</span>
+          <h3>The evaluator belongs outside the model.</h3>
+          <p>Norynthe exists to compare, score, explain, and preserve evidence outside model-owner control.</p>
+        </div>
+        <div class="ledger-card">
+          <span class="card-eyebrow">Infrastructure</span>
+          <h3>The record is the trust surface.</h3>
+          <p>Assessment records make judgment traceable across benchmark versions, scoring logic, and evidence.</p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div>
+        Norynthe Founder Memo · Public Signal · Private Method · External Standard
+        <small>Independent external trust infrastructure for AI systems</small>
+      </div>
+      <div><a href="mailto:hello@norynthe.com">hello@norynthe.com</a> · © 2026 Norynthe.</div>
+    </footer>
   </div>
 </body>
 </html>
