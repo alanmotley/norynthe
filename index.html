@@ -28,7 +28,7 @@
 
   <link rel="icon" href="/favicon.png">
   <link rel="apple-touch-icon" href="/favicon.png">
-  <link rel="manifest" href="https://www.norynthe.com/site.webmanifest">
+  <link rel="manifest" href="/site.webmanifest">
 
   <script type="application/ld+json">
 {
@@ -2816,6 +2816,7 @@
       }
     }
   </style>
+  <link rel="stylesheet" href="norynthe-design-language.css">
 </head>
 <body>
   <div class="field" aria-hidden="true">
@@ -2830,23 +2831,23 @@
 
   <div class="page">
     <header class="topline">
-      <a class="topline-brand" href="index.html" aria-label="Norynthe. home">
+      <a class="topline-brand" href="/" aria-label="Norynthe. home">
         <img
           class="topline-logo"
-          src="norynthe-logo.png"
+          src="Norynthe_master.png"
           alt="Norynthe."
-          width="1200"
-          height="630"
+          width="1039"
+          height="263"
           loading="eager"
           decoding="async"
-          onerror="if (!this.dataset.fallbackTried) { this.dataset.fallbackTried='true'; this.src='assets/Norynthe_master.png'; } else { this.replaceWith(document.createTextNode('Norynthe.')); }"
+          onerror="this.replaceWith(document.createTextNode('Norynthe.'));"
         >
       </a>
       <nav class="topline-nav" aria-label="Main navigation">
-        <a href="norynthe-founder-memo.html">Founder Memo</a>
-        <a href="norynthe-investors.html">Investor Overview</a>
-        <a href="market-position.html">Market Position</a>
-        <a href="mailto:hello@norynthe.com">Contact</a>
+        <a href="#evidence-layer">Evidence Layer</a>
+        <a href="#standard">Benchmark Ledger</a>
+        <a href="https://investors.norynthe.com/">Investor Access</a>
+        <a href="#contact">Contact</a>
       </nav>
     </header>
 
@@ -2862,8 +2863,8 @@
             Norynthe. evaluates AI systems beyond the model owner's control, turning governed benchmarks, behavioral evidence, and versioned assessment records into trust signals the market can understand.
           </p>
           <div class="hero-actions" aria-label="Norynthe. primary actions">
-            <a class="primary" href="market-position.html">Market Position</a>
-            <a href="norynthe-investors.html">Investor Overview</a>
+            <a class="primary" href="#evidence-layer">Market Position</a>
+            <a href="https://investors.norynthe.com/">Investor Access</a>
           </div>
           <div class="hero-proof" aria-label="Norynthe. trust system markers">
             <span><strong>01</strong>Outside model owner control</span>
@@ -2945,7 +2946,7 @@
           </div>
         </aside>
 
-        <section class="company-surface" aria-labelledby="company-surface-title">
+        <section class="company-surface" id="evidence-layer" aria-labelledby="company-surface-title">
           <div class="company-surface-head">
             <div class="eyebrow">Norynthe. / Company Surface</div>
             <h2 id="company-surface-title">A public evidence layer for AI credibility.</h2>
@@ -2958,25 +2959,25 @@
           </div>
 
           <div class="company-surface-grid">
-            <a class="company-card" href="norynthe-founder-memo.html">
+            <a class="company-card" href="mailto:hello@norynthe.com?subject=Norynthe.%20Founder%20Memo%20Request">
               <span class="card-eyebrow">Foundational</span>
               <h3>Founder Memo</h3>
               <p>
                 Why independent AI trust infrastructure matters, and why model providers should not be the only source of truth for model trust.
               </p>
-              <span class="company-card-meta">Public memo</span>
+              <span class="company-card-meta">Available by request</span>
             </a>
 
-            <a class="company-card" href="norynthe-investors.html">
+            <a class="company-card" href="https://investors.norynthe.com/">
               <span class="card-eyebrow capital">Capital</span>
               <h3>Investor Overview</h3>
               <p>
                 The company opportunity, standard-forming thesis, benchmark system, assessment records, and public signal strategy behind Norynthe.
               </p>
-              <span class="company-card-meta">Company direction</span>
+              <span class="company-card-meta">Investor access</span>
             </a>
 
-            <a class="company-card" href="market-position.html">
+            <a class="company-card" href="#evidence-layer">
               <span class="card-eyebrow capital">Positioning</span>
               <h3>The missing trust layer.</h3>
               <p>
@@ -2985,7 +2986,7 @@
               <span class="company-card-meta">Market position</span>
             </a>
 
-            <a class="company-card" href="norynthe-investors.html">
+            <a class="company-card" href="#standard">
               <span class="card-eyebrow">Benchmark Bank</span>
               <h3>The benchmark is the asset.</h3>
               <p>
@@ -2994,7 +2995,7 @@
               <span class="company-card-meta">Upgradable method</span>
             </a>
 
-            <a class="company-card" href="norynthe-investors.html">
+            <a class="company-card" href="#standard">
               <span class="card-eyebrow">Evidence Layer</span>
               <h3>The record is the infrastructure.</h3>
               <p>
@@ -3004,7 +3005,7 @@
             </a>
           </div>
 
-          <section class="standard-ledger" aria-labelledby="standard-ledger-title">
+          <section class="standard-ledger" id="standard" aria-labelledby="standard-ledger-title">
             <div>
               <div class="eyebrow">Benchmark Ledger</div>
               <h3 id="standard-ledger-title">Trust as an auditable record.</h3>
@@ -3048,7 +3049,7 @@
             <span>Founder: Alan Motley</span>
           </div>
 
-          <div class="closing-panel">
+          <div class="closing-panel" id="contact">
             <div>
               <div class="eyebrow">Access</div>
               <strong>Request an MVP preview or investor materials.</strong>
@@ -3058,7 +3059,7 @@
             </div>
             <div class="closing-actions" aria-label="Norynthe. closing actions">
               <a href="mailto:hello@norynthe.com?subject=Norynthe.%20MVP%20Preview%20Request">Request Preview</a>
-              <a href="market-position.html">Market Position</a>
+              <a href="#evidence-layer">Market Position</a>
             </div>
           </div>
         </section>
