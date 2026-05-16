@@ -61,6 +61,17 @@ body.enterprise-use-cases-page .hero-heading,
   line-height: 1.68;
 }
 
+body.market-position-page .hero h1 {
+  max-width: 12.2ch;
+  color: #f4f8fb !important;
+  font-size: clamp(3rem, 5.8vw, 5.8rem) !important;
+  line-height: 0.92 !important;
+}
+
+body.market-position-page .hero .lede {
+  color: rgba(238, 243, 246, 0.68);
+}
+
 .hero-actions a,
 .hero-actions .button,
 .hero-cta {
