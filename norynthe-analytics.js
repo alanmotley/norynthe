@@ -2,6 +2,8 @@
   const GA4_MEASUREMENT_ID = "G-570981B382";
   const EVENT_CATEGORY = "Norynthe Public Site";
   const FIRST_MATERIAL_KEY = "norynthe_public_first_material";
+  const TALLY_FORM_ID = "ZjezPA";
+  const TALLY_FORM_URL = "https://tally.so/r/" + TALLY_FORM_ID;
 
   if (!GA4_MEASUREMENT_ID || GA4_MEASUREMENT_ID === "G-XXXXXXXXXX") return;
 
@@ -92,6 +94,78 @@
     }, params));
   }
 
+  function loadTallyWidget() {
+    if (window.Tally && typeof window.Tally.openPopup === "function") {
+      return Promise.resolve();
+    }
+
+    if (window.noryntheTallyReady) return window.noryntheTallyReady;
+
+    window.noryntheTallyReady = new Promise(function (resolve, reject) {
+      const existingScript = document.querySelector('script[src="https://tally.so/widgets/embed.js"]');
+      if (existingScript) {
+        existingScript.addEventListener("load", resolve, { once: true });
+        existingScript.addEventListener("error", reject, { once: true });
+        return;
+      }
+
+      const script = document.createElement("script");
+      script.src = "https://tally.so/widgets/embed.js";
+      script.async = true;
+      script.onload = resolve;
+      script.onerror = reject;
+      document.head.appendChild(script);
+    });
+
+    return window.noryntheTallyReady;
+  }
+
+  function openRequestForm(trigger) {
+    const linkText = cleanText(trigger.textContent || trigger.getAttribute("aria-label")) || "Request materials";
+    const requestType = cleanText(trigger.dataset.requestType) || "General inquiry";
+    const sourceArea = cleanText(trigger.dataset.sourceArea) || linkRole(trigger);
+    const params = {
+      link_text: linkText,
+      request_type: requestType,
+      source_area: sourceArea,
+      destination: TALLY_FORM_URL
+    };
+
+    track("request_materials_clicked", params);
+
+    loadTallyWidget()
+      .then(function () {
+        if (!window.Tally || typeof window.Tally.openPopup !== "function") {
+          window.location.href = TALLY_FORM_URL;
+          return;
+        }
+
+        window.Tally.openPopup(TALLY_FORM_ID, {
+          layout: "modal",
+          width: 700,
+          overlay: true,
+          hiddenFields: {
+            source_page: pageName(),
+            source_area: sourceArea,
+            source_path: window.location.pathname,
+            request_type: requestType
+          },
+          onOpen: function () {
+            track("request_materials_opened", params);
+          },
+          onClose: function () {
+            track("request_materials_closed", params);
+          },
+          onSubmit: function () {
+            track("request_materials_submitted", params);
+          }
+        });
+      })
+      .catch(function () {
+        window.location.href = TALLY_FORM_URL;
+      });
+  }
+
   document.addEventListener("click", function (event) {
     const copyButton = event.target.closest("#copy-email");
     if (copyButton) {
@@ -101,6 +175,13 @@
         link_role: "footer",
         destination: "mailto:hello@norynthe.com"
       });
+      return;
+    }
+
+    const tallyTrigger = event.target.closest("[data-tally-request]");
+    if (tallyTrigger) {
+      event.preventDefault();
+      openRequestForm(tallyTrigger);
       return;
     }
 
