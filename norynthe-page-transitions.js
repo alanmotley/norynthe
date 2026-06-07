@@ -1,4 +1,5 @@
 (() => {
+  const CLARITY_PROJECT_ID = "x3hujsuxyc";
   const root = document.documentElement;
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -18,6 +19,20 @@
     document.head.appendChild(analytics);
   };
 
+  const loadClarity = () => {
+    if (window.clarity || document.querySelector('script[data-clarity-project="' + CLARITY_PROJECT_ID + '"]')) return;
+
+    window.clarity = window.clarity || function () {
+      (window.clarity.q = window.clarity.q || []).push(arguments);
+    };
+
+    const clarity = document.createElement("script");
+    clarity.async = true;
+    clarity.src = "https://www.clarity.ms/tag/" + CLARITY_PROJECT_ID;
+    clarity.dataset.clarityProject = CLARITY_PROJECT_ID;
+    document.head.appendChild(clarity);
+  };
+
   const showPage = () => {
     window.requestAnimationFrame(() => {
       root.classList.remove("nt-transition-exiting");
@@ -34,6 +49,7 @@
   }
 
   loadAnalytics();
+  loadClarity();
   window.addEventListener("pageshow", showPage);
 
   if (reduceMotion) return;
