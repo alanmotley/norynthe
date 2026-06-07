@@ -23,77 +23,64 @@
     visibilityStyles.insertAdjacentElement('afterend', freshStyles);
   };
 
-  const createLink = (item) => {
-    const link = document.createElement('a');
-    link.href = item.href;
-    link.textContent = item.label;
-    if (item.primary) link.className = 'primary';
-    return link;
-  };
+  const linkMarkup = (item) => (
+    `<a${item.primary ? " class='primary'" : ''} href='${item.href}'>${item.label}</a>`
+  );
 
-  const ensureLink = (container, item, beforeNode) => {
-    if (!container) return null;
-
-    const existing = container.querySelector(`a[href='${item.href}']`);
-    if (existing) {
-      if (item.primary) existing.classList.add('primary');
-      return existing;
-    }
-
-    const link = createLink(item);
-    container.insertBefore(link, beforeNode || null);
-    return link;
-  };
-
-  const injectHomepageVisibilityLinks = () => {
+  const refineHomepageExperience = () => {
     if (!isHomepage()) return;
 
-    const links = [
+    const navLinks = [
       { label: 'AI Evaluation', href: 'independent-ai-model-evaluation.html', primary: true },
-      { label: 'Trust Scoring', href: 'ai-trust-scoring.html' },
+      { label: 'Score Board', href: 'https://reports.norynthe.com/' },
+      { label: 'Market Position', href: 'market-position.html' },
+      { label: 'Contact', href: '#contact' }
+    ];
+
+    const actionLinks = [
+      { label: 'AI Evaluation', href: 'independent-ai-model-evaluation.html', primary: true },
       { label: 'Score Board', href: 'https://reports.norynthe.com/' }
     ];
 
     const nav = document.querySelector('.topline-nav');
-    const firstNavLink = nav ? nav.firstElementChild : null;
-    links.forEach((item) => ensureLink(nav, item, firstNavLink));
+    if (nav) nav.innerHTML = navLinks.map(linkMarkup).join('');
 
     const heroActions = document.querySelector('.hero-actions');
-    if (heroActions) {
-      heroActions.querySelectorAll('a.primary').forEach((link) => link.classList.remove('primary'));
-      const firstAction = heroActions.firstElementChild;
-      links.forEach((item) => ensureLink(heroActions, item, firstAction));
+    if (heroActions) heroActions.innerHTML = actionLinks.map(linkMarkup).join('');
+
+    const surfaceTitle = document.querySelector('.company-surface h2');
+    if (surfaceTitle) surfaceTitle.textContent = 'A focused path into AI credibility.';
+
+    const surfaceLead = document.querySelector('.company-surface-secondary');
+    if (surfaceLead) {
+      surfaceLead.textContent = 'Norynthe turns independent AI evaluation into a readable trust signal: the evaluation method, the public score board, and the market position behind the standard.';
     }
 
     const cardGrid = document.querySelector('.company-surface-grid');
-    if (!cardGrid || cardGrid.querySelector(`a[href='independent-ai-model-evaluation.html']`)) return;
+    if (!cardGrid) return;
 
-    cardGrid.insertAdjacentHTML('beforeend', `
+    cardGrid.innerHTML = `
       <a class='company-card' href='independent-ai-model-evaluation.html'>
-        <span class='card-eyebrow'>Evaluation</span>
+        <span class='card-eyebrow'>Start here</span>
         <h3>Independent AI model evaluation.</h3>
-        <p>External assessment of model behavior, evidence handling, uncertainty, and comparison context outside the model owner dashboard.</p>
+        <p>How Norynthe evaluates model behavior, evidence handling, uncertainty, and comparison context outside the model owner dashboard.</p>
         <span class='company-card-meta'>Evaluation layer</span>
       </a>
-      <a class='company-card' href='ai-model-evaluation-benchmarks.html'>
-        <span class='card-eyebrow'>Benchmark Bank</span>
-        <h3>AI model evaluation benchmarks.</h3>
-        <p>Governed evaluation systems for repeatable model comparison, evidence review, trust scoring, and readiness decisions.</p>
-        <span class='company-card-meta'>Benchmark method</span>
-      </a>
-      <a class='company-card' href='ai-trust-scoring.html'>
-        <span class='card-eyebrow'>Trust Signal</span>
-        <h3>AI trust scoring.</h3>
-        <p>A public trust signal that turns evaluation records into a score, trust band, and deeper review path.</p>
+
+      <a class='company-card' href='https://reports.norynthe.com/'>
+        <span class='card-eyebrow'>Public signal</span>
+        <h3>Norynthe.Score board.</h3>
+        <p>A public preview of the score record concept: model credibility, benchmark context, trust band, and evidence path.</p>
         <span class='company-card-meta'>Norynthe.Score</span>
       </a>
-      <a class='company-card' href='ai-governance-readiness.html'>
-        <span class='card-eyebrow'>Governance</span>
-        <h3>AI governance readiness.</h3>
-        <p>Evaluation records that help teams compare model credibility, preserve evidence, and support review decisions.</p>
-        <span class='company-card-meta'>Governance context</span>
+
+      <a class='company-card' href='market-position.html'>
+        <span class='card-eyebrow capital'>Positioning</span>
+        <h3>The missing trust layer.</h3>
+        <p>Why Norynthe is not another internal dashboard, and how external evaluation becomes a market-facing trust standard.</p>
+        <span class='company-card-meta'>Market position</span>
       </a>
-    `);
+    `;
   };
 
   const loadAnalytics = () => {
@@ -128,7 +115,7 @@
 
   const onReady = () => {
     ensureFreshVisibilityStyles();
-    injectHomepageVisibilityLinks();
+    refineHomepageExperience();
     showPage();
   };
 
