@@ -12,6 +12,17 @@
 
   const isHomepage = () => window.location.pathname === '/' || window.location.pathname === '/index.html';
 
+  const ensureFreshVisibilityStyles = () => {
+    const visibilityStyles = document.querySelector('link[href*="norynthe-visibility-pages.css"]');
+    if (!visibilityStyles || document.querySelector('link[data-norynthe-visibility-fresh]')) return;
+
+    const freshStyles = document.createElement('link');
+    freshStyles.rel = 'stylesheet';
+    freshStyles.href = new URL('norynthe-visibility-pages.css?v=20260607-logo-fix', window.location.href).href;
+    freshStyles.dataset.noryntheVisibilityFresh = 'true';
+    visibilityStyles.insertAdjacentElement('afterend', freshStyles);
+  };
+
   const createLink = (item) => {
     const link = document.createElement('a');
     link.href = item.href;
@@ -116,6 +127,7 @@
   };
 
   const onReady = () => {
+    ensureFreshVisibilityStyles();
     injectHomepageVisibilityLinks();
     showPage();
   };
