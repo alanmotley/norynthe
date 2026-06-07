@@ -148,7 +148,7 @@ h3 {
 .eyebrow,
 .section-label,
 .card-kicker,
-fact-label {
+.fact-label {
   color: var(--signal);
   font-size: 0.62rem;
   font-weight: 820;
