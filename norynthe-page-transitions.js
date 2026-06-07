@@ -27,8 +27,45 @@
     `<a${item.primary ? " class='primary'" : ''} href='${item.href}'>${item.label}</a>`
   );
 
+  const ensureHomepageCardStyles = () => {
+    if (!isHomepage() || document.querySelector('style[data-norynthe-home-cards]')) return;
+
+    const styles = document.createElement('style');
+    styles.dataset.noryntheHomeCards = 'equalized';
+    styles.textContent = `
+      .company-surface-grid {
+        align-items: stretch;
+      }
+
+      .company-surface-grid .company-card {
+        min-height: 230px;
+        height: 100%;
+        display: grid;
+        grid-template-rows: auto auto 1fr auto;
+        align-content: stretch;
+      }
+
+      .company-surface-grid .company-card p {
+        align-self: start;
+      }
+
+      .company-surface-grid .company-card-meta {
+        align-self: end;
+      }
+
+      @media (max-width: 720px) {
+        .company-surface-grid .company-card {
+          min-height: 0;
+        }
+      }
+    `;
+    document.head.appendChild(styles);
+  };
+
   const refineHomepageExperience = () => {
     if (!isHomepage()) return;
+
+    ensureHomepageCardStyles();
 
     const navLinks = [
       { label: 'AI Evaluation', href: 'independent-ai-model-evaluation.html', primary: true },
