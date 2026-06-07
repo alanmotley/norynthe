@@ -1,6 +1,12 @@
 {
-  "name": "Norynthe",
+  "name": "Norynthe.",
   "short_name": "Norynthe",
+  "description": "Independent AI evaluation and trust scoring outside the model.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#E9EDF2",
+  "theme_color": "#E9EDF2",
   "icons": [
     {
       "src": "/norynthe-icon-192.png",
@@ -12,8 +18,5 @@
       "sizes": "512x512",
       "type": "image/png"
     }
-  ],
-  "theme_color": "#E9EDF2",
-  "background_color": "#E9EDF2",
-  "display": "standalone"
+  ]
 }
