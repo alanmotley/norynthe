@@ -2,6 +2,15 @@
   const root = document.documentElement;
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+  const loadAnalytics = () => {
+    if (document.querySelector('script[src$="norynthe-analytics.js"]')) return;
+
+    const analytics = document.createElement("script");
+    analytics.src = new URL("norynthe-analytics.js", window.location.href).href;
+    analytics.async = true;
+    document.head.appendChild(analytics);
+  };
+
   const showPage = () => {
     window.requestAnimationFrame(() => {
       root.classList.remove("nt-transition-exiting");
@@ -15,6 +24,7 @@
     showPage();
   }
 
+  loadAnalytics();
   window.addEventListener("pageshow", showPage);
 
   if (reduceMotion) return;
