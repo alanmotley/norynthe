@@ -2,6 +2,13 @@
   const root = document.documentElement;
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+  const normalizeHomepageUrl = () => {
+    if (window.location.pathname !== "/index.html") return;
+
+    const cleanUrl = window.location.origin + "/" + window.location.search + window.location.hash;
+    window.history.replaceState(null, document.title, cleanUrl);
+  };
+
   const loadAnalytics = () => {
     if (document.querySelector('script[src$="norynthe-analytics.js"]')) return;
 
@@ -17,6 +24,8 @@
       root.classList.add("nt-transition-ready");
     });
   };
+
+  normalizeHomepageUrl();
 
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", showPage, { once: true });
