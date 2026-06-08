@@ -1,5 +1,6 @@
 (() => {
   const CLARITY_PROJECT_ID = 'x3hujsuxyc';
+  const SCORE_BOARD_URL = 'https://reports.norynthe.com/';
   const root = document.documentElement;
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -23,9 +24,10 @@
     visibilityStyles.insertAdjacentElement('afterend', freshStyles);
   };
 
-  const linkMarkup = (item) => (
-    `<a${item.primary ? " class='primary'" : ''} href='${item.href}'>${item.label}</a>`
-  );
+  const linkMarkup = (item) => {
+    const externalAttrs = item.external ? " target='_blank' rel='noopener noreferrer'" : '';
+    return `<a${item.primary ? " class='primary'" : ''} href='${item.href}'${externalAttrs}>${item.label}</a>`;
+  };
 
   const ensureHomepageCardStyles = () => {
     if (!isHomepage() || document.querySelector('style[data-norynthe-home-cards]')) return;
@@ -70,7 +72,7 @@
     const navLinks = [
       { label: 'AI Evaluation', href: 'independent-ai-model-evaluation.html', primary: true },
       { label: 'Agent Harnesses', href: 'ai-agent-harness-evaluation.html' },
-      { label: 'Score Board', href: 'https://reports.norynthe.com/' },
+      { label: 'Score Board', href: SCORE_BOARD_URL, external: true },
       { label: 'Contact', href: '#contact' }
     ];
 
@@ -111,7 +113,7 @@
         <span class='company-card-meta'>Agent harnesses</span>
       </a>
 
-      <a class='company-card' href='https://reports.norynthe.com/'>
+      <a class='company-card' href='${SCORE_BOARD_URL}' target='_blank' rel='noopener noreferrer'>
         <span class='card-eyebrow'>Public signal</span>
         <h3>Norynthe.Score board.</h3>
         <p>A public preview of the score record concept: model credibility, benchmark context, trust band, and evidence path.</p>
@@ -167,6 +169,27 @@
   loadAnalytics();
   loadClarity();
   window.addEventListener('pageshow', showPage);
+
+  document.addEventListener('click', (event) => {
+    if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) {
+      return;
+    }
+
+    const link = event.target.closest('a[href]');
+    if (!link) return;
+
+    let url;
+    try {
+      url = new URL(link.getAttribute('href'), window.location.href);
+    } catch {
+      return;
+    }
+
+    if (url.href !== SCORE_BOARD_URL) return;
+
+    event.preventDefault();
+    window.open(SCORE_BOARD_URL, 'norynthe_score_board', 'noopener,noreferrer');
+  });
 
   if (reduceMotion) return;
 
