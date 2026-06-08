@@ -69,14 +69,14 @@
 
     const navLinks = [
       { label: 'AI Evaluation', href: 'independent-ai-model-evaluation.html', primary: true },
+      { label: 'Agent Harnesses', href: 'ai-agent-harness-evaluation.html' },
       { label: 'Score Board', href: 'https://reports.norynthe.com/' },
-      { label: 'Market Position', href: 'market-position.html' },
       { label: 'Contact', href: '#contact' }
     ];
 
     const actionLinks = [
       { label: 'AI Evaluation', href: 'independent-ai-model-evaluation.html', primary: true },
-      { label: 'Score Board', href: 'https://reports.norynthe.com/' }
+      { label: 'Agent Harnesses', href: 'ai-agent-harness-evaluation.html' }
     ];
 
     const nav = document.querySelector('.topline-nav');
@@ -90,7 +90,7 @@
 
     const surfaceLead = document.querySelector('.company-surface-secondary');
     if (surfaceLead) {
-      surfaceLead.textContent = 'Norynthe turns independent AI evaluation into a readable trust signal: the evaluation method, the public score board, and the market position behind the standard.';
+      surfaceLead.textContent = 'Norynthe turns independent AI evaluation into a readable trust signal: the evaluation method, harnessed agent runs, and the public score board behind the standard.';
     }
 
     const cardGrid = document.querySelector('.company-surface-grid');
@@ -104,18 +104,18 @@
         <span class='company-card-meta'>Evaluation layer</span>
       </a>
 
+      <a class='company-card' href='ai-agent-harness-evaluation.html'>
+        <span class='card-eyebrow'>Agent trust</span>
+        <h3>Harness-based agent evaluation.</h3>
+        <p>How Norynthe scores the full agent run: task, context, tools, permissions, evidence, verification, recovery, and reproducibility.</p>
+        <span class='company-card-meta'>Agent harnesses</span>
+      </a>
+
       <a class='company-card' href='https://reports.norynthe.com/'>
         <span class='card-eyebrow'>Public signal</span>
         <h3>Norynthe.Score board.</h3>
         <p>A public preview of the score record concept: model credibility, benchmark context, trust band, and evidence path.</p>
         <span class='company-card-meta'>Norynthe.Score</span>
-      </a>
-
-      <a class='company-card' href='market-position.html'>
-        <span class='card-eyebrow capital'>Positioning</span>
-        <h3>The missing trust layer.</h3>
-        <p>Why Norynthe is not another internal dashboard, and how external evaluation becomes a market-facing trust standard.</p>
-        <span class='company-card-meta'>Market position</span>
       </a>
     `;
   };
