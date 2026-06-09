@@ -2,9 +2,19 @@
   const GA4_MEASUREMENT_ID = "G-570981B382";
   const EVENT_CATEGORY = "Norynthe Public Site";
   const FIRST_MATERIAL_KEY = "norynthe_public_first_material";
+  const OWNER_MODE_KEY = "norynthe_pulse_owner_mode_v1";
+  const OWNER_MODE_COOKIE = "norynthe_pulse_owner_mode";
+  const OWNER_MODE_ENABLE_VALUES = ["1", "true", "yes", "on", "enable", "enabled"];
+  const OWNER_MODE_DISABLE_VALUES = ["0", "false", "no", "off", "disable", "disabled"];
   const TALLY_FORM_ID = "ZjezPA";
   const TALLY_FORM_URL = "https://tally.so/r/" + TALLY_FORM_ID;
 
+  const ownerModeCommand = applyOwnerModeCommand();
+  const ownerModeEnabled = isOwnerModeEnabled();
+  window.NORYNTHE_PULSE_OWNER_MODE_COMMAND = Boolean(window.NORYNTHE_PULSE_OWNER_MODE_COMMAND || ownerModeCommand);
+  window.NORYNTHE_PULSE_OWNER_MODE = Boolean(window.NORYNTHE_PULSE_OWNER_MODE || ownerModeEnabled);
+
+  if (window.NORYNTHE_PULSE_OWNER_MODE || window.NORYNTHE_PULSE_OWNER_MODE_COMMAND) return;
   if (!GA4_MEASUREMENT_ID || GA4_MEASUREMENT_ID === "G-XXXXXXXXXX") return;
 
   window.dataLayer = window.dataLayer || [];
@@ -27,6 +37,51 @@
 
   function cleanText(value) {
     return (value || "").replace(/\s+/g, " ").trim().slice(0, 96);
+  }
+
+  function applyOwnerModeCommand() {
+    const params = new URLSearchParams(window.location.search);
+    const value = cleanText(params.get("pulse_owner")).toLowerCase();
+    if (!OWNER_MODE_ENABLE_VALUES.includes(value) && !OWNER_MODE_DISABLE_VALUES.includes(value)) return false;
+
+    const enabled = OWNER_MODE_ENABLE_VALUES.includes(value);
+    try {
+      if (enabled) {
+        window.localStorage.setItem(OWNER_MODE_KEY, "1");
+      } else {
+        window.localStorage.removeItem(OWNER_MODE_KEY);
+      }
+    } catch (error) {}
+
+    const parts = [
+      OWNER_MODE_COOKIE + "=" + (enabled ? "1" : ""),
+      "path=/",
+      "max-age=" + (enabled ? 60 * 60 * 24 * 400 : 0),
+      "SameSite=Lax"
+    ];
+    const host = window.location.hostname.replace(/^www\./, "");
+    if (host.endsWith("norynthe.com")) parts.push("domain=.norynthe.com");
+    if (host.endsWith("alanmotley.com")) parts.push("domain=.alanmotley.com");
+    if (window.location.protocol === "https:") parts.push("Secure");
+    document.cookie = parts.join("; ");
+
+    try {
+      params.delete("pulse_owner");
+      const nextQuery = params.toString();
+      window.history.replaceState(null, document.title, window.location.pathname + (nextQuery ? "?" + nextQuery : "") + window.location.hash);
+    } catch (error) {}
+
+    return true;
+  }
+
+  function isOwnerModeEnabled() {
+    try {
+      if (window.localStorage.getItem(OWNER_MODE_KEY) === "1") return true;
+    } catch (error) {}
+
+    return document.cookie.split(";").some(function (part) {
+      return part.trim() === OWNER_MODE_COOKIE + "=1";
+    });
   }
 
   function pageName() {
