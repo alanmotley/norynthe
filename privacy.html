@@ -439,7 +439,7 @@
         <dl class="document-meta" aria-label="Privacy notice metadata">
           <div>
             <dt>Last updated</dt>
-            <dd>June 6, 2026</dd>
+            <dd>June 8, 2026</dd>
           </div>
           <div>
             <dt>Contact</dt>
@@ -475,11 +475,15 @@
             <ul>
               <li>Information you choose to send, such as form submissions, emails, meeting requests, diligence questions, or other messages sent to Norynthe.</li>
               <li>Basic website usage data, such as page views, referring pages, approximate location, device/browser information, scrolls, outbound clicks, file downloads, and similar interaction data.</li>
-              <li>Investor-site interaction signals, such as material opens, review track clicks, access unlock events, and follow-up request clicks.</li>
-              <li>Local browser state used by the investor portal to remember access status during review and to avoid double-counting first-open events during a session.</li>
+              <li>Investor-site interaction signals, such as material opens, review track clicks, protected packet download attempts, access unlock events, and follow-up request clicks.</li>
+              <li>Limited campaign and source context, such as UTM parameters, referring domain, anonymous session ID, approximate city/region/country, device type, browser, operating system, and network or ASN organization where available.</li>
+              <li>Local browser state used by the investor portal and Pulse tracker to remember access status, maintain an anonymous session ID during review, and avoid double-counting first-open events during a session.</li>
             </ul>
             <p>
-              Norynthe does not intentionally send names, email addresses, passwords, private investor documents, or message contents to Google Analytics.
+              Norynthe does not intentionally send names, email addresses, passwords, private investor documents, or message contents to Google Analytics or the Pulse visitor log.
+            </p>
+            <p>
+              The Pulse visitor log does not store raw IP addresses. It uses a salted hash for repeat-visitor recognition and may store Cloudflare-provided approximate location and network metadata.
             </p>
             <p>
               Norynthe currently uses Tally to collect website form submissions.
@@ -492,7 +496,10 @@
               Norynthe uses Google Analytics 4 to understand how visitors move through the sites, which materials are opened, and whether visitors use contact or follow-up links.
             </p>
             <p>
-              Analytics events are used in aggregate to improve the website, clarify investor review paths, and understand which pages or materials are most useful.
+              Norynthe also uses a Cloudflare Worker and Cloudflare D1 database for Norynthe.Pulse, a lightweight first-party visitor signal log used to understand investor review paths, packet download activity, campaign attribution, and high-level site engagement. This log is intended for operational review rather than advertising resale.
+            </p>
+            <p>
+              Analytics and Pulse events are used in aggregate and at a session level to improve the website, clarify investor review paths, and understand which pages or materials are most useful. Norynthe.Pulse includes manual clearing, CSV export, and optional retention controls.
             </p>
             <p>
               Google provides more information about <a href="https://support.google.com/analytics/answer/9019185">Google Analytics privacy controls</a> and the <a href="https://tools.google.com/dlpage/gaoptout">Google Analytics opt-out browser add-on</a>.
@@ -506,6 +513,7 @@
               <li>To understand which public and investor materials are most useful.</li>
               <li>To improve page structure, navigation, messaging, and site performance.</li>
               <li>To keep investor materials lightly access-controlled and understand review behavior at a high level.</li>
+              <li>To measure campaign performance for direct outreach links and investor packet access.</li>
               <li>To maintain the security, reliability, and integrity of Norynthe web properties.</li>
             </ul>
           </section>
