@@ -2,6 +2,8 @@
   const ENDPOINT = window.NORYNTHE_PULSE_ENDPOINT || "https://norynthe-pulse-tracker.alanmotley.workers.dev/track";
   const TRACKER_HOST = new URL(ENDPOINT).hostname;
   const SESSION_KEY = "norynthe_pulse_session_id_v1";
+  const GA_SESSION_KEY = "norynthe_pulse_ga_session_id_v1";
+  const GA_SESSION_COOKIE = "_ga_570981B382";
   const OWNER_MODE_KEY = "norynthe_pulse_owner_mode_v1";
   const OWNER_MODE_COOKIE = "norynthe_pulse_owner_mode";
   const OWNER_MODE_ENABLE_VALUES = ["1", "true", "yes", "on", "enable", "enabled"];
@@ -26,6 +28,7 @@
   }
 
   const sessionId = getSessionId();
+  const gaSessionId = getGaSessionId();
   const device = detectDevice();
   const utm = readUtm();
 
@@ -35,7 +38,10 @@
       site,
       eventType: "page_view",
       sessionId,
+      gaClientId: getGaClientId(),
+      gaSessionId,
       page: window.location.pathname + window.location.search,
+      pageLocation: window.location.href,
       title: document.title,
       referrer,
       referrerDomain: domainFromUrl(referrer),
@@ -113,6 +119,52 @@
     } catch (error) {
       return "session-" + Math.random().toString(36).slice(2) + Date.now().toString(36);
     }
+  }
+
+  function getGaClientId() {
+    const value = readCookie("_ga");
+    if (!value) return "";
+
+    const parts = value.split(".");
+    if (parts.length >= 4 && /^GA\d+$/.test(parts[0]) && /^\d+$/.test(parts[1])) {
+      return cleanText(parts.slice(-2).join("."), 100);
+    }
+
+    return /^\d+\.\d+$/.test(value) ? cleanText(value, 100) : "";
+  }
+
+  function getGaSessionId() {
+    const parsed = parseGaSessionCookie(readCookie(GA_SESSION_COOKIE));
+    if (parsed) return parsed;
+
+    try {
+      const existing = window.sessionStorage.getItem(GA_SESSION_KEY);
+      if (/^\d+$/.test(existing || "")) return existing;
+
+      const next = String(Math.floor(Date.now() / 1000));
+      window.sessionStorage.setItem(GA_SESSION_KEY, next);
+      return next;
+    } catch (error) {
+      return String(Math.floor(Date.now() / 1000));
+    }
+  }
+
+  function parseGaSessionCookie(value) {
+    if (!value) return "";
+
+    const gs2Session = value.match(/(?:^|[.$])s(\d{9,})(?:[$.]|$)/);
+    if (gs2Session) return gs2Session[1];
+
+    const parts = value.split(".");
+    if (/^GS\d+$/.test(parts[0] || "") && /^\d+$/.test(parts[2] || "")) return parts[2];
+
+    return "";
+  }
+
+  function readCookie(name) {
+    const escaped = name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    const match = document.cookie.match(new RegExp("(?:^|;\\s*)" + escaped + "=([^;]*)"));
+    return match ? decodeURIComponent(match[1]) : "";
   }
 
   function applyOwnerModeCommand() {
@@ -248,8 +300,12 @@
 
   function withSessionParams(url) {
     const next = new URL(url.toString());
+    const gaClientId = getGaClientId();
     next.searchParams.set("session_id", sessionId);
     next.searchParams.set("site", site);
+    next.searchParams.set("page_location", window.location.href);
+    if (gaClientId) next.searchParams.set("ga_client_id", gaClientId);
+    if (gaSessionId) next.searchParams.set("ga_session_id", gaSessionId);
     for (const [key, value] of [
       ["utm_source", utm.source],
       ["utm_medium", utm.medium],
