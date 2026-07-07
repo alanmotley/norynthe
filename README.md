@@ -9,7 +9,8 @@ This folder is separate from the investor portal. The public site is indexable a
 - `index.html`: public homepage.
 - `market-position.html`: public market-position page.
 - `norynthe-founder-memo.html`: founder memo page.
-- `norynthe-investors.html`: lightweight investor overview page in the public root.
+- `norynthe-homepage.css`: institutional homepage layout and responsive styling.
+- `norynthe-investors.html`: legacy investor URL retained only as a contact gateway; it does not publish investor materials.
 - `norynthe-design-language.css`: shared Norynthe typography and layout alignment layer.
 - `robots.txt`: allows indexing and points crawlers to the sitemap.
 - `sitemap.xml`: canonical public URL.
