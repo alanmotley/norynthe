@@ -52,11 +52,17 @@
     footer { border-top: 1px solid var(--line); }
 
     .brand {
-      color: var(--ink);
-      font-size: 1.25rem;
-      font-weight: 780;
-      letter-spacing: -0.04em;
+      width: 142px;
+      display: inline-flex;
+      flex: 0 0 auto;
       text-decoration: none;
+    }
+
+    .brand img {
+      display: block;
+      width: 100%;
+      height: auto;
+      filter: saturate(0.75) contrast(1.06);
     }
 
     header > a:last-child,
@@ -133,7 +139,9 @@
 <body data-analytics-page="Investor inquiry gateway">
   <div class="page">
     <header>
-      <a class="brand" href="/">Norynthe.</a>
+      <a class="brand" href="/" aria-label="Norynthe home">
+        <img src="/Norynthe_master.png" alt="Norynthe." width="1039" height="263">
+      </a>
       <a href="/">Return to main site</a>
     </header>
     <main>
