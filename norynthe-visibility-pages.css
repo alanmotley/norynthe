@@ -202,6 +202,11 @@ h1 {
   box-shadow: 0 14px 34px rgba(15, 17, 21, 0.045);
 }
 
+.method-basis {
+  border-color: rgba(39, 75, 119, 0.28);
+  background: rgba(255, 255, 255, 0.78);
+}
+
 .summary-card {
   min-height: 132px;
   padding: 18px;
@@ -223,6 +228,21 @@ h1 {
   color: var(--muted);
   font-size: 0.92rem;
   line-height: 1.58;
+}
+
+.method-citation {
+  margin-top: 2px;
+  color: #5f6c79;
+  font-size: 0.9rem;
+  line-height: 1.65;
+}
+
+.method-citation a {
+  color: var(--ink);
+  font-weight: 760;
+  text-decoration: underline;
+  text-decoration-color: rgba(39, 75, 119, 0.32);
+  text-underline-offset: 3px;
 }
 
 .section {
