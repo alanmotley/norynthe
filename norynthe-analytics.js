@@ -1,5 +1,12 @@
 (function () {
-  const GA4_MEASUREMENT_ID = "G-570981B382";
+  const PUBLIC_GA4_MEASUREMENT_ID = "G-H9T9WHCR5Y";
+  const INVESTOR_GA4_MEASUREMENT_ID = "G-570981B382";
+  const isInvestorSurface =
+    window.location.hostname.replace(/^www\./, "").toLowerCase() === "investors.norynthe.com" ||
+    window.location.pathname.toLowerCase().includes("norynthe-investors.html");
+  const GA4_MEASUREMENT_ID = isInvestorSurface
+    ? INVESTOR_GA4_MEASUREMENT_ID
+    : PUBLIC_GA4_MEASUREMENT_ID;
   const EVENT_CATEGORY = "Norynthe Public Site";
   const FIRST_MATERIAL_KEY = "norynthe_public_first_material";
   const OWNER_MODE_KEY = "norynthe_pulse_owner_mode_v1";
@@ -8,6 +15,7 @@
   const OWNER_MODE_DISABLE_VALUES = ["0", "false", "no", "off", "disable", "disabled"];
   const TALLY_FORM_ID = "ZjezPA";
   const TALLY_FORM_URL = "https://tally.so/r/" + TALLY_FORM_ID;
+  const TALLY_FORM_NAME = "Norynthe inquiry";
 
   const ownerModeCommand = applyOwnerModeCommand();
   const ownerModeEnabled = isOwnerModeEnabled();
@@ -16,6 +24,8 @@
 
   if (window.NORYNTHE_PULSE_OWNER_MODE || window.NORYNTHE_PULSE_OWNER_MODE_COMMAND) return;
   if (!GA4_MEASUREMENT_ID || GA4_MEASUREMENT_ID === "G-XXXXXXXXXX") return;
+  if (window.NORYNTHE_PUBLIC_ANALYTICS_INITIALIZED) return;
+  window.NORYNTHE_PUBLIC_ANALYTICS_INITIALIZED = true;
 
   window.dataLayer = window.dataLayer || [];
   window.gtag = window.gtag || function () {
@@ -31,8 +41,13 @@
 
   window.gtag("js", new Date());
   window.gtag("config", GA4_MEASUREMENT_ID, {
+    cookie_domain: "auto",
+    content_group: contentGroup(),
+    content_type: contentType(),
+    page_name: pageName(),
     page_title: document.title,
-    page_path: window.location.pathname + window.location.search + window.location.hash
+    page_path: window.location.pathname + window.location.search,
+    site_area: siteArea()
   });
 
   function cleanText(value) {
@@ -88,7 +103,52 @@
     return document.body.dataset.analyticsPage || cleanText(document.title.split("|")[0]) || "Public Site";
   }
 
+  function siteArea() {
+    const bodyOverride = cleanText(document.body.dataset.analyticsSite);
+    if (bodyOverride) return bodyOverride;
+
+    const host = window.location.hostname.replace(/^www\./, "").toLowerCase();
+    if (host === "papers.norynthe.com") return "Papers";
+    if (host === "reports.norynthe.com") return "Reports";
+    return "Main Site";
+  }
+
+  function contentGroup() {
+    const bodyOverride = cleanText(document.body.dataset.analyticsContent);
+    if (bodyOverride) return bodyOverride;
+
+    const path = window.location.pathname.toLowerCase();
+    const host = window.location.hostname.replace(/^www\./, "").toLowerCase();
+    if (host === "papers.norynthe.com") return "Research";
+    if (host === "reports.norynthe.com") return "Score Board";
+    if (path.includes("privacy")) return "Privacy";
+    if (
+      path.includes("independent-ai-model-evaluation") ||
+      path.includes("ai-agent-harness-evaluation") ||
+      path.includes("ai-model-evaluation-benchmarks") ||
+      path.includes("ai-trust-scoring") ||
+      path.includes("ai-governance-readiness")
+    ) {
+      return "AI Assurance";
+    }
+    return "Corporate";
+  }
+
+  function contentType() {
+    const bodyOverride = cleanText(document.body.dataset.analyticsContentType);
+    if (bodyOverride) return bodyOverride;
+
+    const group = contentGroup();
+    if (group === "AI Assurance") return "assurance_page";
+    if (group === "Research") return "publication";
+    if (group === "Score Board") return "signal_preview";
+    return group.toLowerCase().replace(/\s+/g, "_");
+  }
+
   function linkRole(link) {
+    const explicitRole = cleanText(link.dataset.analyticsRole);
+    if (explicitRole) return explicitRole;
+
     if (link.closest(".hero-actions, .hero-links, .button-row, .closing-actions, .contact-row")) {
       return "primary_cta";
     }
@@ -99,27 +159,79 @@
     return "inline";
   }
 
+  function isMainSiteHomeHref(href) {
+    if (href === "/" || href.toLowerCase().includes("index.html")) return true;
+
+    try {
+      const destination = new URL(href, window.location.href);
+      const host = destination.hostname.replace(/^www\./, "").toLowerCase();
+      return host === "norynthe.com" && (destination.pathname === "/" || destination.pathname === "");
+    } catch (error) {
+      return false;
+    }
+  }
+
   function materialForHref(href, text) {
     if (!href) return text || "Unknown";
-    if (href.startsWith("mailto:")) return "Contact";
-    if (href.includes("norynthe-investors.html")) return "Investor Overview";
-    if (href.includes("norynthe-founder-memo.html")) return "Founder Memo";
-    if (href.includes("market-position.html")) return "Market Position";
-    if (href.includes("#standard")) return "Benchmark Ledger";
-    if (href === "/" || href.includes("index.html")) return "Main Site";
+    const normalizedHref = href.toLowerCase();
+    if (normalizedHref.startsWith("mailto:")) return "Contact";
+    if (normalizedHref.includes("tally.so/r/" + TALLY_FORM_ID.toLowerCase())) return "Contact Form";
+    if (normalizedHref.includes("norynthe-investors.html")) return "Investor Overview";
+    if (normalizedHref.includes("norynthe-founder-memo.html")) return "Founder Memo";
+    if (normalizedHref.includes("market-position.html")) return "Market Position";
+    if (normalizedHref.includes("independent-ai-model-evaluation")) return "Independent AI Assurance";
+    if (normalizedHref.includes("ai-agent-harness-evaluation")) return "AI Agent Harness Evaluation";
+    if (normalizedHref.includes("ai-model-evaluation-benchmarks")) return "AI Model Evaluation Benchmarks";
+    if (normalizedHref.includes("ai-trust-scoring")) return "AI Trust Scoring";
+    if (normalizedHref.includes("ai-governance-readiness")) return "AI Governance Readiness";
+    if (normalizedHref.includes("reports.norynthe.com")) return "Norynthe.Score";
+    if (normalizedHref.includes("papers.norynthe.com")) return "Norynthe Papers";
+    if (normalizedHref.includes("#standard")) return "Benchmark Ledger";
+    if (isMainSiteHomeHref(href)) return "Main Site";
     if (href.charAt(0) === "#") return href.replace("#", "") || text || "Page Section";
     return text || href;
   }
 
   function eventForHref(href) {
-    if (href.startsWith("mailto:")) return "contact_clicked";
-    if (href.includes("norynthe-investors.html")) return "public_material_opened";
-    if (href.includes("norynthe-founder-memo.html")) return "public_material_opened";
-    if (href.includes("market-position.html")) return "public_material_opened";
-    if (href.includes("#standard")) return "public_material_opened";
-    if (href === "/" || href.includes("index.html")) return "public_material_opened";
+    const normalizedHref = href.toLowerCase();
+    if (normalizedHref.startsWith("mailto:")) return "contact_clicked";
+    if (normalizedHref.includes("tally.so/r/" + TALLY_FORM_ID.toLowerCase())) return "request_materials_clicked";
+    if (normalizedHref.includes("norynthe-investors.html")) return "public_material_opened";
+    if (normalizedHref.includes("norynthe-founder-memo.html")) return "public_material_opened";
+    if (normalizedHref.includes("market-position.html")) return "public_material_opened";
+    if (normalizedHref.includes("independent-ai-model-evaluation")) return "public_material_opened";
+    if (normalizedHref.includes("ai-agent-harness-evaluation")) return "public_material_opened";
+    if (normalizedHref.includes("ai-model-evaluation-benchmarks")) return "public_material_opened";
+    if (normalizedHref.includes("ai-trust-scoring")) return "public_material_opened";
+    if (normalizedHref.includes("ai-governance-readiness")) return "public_material_opened";
+    if (normalizedHref.includes("reports.norynthe.com")) return "public_material_opened";
+    if (normalizedHref.includes("papers.norynthe.com")) return "public_material_opened";
+    if (normalizedHref.includes("#standard")) return "public_material_opened";
+    if (isMainSiteHomeHref(href)) return "public_material_opened";
     if (href.charAt(0) === "#") return "page_section_opened";
     return "site_link_clicked";
+  }
+
+  function destinationHost(href) {
+    if (!href) return "unknown";
+    if (href.startsWith("mailto:")) return "email";
+    if (href.charAt(0) === "#") return "same_page";
+
+    try {
+      return new URL(href, window.location.href).hostname.replace(/^www\./, "") || "same_site";
+    } catch (error) {
+      return "unknown";
+    }
+  }
+
+  function isOutboundHref(href) {
+    if (!href || href.startsWith("mailto:") || href.charAt(0) === "#") return false;
+
+    try {
+      return new URL(href, window.location.href).hostname !== window.location.hostname;
+    } catch (error) {
+      return false;
+    }
   }
 
   function safeSessionGet(key) {
@@ -142,8 +254,10 @@
     if (typeof window.gtag !== "function") return;
 
     window.gtag("event", eventName, Object.assign({
+      content_group: contentGroup(),
+      content_type: contentType(),
       event_category: EVENT_CATEGORY,
-      site_area: "Public Site",
+      site_area: siteArea(),
       page_name: pageName(),
       transport_type: "beacon"
     }, params));
@@ -180,7 +294,12 @@
     const requestType = cleanText(trigger.dataset.requestType) || "General inquiry";
     const sourceArea = cleanText(trigger.dataset.sourceArea) || linkRole(trigger);
     const params = {
+      destination_host: "tally.so",
+      form_destination: TALLY_FORM_URL,
+      form_id: TALLY_FORM_ID,
+      form_name: TALLY_FORM_NAME,
       link_text: linkText,
+      material: "Contact Form",
       request_type: requestType,
       source_area: sourceArea,
       destination: TALLY_FORM_URL
@@ -188,12 +307,20 @@
 
     track("request_materials_clicked", params);
 
+    function continueToHostedForm() {
+      track("form_start", params);
+      window.location.href = TALLY_FORM_URL;
+    }
+
     loadTallyWidget()
       .then(function () {
         if (!window.Tally || typeof window.Tally.openPopup !== "function") {
-          window.location.href = TALLY_FORM_URL;
+          continueToHostedForm();
           return;
         }
+
+        let formStarted = false;
+        let leadGenerated = false;
 
         window.Tally.openPopup(TALLY_FORM_ID, {
           layout: "modal",
@@ -207,17 +334,25 @@
           },
           onOpen: function () {
             track("request_materials_opened", params);
+            if (!formStarted) {
+              formStarted = true;
+              track("form_start", params);
+            }
           },
           onClose: function () {
             track("request_materials_closed", params);
           },
           onSubmit: function () {
-            track("request_materials_submitted", params);
+            if (!leadGenerated) {
+              leadGenerated = true;
+              track("request_materials_submitted", params);
+              track("generate_lead", params);
+            }
           }
         });
       })
       .catch(function () {
-        window.location.href = TALLY_FORM_URL;
+        continueToHostedForm();
       });
   }
 
@@ -245,12 +380,14 @@
 
     const href = link.getAttribute("href") || "";
     const text = cleanText(link.textContent || link.getAttribute("aria-label"));
-    const material = materialForHref(href, text);
+    const material = cleanText(link.dataset.analyticsMaterial) || materialForHref(href, text);
     const eventName = eventForHref(href);
     const params = {
+      destination_host: destinationHost(href),
       link_text: text || material,
       material: material,
       link_role: linkRole(link),
+      outbound: isOutboundHref(href),
       destination: href.startsWith("mailto:") ? "mailto:hello@norynthe.com" : href
     };
 
