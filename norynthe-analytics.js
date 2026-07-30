@@ -16,6 +16,7 @@
   const TALLY_FORM_ID = "ZjezPA";
   const TALLY_FORM_URL = "https://tally.so/r/" + TALLY_FORM_ID;
   const TALLY_FORM_NAME = "Norynthe inquiry";
+  const PULSE_EVENT_NAME = "norynthe:pulse";
 
   const ownerModeCommand = applyOwnerModeCommand();
   const ownerModeEnabled = isOwnerModeEnabled();
@@ -250,17 +251,58 @@
     }
   }
 
-  function track(eventName, params) {
-    if (typeof window.gtag !== "function") return;
+  function track(eventName, params, pulseEventId) {
+    if (typeof window.gtag === "function") {
+      window.gtag("event", eventName, Object.assign({
+        content_group: contentGroup(),
+        content_type: contentType(),
+        event_category: EVENT_CATEGORY,
+        site_area: siteArea(),
+        page_name: pageName(),
+        transport_type: "beacon"
+      }, params));
+    }
 
-    window.gtag("event", eventName, Object.assign({
-      content_group: contentGroup(),
-      content_type: contentType(),
-      event_category: EVENT_CATEGORY,
-      site_area: siteArea(),
-      page_name: pageName(),
-      transport_type: "beacon"
-    }, params));
+    if (eventName === "form_start" || eventName === "generate_lead") {
+      trackPulseLifecycle(eventName, params, pulseEventId);
+    }
+  }
+
+  function trackPulseLifecycle(eventName, params, eventId) {
+    const payload = {
+      eventId: eventId || createPulseEventId(eventName),
+      formId: TALLY_FORM_ID,
+      formName: TALLY_FORM_NAME,
+      material: cleanText(params && params.material) || "Contact Form",
+      requestType: cleanText(params && params.request_type) || "General inquiry",
+      sourceArea: cleanText(params && params.source_area) || siteArea()
+    };
+    const bridge = window.NorynthePulse = window.NorynthePulse || {};
+
+    if (typeof bridge.track === "function") {
+      bridge.track(eventName, payload);
+      return;
+    }
+
+    bridge.queue = Array.isArray(bridge.queue) ? bridge.queue : [];
+    if (!bridge.queue.some(function (entry) {
+      return entry && entry.payload && entry.payload.eventId === payload.eventId;
+    })) {
+      bridge.queue.push({ eventType: eventName, payload: payload });
+    }
+
+    try {
+      window.dispatchEvent(new CustomEvent(PULSE_EVENT_NAME, {
+        detail: { eventType: eventName, payload: payload }
+      }));
+    } catch (error) {}
+  }
+
+  function createPulseEventId(eventName) {
+    const token = window.crypto && typeof window.crypto.randomUUID === "function"
+      ? window.crypto.randomUUID()
+      : Math.random().toString(36).slice(2) + Date.now().toString(36);
+    return "norynthe:" + eventName + ":" + token;
   }
 
   function loadTallyWidget() {
@@ -290,6 +332,7 @@
   }
 
   function openRequestForm(trigger) {
+    const formJourneyId = createPulseEventId("inquiry");
     const linkText = cleanText(trigger.textContent || trigger.getAttribute("aria-label")) || "Request materials";
     const requestType = cleanText(trigger.dataset.requestType) || "General inquiry";
     const sourceArea = cleanText(trigger.dataset.sourceArea) || linkRole(trigger);
@@ -308,7 +351,7 @@
     track("request_materials_clicked", params);
 
     function continueToHostedForm() {
-      track("form_start", params);
+      track("form_start", params, formJourneyId + ":form_start");
       window.location.href = TALLY_FORM_URL;
     }
 
@@ -336,7 +379,7 @@
             track("request_materials_opened", params);
             if (!formStarted) {
               formStarted = true;
-              track("form_start", params);
+              track("form_start", params, formJourneyId + ":form_start");
             }
           },
           onClose: function () {
@@ -346,7 +389,7 @@
             if (!leadGenerated) {
               leadGenerated = true;
               track("request_materials_submitted", params);
-              track("generate_lead", params);
+              track("generate_lead", params, formJourneyId + ":generate_lead");
             }
           }
         });

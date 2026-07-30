@@ -1,9 +1,14 @@
 (function () {
+  if (window.NORYNTHE_PULSE_TRACKER_INITIALIZED) return;
+  window.NORYNTHE_PULSE_TRACKER_INITIALIZED = true;
+
   const ENDPOINT = window.NORYNTHE_PULSE_ENDPOINT || "https://norynthe-pulse-tracker.alanmotley.workers.dev/track";
   const TRACKER_HOST = new URL(ENDPOINT).hostname;
   const SESSION_KEY = "norynthe_pulse_session_id_v1";
-  const GA_SESSION_KEY = "norynthe_pulse_ga_session_id_v1";
-  const GA_SESSION_COOKIE = "_ga_570981B382";
+  const PUBLIC_GA_SESSION_KEY = "norynthe_pulse_ga_session_id_v1_H9T9WHCR5Y";
+  const INVESTOR_GA_SESSION_KEY = "norynthe_pulse_ga_session_id_v1_570981B382";
+  const PUBLIC_GA_SESSION_COOKIE = "_ga_H9T9WHCR5Y";
+  const INVESTOR_GA_SESSION_COOKIE = "_ga_570981B382";
   const OWNER_MODE_KEY = "norynthe_pulse_owner_mode_v1";
   const OWNER_MODE_COOKIE = "norynthe_pulse_owner_mode";
   const OWNER_MODE_ENABLE_VALUES = ["1", "true", "yes", "on", "enable", "enabled"];
@@ -13,24 +18,31 @@
     "norynthe.com": "norynthe",
     "investors.norynthe.com": "investor",
     "reports.norynthe.com": "reports",
+    "papers.norynthe.com": "papers",
     "www.alanmotley.com": "alanmotley",
     "alanmotley.com": "alanmotley"
   };
 
   const currentScript = document.currentScript;
-  const site = currentScript?.dataset?.pulseSite || HOST_SITE[window.location.hostname] || "unknown";
+  const investorSurface = isInvestorSurface();
+  const site = investorSurface
+    ? "investor"
+    : currentScript?.dataset?.pulseSite || HOST_SITE[window.location.hostname] || "unknown";
+  const gaSessionKey = investorSurface ? INVESTOR_GA_SESSION_KEY : PUBLIC_GA_SESSION_KEY;
+  const gaSessionCookie = investorSurface ? INVESTOR_GA_SESSION_COOKIE : PUBLIC_GA_SESSION_COOKIE;
   const ownerModeCommand = applyOwnerModeCommand();
   const ownerModeEnabled = isOwnerModeEnabled();
-  window.NORYNTHE_PULSE_OWNER_MODE = ownerModeEnabled;
-  window.NORYNTHE_PULSE_OWNER_MODE_COMMAND = Boolean(ownerModeCommand);
-  if (ownerModeEnabled || ownerModeCommand) {
+  const ownerModeCommandSeen = Boolean(window.NORYNTHE_PULSE_OWNER_MODE_COMMAND || ownerModeCommand);
+  window.NORYNTHE_PULSE_OWNER_MODE = Boolean(window.NORYNTHE_PULSE_OWNER_MODE || ownerModeEnabled);
+  window.NORYNTHE_PULSE_OWNER_MODE_COMMAND = ownerModeCommandSeen;
+  if (window.NORYNTHE_PULSE_OWNER_MODE || ownerModeCommandSeen) {
     return;
   }
 
   const sessionId = getSessionId();
-  const gaSessionId = getGaSessionId();
   const device = detectDevice();
   const utm = readUtm();
+  const seenPulseEventIds = new Set();
 
   function send(payload) {
     const referrer = payload?.referrer ?? document.referrer;
@@ -39,7 +51,7 @@
       eventType: "page_view",
       sessionId,
       gaClientId: getGaClientId(),
-      gaSessionId,
+      gaSessionId: getGaSessionId(),
       page: window.location.pathname + window.location.search,
       pageLocation: window.location.href,
       title: document.title,
@@ -67,6 +79,22 @@
       keepalive: true
     }).catch(function () {});
   }
+
+  const pulseBridge = window.NorynthePulse = window.NorynthePulse || {};
+  const queuedPulseEvents = Array.isArray(pulseBridge.queue) ? pulseBridge.queue.slice() : [];
+  pulseBridge.queue = [];
+  pulseBridge.track = trackPulseEvent;
+  pulseBridge.ready = true;
+
+  window.addEventListener("norynthe:pulse", function (event) {
+    const detail = event && event.detail && typeof event.detail === "object" ? event.detail : {};
+    pulseBridge.track(detail.eventType, detail.payload || detail);
+  });
+
+  queuedPulseEvents.forEach(function (entry) {
+    if (!entry || typeof entry !== "object") return;
+    pulseBridge.track(entry.eventType, entry.payload || {});
+  });
 
   send({
     assetName: assetNameFromPage(window.location.pathname, document.title)
@@ -134,15 +162,15 @@
   }
 
   function getGaSessionId() {
-    const parsed = parseGaSessionCookie(readCookie(GA_SESSION_COOKIE));
+    const parsed = parseGaSessionCookie(readCookie(gaSessionCookie));
     if (parsed) return parsed;
 
     try {
-      const existing = window.sessionStorage.getItem(GA_SESSION_KEY);
+      const existing = window.sessionStorage.getItem(gaSessionKey);
       if (/^\d+$/.test(existing || "")) return existing;
 
       const next = String(Math.floor(Date.now() / 1000));
-      window.sessionStorage.setItem(GA_SESSION_KEY, next);
+      window.sessionStorage.setItem(gaSessionKey, next);
       return next;
     } catch (error) {
       return String(Math.floor(Date.now() / 1000));
@@ -301,6 +329,7 @@
   function withSessionParams(url) {
     const next = new URL(url.toString());
     const gaClientId = getGaClientId();
+    const gaSessionId = getGaSessionId();
     next.searchParams.set("session_id", sessionId);
     next.searchParams.set("site", site);
     next.searchParams.set("page_location", window.location.href);
@@ -316,6 +345,30 @@
       if (value) next.searchParams.set(key, value);
     }
     return next;
+  }
+
+  function trackPulseEvent(eventType, payload) {
+    const type = cleanText(eventType, 48);
+    if (type !== "form_start" && type !== "generate_lead") return false;
+
+    const details = payload && typeof payload === "object" ? payload : {};
+    const eventId = cleanText(details.eventId || details.event_id, 160);
+    if (eventId && seenPulseEventIds.has(eventId)) return false;
+    if (eventId) seenPulseEventIds.add(eventId);
+
+    const requestType = cleanText(details.requestType || details.request_type, 120) || "General inquiry";
+    const sourceArea = cleanText(details.sourceArea || details.source_area, 120) || site;
+    const titlePrefix = type === "generate_lead" ? "Lead generated" : "Form started";
+
+    send({
+      eventType: type,
+      assetName: requestType,
+      title: titlePrefix + ": " + requestType + " · " + sourceArea,
+      referrer: window.location.href,
+      referrerDomain: window.location.hostname.replace(/^www\./, "")
+    });
+    emitClarityEvent("pulse_" + type);
+    return true;
   }
 
   function tagClaritySession() {
@@ -359,6 +412,12 @@
     if (combined.includes("run-console") || combined.includes("console")) return "MVP Console";
     if (combined.includes("investor") && combined.includes("packet")) return "Investor Packet";
     return "";
+  }
+
+  function isInvestorSurface() {
+    const host = window.location.hostname.replace(/^www\./, "").toLowerCase();
+    const path = window.location.pathname.toLowerCase();
+    return host === "investors.norynthe.com" || path.includes("norynthe-investors.html");
   }
 
   function domainFromUrl(value) {
