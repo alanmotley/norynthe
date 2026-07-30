@@ -581,6 +581,49 @@ body.institutional-home::before {
   line-height: 1.5;
 }
 
+.platform-links {
+  margin-top: 2.4rem;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  border-top: 1px solid var(--line);
+}
+
+.platform-links a {
+  min-height: 4.6rem;
+  padding: 1.1rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  border-bottom: 1px solid var(--line);
+  color: var(--ink);
+  font-size: 0.7rem;
+  font-weight: 720;
+  letter-spacing: 0.06em;
+  line-height: 1.4;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.platform-links a:nth-child(odd) {
+  padding-right: 1.5rem;
+}
+
+.platform-links a:nth-child(even) {
+  padding-left: 1.5rem;
+  border-left: 1px solid var(--line);
+}
+
+.platform-links a span {
+  color: var(--oxide);
+  transition: transform 180ms ease;
+}
+
+.platform-links a:hover span,
+.platform-links a:focus-visible span {
+  transform: translateX(4px);
+}
+
 .research-section {
   position: relative;
   padding: clamp(6rem, 10vw, 10rem) 0;
@@ -1034,6 +1077,16 @@ body.institutional-home::before {
   .compact-heading {
     grid-template-columns: 1fr;
     gap: 1.1rem;
+  }
+
+  .platform-links {
+    grid-template-columns: 1fr;
+  }
+
+  .platform-links a:nth-child(odd),
+  .platform-links a:nth-child(even) {
+    padding-inline: 0;
+    border-left: 0;
   }
 
   .compact-heading h2 {

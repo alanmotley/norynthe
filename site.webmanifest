@@ -1,7 +1,7 @@
 {
   "name": "Norynthe.",
   "short_name": "Norynthe",
-  "description": "Independent AI evaluation and trust scoring outside the model.",
+  "description": "Independent AI assurance and trust infrastructure outside the model.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
