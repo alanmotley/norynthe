@@ -17,6 +17,7 @@
   const TALLY_FORM_URL = "https://tally.so/r/" + TALLY_FORM_ID;
   const TALLY_FORM_NAME = "Norynthe inquiry";
   const PULSE_EVENT_NAME = "norynthe:pulse";
+  const PULSE_TRACKER_HOST = "norynthe-pulse-tracker.alanmotley.workers.dev";
 
   const ownerModeCommand = applyOwnerModeCommand();
   const ownerModeEnabled = isOwnerModeEnabled();
@@ -211,6 +212,33 @@
     if (isMainSiteHomeHref(href)) return "public_material_opened";
     if (href.charAt(0) === "#") return "page_section_opened";
     return "site_link_clicked";
+  }
+
+  function isConfirmedPaperDownload(link, href) {
+    if (link.dataset.analyticsRole !== "paper_download") return false;
+
+    try {
+      const url = new URL(href, window.location.href);
+      return url.hostname === PULSE_TRACKER_HOST && url.pathname.startsWith("/download/");
+    } catch (error) {
+      return false;
+    }
+  }
+
+  function absoluteHref(href) {
+    try {
+      return new URL(href, window.location.href).href;
+    } catch (error) {
+      return href;
+    }
+  }
+
+  function fileNameForHref(href) {
+    try {
+      return decodeURIComponent(new URL(href, window.location.href).pathname.split("/").pop() || "research.pdf");
+    } catch (error) {
+      return "research.pdf";
+    }
   }
 
   function destinationHost(href) {
@@ -435,6 +463,18 @@
     };
 
     track(eventName, params);
+
+    if (isConfirmedPaperDownload(link, href)) {
+      const canonicalHref = link.dataset.downloadCanonical || href;
+      track("file_download", Object.assign({}, params, {
+        destination_host: destinationHost(canonicalHref),
+        destination: absoluteHref(canonicalHref),
+        link_url: absoluteHref(canonicalHref),
+        file_name: fileNameForHref(canonicalHref),
+        file_extension: "pdf",
+        content_type: "research_pdf"
+      }));
+    }
 
     if (eventName === "public_material_opened" && material !== "Main Site" && !safeSessionGet(FIRST_MATERIAL_KEY)) {
       safeSessionSet(FIRST_MATERIAL_KEY, material);
