@@ -1,6 +1,6 @@
 # Norynthe Public Site
 
-Static public website package for `www.norynthe.com`.
+Static public website package for `norynthe.com`.
 
 This folder is separate from the investor portal. The public site is indexable and contains only high-level brand, positioning, and contact information.
 

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.norynthe.com/sitemap.xml
+Sitemap: https://norynthe.com/sitemap.xml
