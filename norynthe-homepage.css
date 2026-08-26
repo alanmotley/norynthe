@@ -848,39 +848,6 @@ body.institutional-home::before {
   color: rgba(243, 246, 248, 0.74);
 }
 
-.investor-section {
-  padding: 3.8rem 0;
-  border-bottom: 1px solid var(--line);
-  background: linear-gradient(180deg, #eef2f6 0%, var(--paper) 100%);
-}
-
-.investor-inner {
-  display: grid;
-  grid-template-columns: 0.48fr 1.35fr auto;
-  gap: clamp(2.5rem, 6vw, 6rem);
-  align-items: center;
-}
-
-.investor-inner .section-label {
-  margin-bottom: 0.7rem;
-}
-
-.investor-inner h2 {
-  font-size: 1.75rem;
-  letter-spacing: -0.03em;
-}
-
-.investor-inner > p {
-  margin: 0;
-  color: var(--body);
-  font-size: 0.82rem;
-  line-height: 1.72;
-}
-
-.investor-inner .text-link {
-  white-space: nowrap;
-}
-
 .contact-section {
   padding: clamp(6rem, 9vw, 8rem) 0;
   color: #f1f4f7;
@@ -985,15 +952,6 @@ body.institutional-home::before {
 
   .hero-statement h1 {
     font-size: clamp(4.3rem, 8vw, 6.7rem);
-  }
-
-  .investor-inner {
-    grid-template-columns: 0.5fr 1.5fr;
-  }
-
-  .investor-inner .text-link {
-    grid-column: 2;
-    justify-self: start;
   }
 
   .footer-inner {
@@ -1104,15 +1062,6 @@ body.institutional-home::before {
 
   .audience-grid article + article {
     border-top: 1px solid var(--line);
-  }
-
-  .investor-inner {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-
-  .investor-inner .text-link {
-    grid-column: auto;
   }
 
   .footer-inner {
