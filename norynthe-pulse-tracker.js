@@ -349,16 +349,21 @@
 
   function trackPulseEvent(eventType, payload) {
     const type = cleanText(eventType, 48);
-    if (type !== "form_start" && type !== "generate_lead") return false;
+    if (type !== "form_start" && type !== "generate_lead" && type !== "support_click") return false;
 
     const details = payload && typeof payload === "object" ? payload : {};
     const eventId = cleanText(details.eventId || details.event_id, 160);
     if (eventId && seenPulseEventIds.has(eventId)) return false;
     if (eventId) seenPulseEventIds.add(eventId);
 
-    const requestType = cleanText(details.requestType || details.request_type, 120) || "General inquiry";
+    const requestType = cleanText(details.requestType || details.request_type || details.material, 120)
+      || (type === "support_click" ? "The Norynthe Papers" : "General inquiry");
     const sourceArea = cleanText(details.sourceArea || details.source_area, 120) || site;
-    const titlePrefix = type === "generate_lead" ? "Lead generated" : "Form started";
+    const titlePrefix = type === "generate_lead"
+      ? "Lead generated"
+      : type === "support_click"
+        ? "Support clicked"
+        : "Form started";
 
     send({
       eventType: type,
