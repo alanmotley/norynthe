@@ -1,4 +1,8 @@
 (function () {
+  document.querySelectorAll("[data-current-year]").forEach(function (element) {
+    element.textContent = String(new Date().getFullYear());
+  });
+
   if (window.NORYNTHE_PULSE_TRACKER_INITIALIZED) return;
   window.NORYNTHE_PULSE_TRACKER_INITIALIZED = true;
 
